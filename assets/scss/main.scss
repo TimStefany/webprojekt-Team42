@@ -1,8 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400');
-@import url('https://fonts.googleapis.com/css?family=Raleway:700');
+$primary: rgb(255, 255, 0);
+$secondary: rgb(0, 80, 255);
 
-@import "pages/test.scss";
+.body {
+  background-color: $primary;
+}
 
-.class{
-  color:red;
+h1 {
+  color: $secondary;
 }

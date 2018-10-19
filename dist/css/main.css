@@ -1,1 +1,7 @@
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400");@import url("https://fonts.googleapis.com/css?family=Raleway:700");.classtim{color:blue}.class{color:red}
+.body {
+  background-color: yellow;
+}
+
+h1 {
+  color: #0050ff;
+}
