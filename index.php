@@ -6,18 +6,22 @@
 <nav>
 
 </nav>
-<main>
+<main class="container"><!--ein Responsive Container in dem der Content steckt-->
     <h1>Hier entsteht der geile Microblog von Team-42!</h1>
-    <div>
+    <div class="text-center"> <!--Klasse wird schon von bootstrap mitgegeben-->
         <h3 class='test'>Sie müssen sich zuerst einloggen!</h3>
-        <div id='loginblock'>
+
+        <!-- Login-->
+        <div class='loginblock'>
             <form action="#" method="post">
-                Benutzername:<br> <input name="benutzername" type="text" placeholder="Benutzername eingeben!"><br>
+                <span>Benutzername:</span><br> <input name="benutzername" type="text"
+                                                      placeholder="Benutzername eingeben!"><br>
                 Passwort:<br> <input name="passwort" type="password" placeholder="Passwort eingeben!"><br>
                 <p><input name="absenden" class="btn btn-primary" type="submit" value="Login"></p>
             </form>
         </div>
     </div>
+
 </main>
 <footer>
 
