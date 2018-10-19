@@ -3,8 +3,25 @@
 
 ?>
 <body>
-<h1>Hier entsteht der geile Microblog von Team-42!</h1>
+<nav>
 
+</nav>
+<main>
+    <h1>Hier entsteht der geile Microblog von Team-42!</h1>
+    <div>
+        <h3 class='test'>Sie müssen sich zuerst einloggen!</h3>
+        <div id='loginblock'>
+            <form action="#" method="post">
+                Benutzername:<br> <input name="benutzername" type="text" placeholder="Benutzername eingeben!"><br>
+                Passwort:<br> <input name="passwort" type="password" placeholder="Passwort eingeben!"><br>
+                <p><input name="absenden" class="btn btn-primary" type="submit" value="Login"></p>
+            </form>
+        </div>
+    </div>
+</main>
+<footer>
+
+</footer>
 
 <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
 <!--
