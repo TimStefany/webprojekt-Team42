@@ -8510,8 +8510,8 @@ a.text-dark:hover, a.text-dark:focus {
 /*
 * Allgemeine Styles
  */
-.body {
-  background-color: yellow;
+body {
+  background-color: #dfe2ef;
 }
 
 h1, .h1, h2, .h2, h3, .h3 {

@@ -1,4 +1,3 @@
-
 <!-- Der header ist ausgelagert, das man ihn in der erstellung einer neuen Seite nicht jedes mal Berücksichtigen muss.
 Einbindung siehe -> index.php-->
 

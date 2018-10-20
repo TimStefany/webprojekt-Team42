@@ -1,4 +1,4 @@
-<?php
+<?php  //kompletter part ursprünglich mal von Tim geschrieben.
 	$check=0;
 	if(isset($_POST["absenden"])): //Kommt vom Registrieren Button
 		$name = htmlspecialchars($_POST["username"], ENT_QUOTES, "UTF-8");
