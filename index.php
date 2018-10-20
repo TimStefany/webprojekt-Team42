@@ -17,40 +17,49 @@
                                                       placeholder="Benutzername eingeben!"><br>
                 Passwort:<br> <input name="passwort" type="password" placeholder="Passwort eingeben!"><br>
                 <p><input name="absenden" class="btn btn-primary" type="submit" value="Login">
-                    <button onclick="document.getElementById('id01').style.display='block'" class="btn btn-primary">Registrieren</button>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        Registrieren
+                    </button>
                 </p>
             </form>
         </div>
     </div>
-    <!-- Registrieren-->
-    <div id="id01" class="modal">
 
-        <form class="modal-content animate" action="#" method='post'>
-            <div>
-                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
 
+    <!-- Modal -->
+    <div class="modal fade registerblock" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Registrieren</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action='register.php' method='post'>
+                    <div class="modal-body">
+                        <label for="uname"><b>Username</b></label>
+                        <input type="text" placeholder="Benutzername Eingeben" name="username" required>
+                        <br>
+                        <label for="psw"><b>Password</b></label>
+                        <input type="password" placeholder="Passwort Eingeben" name="password" required>
+                        <br>
+                        <label for="psw"><b>Repeat Password</b></label>
+                        <input type="password" placeholder="Passwort Wiederholen" name="password-repeat" required>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button name='absenden' type="submit" class="btn btn-primary" data-dismiss="modal">
+                            Registrieren
+                        </button>
+
+                    </div>
+                </form>
             </div>
-
-            <div>
-                <label for="uname"><b>Username</b></label>
-                <input type="text" placeholder="Benutzername Eingeben" name="benutzername" required>
-
-                <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Passwort Eingeben" name="passwort" required>
-
-                <label for="psw"><b>Repeat Password</b></label>
-                <input type="password" placeholder="Passwort Wiederholen" name="passwort_wiederholung" required>
-
-                <button name='absenden' type="submit">Registrieren</button>
-            </div>
-
-            <div class="container" style="background-color:#f1f1f1">
-                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">
-                    Cancel
-                </button>
-
-            </div>
-        </form>
+        </div>
     </div>
 
 </main>
