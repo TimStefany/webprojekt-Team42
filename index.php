@@ -13,9 +13,9 @@
         <!-- Login-->
         <div class='loginblock'>
             <form action="#" method="post">
-                <span>Benutzername:</span><br> <input name="benutzername" type="text"
+                <span>Benutzername:</span><br> <input name="username" type="text"
                                                       placeholder="Benutzername eingeben!"><br>
-                Passwort:<br> <input name="passwort" type="password" placeholder="Passwort eingeben!"><br>
+                Passwort:<br> <input name="password" type="password" placeholder="Passwort eingeben!"><br>
                 <p><input name="absenden" class="btn btn-primary" type="submit" value="Login">
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
