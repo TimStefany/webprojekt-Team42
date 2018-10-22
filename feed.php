@@ -1,7 +1,18 @@
 <?php
-	/**
-	 * Created by PhpStorm.
-	 * User: benjaminkampka
-	 * Date: 22.10.18
-	 * Time: 20:31
-	 */
+	include 'header.php';
+
+?>
+<body>
+<nav>
+
+</nav>
+<main class="container"><!--ein Responsive Container in dem der Content steckt-->
+	<h1>Hier entsteht der geile Microblog von Team-42!</h1>
+
+</main>
+<footer>
+
+</footer>
+</body>
+
+</html>
