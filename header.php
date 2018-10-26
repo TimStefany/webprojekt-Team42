@@ -24,3 +24,6 @@ Einbindung siehe -> index.php-->
             integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
             crossorigin="anonymous"></script>
 </head>
+<body>
+<p>Test für userdata.php</p>
+</body>
