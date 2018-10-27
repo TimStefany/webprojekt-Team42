@@ -1,7 +1,12 @@
-<?php
-include 'header.php';
-
-?>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Microblog Team-42</title>
+    <meta name="description" content="">
+    <?php
+        include 'header.php';
+    ?>
+</head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">

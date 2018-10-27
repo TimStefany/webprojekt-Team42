@@ -4,11 +4,7 @@ Einbindung siehe -> index.php-->
 <!doctype html>
 <html class="no-js" lang="de">
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Microblog Team-42</title>
-    <meta name="description" content="">
+
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="apple-touch-icon" href="#">
     <!-- Place favicon.ico in the root directory -->
@@ -23,7 +19,3 @@ Einbindung siehe -> index.php-->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
             integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
             crossorigin="anonymous"></script>
-</head>
-<body>
-<p>Test für userdata.php</p>
-</body>
