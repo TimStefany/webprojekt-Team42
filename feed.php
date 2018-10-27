@@ -13,7 +13,40 @@
                 <textarea name="post" cols="50" rows="8" placeholder="neuer Eintrag!"></textarea></label></p>
         <p><input type="submit" value="Posten"></p>
     </form>
-    <!--hier kommt noch der feed-->
+    <!--hier kommt noch der feed bitte mal drüber schauen ich bekomme ihn nicht eingepflegt ohne ein html error auszulösen
+    vieles kann auch entfernt werden anfangs vllt nur anzeige des contentd biss es läuft-->
+    <!--
+    <table>
+    <thead>
+    <th>Datum</th>
+    <th>Blogeintrag</th>
+    <th>Optionen</th>
+    </thead>
+    <tbody>
+	<?php/*
+
+	    $dsn    = "mysql:dbhost=mars.iuk.hdm-stuttgart.de;dbname=u-bk094";
+	    $dbuser = "bk094";
+	    $dbpass = "Pie7vier5i";
+	    $option = array( 'charset' => 'utf8' );
+
+	    try {
+	    $db    = new PDO( $dsn, $dbuser, $dbpass, $option );
+	    $sql   = "SELECT `content`,`date`,`id` FROM `posts` ORDER BY date DESC";
+	    $query = $db->prepare( $sql );
+	    $query->execute();
+	    $i = 0;
+
+	    while ( $zeile = $query->fetchObject() ) {
+		    echo "<tr>";
+		    echo "<td style='background-color: rgba(128, 128, 128, 0.4);padding: 10px;'>$zeile->date</td>";
+		    echo "<td ID='trhintergrund'>$zeile->content</td> ";
+		    echo "<td style='background-color: rgba(128, 128, 128, 0.4);padding: 10px;'><a style='color:white' href='edit.php?id=" . $zeile->id . "'><i class=\"fas fa-edit\"></i></a></td>";
+		    echo "</tr>";
+	    }*/
+    ?>
+    </tbody>
+</table>-->
 </main>
 <footer>
 
