@@ -1,50 +1,42 @@
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Microblog Team-42</title>
-    <meta name="description" content="">
-    <?php
-        include 'header.php';
-    ?>
-</head>
-<body>
 <?php
-	session_start();
-	$name     = htmlspecialchars( $_POST["username"], ENT_QUOTES, "UTF-8" );
-	$passwort = htmlspecialchars( $_POST["password"], ENT_QUOTES, "UTF-8" );
+session_start();
+include_once 'userdata.php';
 
-	$_SESSION['name'] = $name;
+//übernehmen der Variablen aus dem Vormular der Startseite
+if(isset($_POST["username"]) AND isset($_POST["password"])){
+    $name     = htmlspecialchars( $_POST["username"], ENT_QUOTES, "UTF-8" );
+    $password = htmlspecialchars( $_POST["password"], ENT_QUOTES, "UTF-8" );
+}
+//Abfangen falls keine Daten übergeben wurden
+else {
+    echo '<h1>Keine Daten übergeben</h1>';
+    echo '<p>Du hast keine vollständigen Daten zur anmeldung übergeben. Probiers nochmal.</p><br>';
+    echo '<a href="index.php">Startseite</a>';
+    die();
+}
 
-	$dsn    = ""; //Datenbankverbindung angeben.
-	$dbuser = "";
-	$dbpass = "";
-	$option = array( 'charset' => 'utf8' );
+//sql Statement überprüft Nutzernamen und Passwort auf einmal. Hat nur ein ergebnis wenn beide Daten stimmen.
+$db    = new PDO( $dsn, $dbuser, $dbpass, $option );
+$stmt = $db->prepare( "SELECT `user-id` FROM `registered-users` WHERE `user-name`=:name AND `user-pass`=:password");
 
-	$db    = new PDO( $dsn, $dbuser, $dbpass, $option );
-	$query = $db->prepare( "SELECT `id` FROM `users` WHERE `benutzername`=:name" );
-	$query->execute( array( "name" => $name ) );
-	$zeile = $query->fetchObject();
-	//echo $zeile->id;
 
-	$db    = new PDO( $dsn, $dbuser, $dbpass, $option );
-	$query = $db->prepare( "SELECT `id` FROM `users` WHERE (`passwort`=:passwort)AND (`benutzername`=:Hallo)" );
-	$query->execute( array( "passwort" => $passwort, "Hallo" => $name ) );
-	$zeile2 = $query->fetchObject();
-	//echo $zeile2->id;
-
-	if ( $zeile == false && $zeile2 == false ) {
-		echo "Sie haben eine falsches Passwort oder einen falschen Benutzernamen<br/>eingegeben. Bitte versuchen sie es erneut!<br/>";
-		echo '<a href="login.php"><h3>Zurück zum Login</h3></a>';
-		session_destroy();
-	} else if ( $zeile == $zeile2 ) {
-		header( 'Location: formlular.php' );
-	} else {
-		echo "Sie haben eine falsches Passwort oder einen falschen Benutzernamen<br/>eingegeben. Bitte versuchen sie es erneut!<br/>";
-		echo '<a href="index.php"><h3>Zurück zum Login</h3></a>';
-	}
-?>
-
-</body>
-</html>
-
+if ($stmt->execute(array(':name'=>$name, ':password'=>$password))){
+    if($row=$stmt->fetch()) {
+        //Wenn das Statement ein Ergebnis liefert haben die Zugangsdaten gestimmt - Session Angemeldet wird gesetzt und ID gespeichert
+        $_SESSION["angemeldet"]=1;
+        $_Session["user-id"]=$row["user-id"];
+        header('Location: feed.php');
+    }
+    else {
+        echo'<h1>Ungültige Zugangsdaten</h1>';
+        echo'<p>Deine eingegebenen Daten sind leider falsch. Probiers nochmal</p><br>';
+        echo'<a href="index.php">Startseite</a>';
+    }
+}
+else {
+    echo "Datenbank-Fehler:";
+    echo $stmt->errorInfo()[2];
+    echo $stmt->queryString;
+    die();
+}
 

@@ -1,3 +1,7 @@
+<!-- ToDo
+    - Buttons im Modal für die Registrierung funktionieren noch nicht
+    - Felder für die Anmeldung erfordern noch keine Eingabe
+-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -17,7 +21,7 @@
         <h3 class='test'>Sie müssen sich zuerst einloggen!</h3>
         <!-- Login-->
         <div class='loginblock'>
-            <form action="#" method="post">
+            <form action="login-check.php" method="post">
                 <span>Benutzername:</span><br> <input name="username" type="text"
                                                       placeholder="Benutzername eingeben!"><br>
                 Passwort:<br> <input name="password" type="password" placeholder="Passwort eingeben!"><br>
@@ -32,7 +36,7 @@
     </div>
 
 
-    <!-- Modal -->
+    <!-- Modal für die Registrierung -->
     <div class="modal fade registerblock" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -53,14 +57,15 @@
                         <br>
                         <label for="psw"><b>Repeat Password</b></label>
                         <input type="password" placeholder="Passwort Wiederholen" name="password-repeat" required>
-
+                        <!-- Button nur vorübergehend bis die folgenden zwei funkitonstüchtig sind -->
+                        <input type="submit" name="absenden">
                     </div>
+                    <!-- Aktuell schließen beide Buttons das Modal und keiner führt die Registrierung aus -->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                         <button name='absenden' type="submit" class="btn btn-primary" data-dismiss="modal">
                             Registrieren
                         </button>
-
                     </div>
                 </form>
             </div>
