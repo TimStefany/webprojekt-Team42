@@ -8,38 +8,41 @@
     ?>
 </head>
 <body>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+            aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
+    <a class="navbar-brand" href="#">Plus - Microblog</a>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#"> Mein Profil <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"> Mein Feed</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link" href="#"> Explore Motherfucker</a>
-
-            </li>
-
-        </ul>
-
-        <a class="navbar-brand" href="#">
-            <i class="fas fa-plus-circle"> Einstellung</i>
-
-        </a>
-
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <button class="btn btn-outline-light" type="submit"> Find</button>
         </form>
+
+        <ul class="navbar-nav marginl50">
+
+<!--die Größe sollte 45 px 45 PX sein  Funktion damit sie nur 45px 45px sein können fehlt noch !-->
+
+            <li class="nav-item active">
+                <div><img src=https://img.fotocommunity.com/bb-bilder-9e10eb1c-ede3-47da-a2c5-97692e7faf8c.jpg?width=45&height=45 class="img-circle profil-image-small">
+                </div>
+            </li>
+            <li>
+                <a class="nav-link active" href="#"> USERNAME <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li>
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-cog"></i>
+            </a>
+            </li>
+        </ul>
+
+
+
+
     </div>
 </nav>
 
