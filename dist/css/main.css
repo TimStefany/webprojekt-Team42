@@ -8507,16 +8507,24 @@ a.text-dark:hover, a.text-dark:focus {
 .navbar i {
   color: #ffffff;
 }
-.img-circle {
+
+.navbar .img-circle {
   border-radius: 50%;
 }
-.profil-image-small {
-  height: 45px;
-  width: 45px;
+
+.navbar .profil-image-small {
+  height: 10px;
+  width: 10px;
 }
+
+.navbar .dropdown-user-menu {
+  right: 0 !important;
+}
+
 /*
 * Import der Page-Layouts
  */
+/*test
 /*
 * Allgemeine Styles
  */
