@@ -39,9 +39,11 @@
             </div>
         </li>
         <li>
-            <button type="button" class="btn btn-light">
-                News <span class="badge badge-light">8</span>
-            </button>
+            <a href="#">
+                <button type="button" class="btn btn-light">
+                    News <span class="badge badge-light">8</span>
+                </button>
+            </a>
         </li>
     </ul>
     </div>
@@ -80,9 +82,11 @@
                 </div>
             </li>
         </ul>
-        <button type="button" class="btn btn-dark notification-btn">
-            News <span class="badge badge-light">8</span>
-        </button>
+        <a href="#">
+            <button type="button" class="btn btn-light">
+                News <span class="badge badge-light">8</span>
+            </button>
+        </a>
         <li class="nav-item active">
             <div class="d-flex"><img
                         src=https://img.fotocommunity.com/bb-bilder-9e10eb1c-ede3-47da-a2c5-97692e7faf8c.jpg?width=45&height=45

@@ -8,12 +8,12 @@
     color: #ffffff;
   }
   .img-circle {
-    border-radius: 50%;
+    border-radius: 100%;
   }
 
   .profil-image-small {
-    height: 10px;
-    width: 10px;
+    height: 30px;
+    width: 30px;
   }
 
   .notification-btn {
@@ -21,6 +21,7 @@
   }
   .dropdown-user-menu {
     right: 0 !important;
+    left: auto;
   }
 }
 
