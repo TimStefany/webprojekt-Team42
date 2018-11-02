@@ -88,12 +88,11 @@
                         src=https://img.fotocommunity.com/bb-bilder-9e10eb1c-ede3-47da-a2c5-97692e7faf8c.jpg?width=45&height=45
                         class="img-circle profil-image-small">
                 <a class="nav-link active dropdown-toggle" data-toggle="dropdown" href="#"> USERNAME LINK</a>
-                <ul class="dropdown-menu navbar-dark bg-dark">
+                <ul class="dropdown-menu navbar-dark bg-dark dropdown-user-menu">
                     <li class="nav-link nav-item"><a href="#"> Abmelden</a></li>
                     <li class="nav-link"><a class="navbar-brand text-center" href="#">
                             <i class="fas fa-cog"></i>
                         </a></li>
-                    </li>
                 </ul>
 
             </div>

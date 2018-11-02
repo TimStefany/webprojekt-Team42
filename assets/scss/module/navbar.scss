@@ -1,6 +1,6 @@
 .navbar {
 
-  &-toggler-icon{
+  &-toggler-icon {
 
   }
 
@@ -18,6 +18,10 @@
 
   .notification-btn {
 
+  }
+  .dropdown-user-menu {
+    float: right;
+    right: 0 !important;
   }
 }
 
