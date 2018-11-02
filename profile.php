@@ -47,7 +47,7 @@
     </div>
 </nav>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Geiler Blogname 9000</a>
+    <a class="navbar-brand" href="#">Plus - Microblog</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -80,6 +80,9 @@
                 </div>
             </li>
         </ul>
+        <button type="button" class="btn btn-dark notification-btn">
+            News <span class="badge badge-light">8</span>
+        </button>
         <li class="nav-item active">
             <div class="d-flex"><img
                         src=https://img.fotocommunity.com/bb-bilder-9e10eb1c-ede3-47da-a2c5-97692e7faf8c.jpg?width=45&height=45

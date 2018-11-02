@@ -1,19 +1,23 @@
 .navbar {
 
+  &-toggler-icon{
+
+  }
+
   i {
     color: #ffffff;
   }
+  .img-circle {
+    border-radius: 50%;
+  }
+
+  .profil-image-small {
+    height: 10px;
+    width: 10px;
+  }
+
+  .notification-btn {
+
+  }
 }
 
-.img-circle {
-  border-radius: 50%;
-}
-
-.profil-image-small {
-  height: 10px;
-  width: 10px;
-}
-
-.navbar-toggler-icon {
-
-}
