@@ -12,16 +12,57 @@
   }
 
   .profil-image-small {
-    height: 30px;
-    width: 30px;
+    //height: 30px;
+    //width: 30px;
   }
 
   .notification-btn {
 
   }
   .dropdown-user-menu {
-    right: 0 !important;
+    right: 17px !important;
     left: auto;
   }
+  .dropdown-item {
+    color: rgba(255, 255, 255, 0.5);
+    &:hover {
+      background-color: $primary;
+      color: rgba(255, 255, 255, 0.75);
+    }
+  }
+  .btn-light {
+    margin-right: 12px;
+  }
+  .username {
+    padding: 0.6rem 1rem;
+    color: rgba(255, 255, 255, 1) !important;
+    &:hover {
+      font-weight: bold;
+      padding-left: 12px;
+    }
+  }
+
 }
+
+@media (max-width: 992px) {
+  .navbar {
+    justify-content: unset;
+  }
+  .navbar-toggler {
+    margin-left: 12px;
+  }
+  .btn-light{
+    position: absolute;
+    left: auto;
+    right: 200px;
+    top: 16px;
+  }
+  .d-flex {
+    position: absolute;
+    left: auto;
+    right: 12px;
+  }
+}
+
+
 
