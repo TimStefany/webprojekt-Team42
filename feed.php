@@ -13,6 +13,8 @@ if (isset ($_SESSION["signed-in"])) {
 
 
     ?>
+    <!doctype html>
+    <html class="no-js" lang="de">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">

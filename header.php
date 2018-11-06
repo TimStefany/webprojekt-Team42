@@ -1,10 +1,6 @@
 <!-- Der header ist ausgelagert, das man ihn in der erstellung einer neuen Seite nicht jedes mal Berücksichtigen muss.
 Einbindung siehe -> index.php-->
 
-<!doctype html>
-<html class="no-js" lang="de">
-
-
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="apple-touch-icon" href="#">
     <!-- Place favicon.ico in the root directory -->
