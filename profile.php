@@ -1,4 +1,13 @@
+<?php
+session_start();
+include_once 'userdata.php';
+
+if (isset ($_SESSION["signed-in"])) {
+
+
+?>
 <!doctype html>
+
 <html class="no-js" lang="de">
 <head>
     <meta charset="utf-8">
@@ -8,6 +17,7 @@
 	<?php
 		include 'header.php';
 	?>
+
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -90,6 +100,8 @@
                 <a class="dropdown-item" href="#">Farbe ändern</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Edit Profile</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="profile.php">Ausloggen</a>
             </div>
         </div>
 </nav>
@@ -111,3 +123,10 @@
 </body>
 
 </html>
+    <?php
+} else {
+    echo '<h1>Sie sind nicht angemeldet</h1>';
+    echo '<p>gehen sie hier zu unserer Startseite und melden sie sich an</p><br>';
+    echo '<a href="index.php">Startseite</a>';
+}
+?>
