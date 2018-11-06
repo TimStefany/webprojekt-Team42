@@ -8540,6 +8540,8 @@ a.text-dark:hover, a.text-dark:focus {
   padding-left: 12px;
 }
 
+
+
 @media (max-width: 992px) {
   .navbar {
     justify-content: unset;

@@ -61,14 +61,12 @@
                         <label for="psw"><b>Repeat Password</b></label>
                         <input type="password" placeholder="Passwort Wiederholen" name="password-repeat" required>
                         <!-- Button nur vorübergehend bis die folgenden zwei funkitonstüchtig sind -->
-                        <input type="submit" name="absenden">
+
                     </div>
                     <!-- Aktuell schließen beide Buttons das Modal und keiner führt die Registrierung aus -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button name='absenden' type="submit" class="btn btn-primary" data-dismiss="modal">
-                            Registrieren
-                        </button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zurück</button>
+                        <input type="submit" name="absenden" class="btn btn-primary" value="Registrieren" >
                     </div>
                 </form>
             </div>
