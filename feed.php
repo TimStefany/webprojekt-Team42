@@ -5,7 +5,6 @@
     - Beiträge pro Spalte ausgeben
 -->
 <?php
-//muss noch überprüft werden ob diese Anmeldeüberprüfung funktioniert
 session_start();
 include_once 'userdata.php';
 
