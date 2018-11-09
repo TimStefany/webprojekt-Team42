@@ -36,11 +36,11 @@ if (isset ($_SESSION["signed-in"])) {
 
         try {
             $db = new PDO($dsn, $dbuser, $dbpass, $option);
-            $stmt = $db->prepare("SELECT `followed-topic-id` FROM `user_follow_topic` WHERE `following-user-id-topic`=:user");
+            $stmt = $db->prepare("SELECT `followed_topic_id` FROM `user_follow_topic` WHERE `following_user_id_topic`=:user");
 
             if ($stmt->execute(array(":user" => $user))) {
                 while ($row = $stmt->fetch()) {
-                    $followed_topics[] = $row["followed-topic-id"];
+                    $followed_topics[] = $row["followed_topic_id"];
                     //fügt die topics jeder Zeile hinten an das Array an.
                 }
             } else {
@@ -57,10 +57,10 @@ if (isset ($_SESSION["signed-in"])) {
             <div class="row">
                 <?php
                 for ($i = 0; $i < count($followed_topics); $i++) {
-                    $stmt = $db->prepare("SELECT `topic-name` FROM `topics` WHERE `topic-id`=:topic");
+                    $stmt = $db->prepare("SELECT `topic_name` FROM `topics` WHERE `topic_id`=:topic");
                     if ($stmt->execute(array(":topic" => $followed_topics[$i]))) {
                         while ($row = $stmt->fetch()) {
-                            $topic_name = $row["topic-name"];
+                            $topic_name = $row["topic_name"];
                         }
                     }
 

@@ -21,14 +21,14 @@ else {
 
 //sql Statement überprüft Nutzernamen und Passwort auf einmal. Hat nur ein ergebnis wenn beide Daten stimmen.
 $db    = new PDO( $dsn, $dbuser, $dbpass, $option );
-$stmt = $db->prepare( "SELECT `user-id` FROM `registered_users` WHERE `user-name`=:name AND `user-pass`=:password");
+$stmt = $db->prepare( "SELECT `user_id` FROM `registered_users` WHERE `user_name`=:name AND `user_pass`=:password");
 
 
 if ($stmt->execute(array(':name'=>$name, ':password'=>$password))){
     if($row=$stmt->fetch()) {
         //Wenn das Statement ein Ergebnis liefert haben die Zugangsdaten gestimmt - Session Angemeldet wird gesetzt und ID gespeichert
         $_SESSION["signed-in"]=1;
-        $_SESSION["user-id"]=$row["user-id"];
+        $_SESSION["user-id"]=$row["user_id"];
         header('Location: feed.php');
     }
     else {

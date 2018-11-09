@@ -5,6 +5,7 @@
     - effektivität der if Schleife steigern: Abbruch sobald der Name gefunden wurde/ Nur nach diesem Namen in
         der Datenbank suchen
     - Überürüfung für den Startbutton funktioniert so nicht. Alternative finden.
+    - Zeile 53 nochmal anschauen wegen der if Schleife
 */
 
 session_start();
@@ -23,14 +24,14 @@ if (!empty($name) & !empty($password) & !empty($password_repeat)) {
 
         //sql Befehl zur Überprüfung ob der Nutzername bereits vergeben ist.
         //eventuell optimierung später: Nur nach Nutzernamen mit dem gleichen Anfangsbuchstabe suchen
-        $sql = "SELECT `user-name` FROM `registered_users` WHERE 1=1";
+        $sql = "SELECT `user_name` FROM `registered_users` WHERE 1=1";
 
         //sql Befehl ausführen
         $query = $db->prepare($sql);
         $query->execute();
         //jede Zeile der Tabelle wird für einen Schleifendurchlauf in die Variable $row geschrieben und anschließend überschrieben
         while ($row = $query->fetch()) {
-            if ($row['user-name'] == $name) {
+            if ($row['user_name'] == $name) {
                 //if Schleife wird für die gesamte while Schleife ausgeführt: check=1 steht für name vergeben
                 $check = 1;
                 //Optimierung für Vorgang: Sobalt der Name gefunden wird wird der Schleifendurchlauf beendet.
@@ -42,18 +43,18 @@ if (!empty($name) & !empty($password) & !empty($password_repeat)) {
             die();
         } else {
             try {
-                $query = $db->prepare("INSERT INTO `registered_users` (`user-name`, `user-pass`) VALUES (:name, :pass);");
+                $query = $db->prepare("INSERT INTO `registered_users` (`user_name`, `user_pass`) VALUES (:name, :pass);");
                 $query->execute(array(":name" => $name, ":pass" => $password));
                 echo "Sie wurden erfolgreich Registriert<br/>";
 
                 //Follow für die explore Topic hinzufügen
-                $sql = "SELECT `user-id` FROM `registered_users` WHERE `user-name`=:user";
+                $sql = "SELECT `user_id` FROM `registered_users` WHERE `user_name`=:user";
                 $query = $db->prepare($sql);
                 $query->execute(array(":user"=>$name));
                 if ($row = $query->fetch())
-                $user_id=$row["user-id"];
+                $user_id=$row["user_id"];
 
-                $query = $db->prepare("INSERT INTO `user_follow_topic` (`following-user-id-topic`,`followed-topic-id`,`priority`) VALUES (:user,:topic,:priority);");
+                $query = $db->prepare("INSERT INTO `user_follow_topic` (`following_user_id_topic`,`followed_topic_id`,`priority`) VALUES (:user,:topic,:priority);");
                 $query->execute(array(":user" => $user_id, ":topic" => 1, ":priority" => 1));
 
 
@@ -61,10 +62,10 @@ if (!empty($name) & !empty($password) & !empty($password_repeat)) {
                 $_SESSION["signed-in"] = 1;
 
                 //user-id in der Session speichern
-                $stmt = $db->prepare("SELECT `user-id` FROM `registered_users` WHERE `user-name`=:name AND `user-pass`=:password");
+                $stmt = $db->prepare("SELECT `user_id` FROM `registered_users` WHERE `user_name`=:name AND `user_pass`=:password");
                 if ($stmt->execute(array(':name' => $name, ':password' => $password))) {
                     if ($row = $stmt->fetch()) {
-                        $_SESSION["user-id"] = $row["user-id"];
+                        $_SESSION["user-id"] = $row["user_id"];
                     };
                 } else {
                     echo 'Datenbankfehler siehe Zeile 55';

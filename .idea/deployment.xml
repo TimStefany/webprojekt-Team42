@@ -2,10 +2,10 @@
 <project version="4">
   <component name="PublishConfigData" autoUpload="Always">
     <serverData>
-      <paths name="mars.iuk.hdm-stuttgar.de">
+      <paths name="mar.iuk.hdm-stuttgart.de">
         <serverdata>
           <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
