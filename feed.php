@@ -1,7 +1,5 @@
 <!-- ToDo
-    - Individuelle Reihenfolge und Anzahl der Spalten
     - Spaltenbreite festlegen
-    - Nutzer Follows einfügen
     - Beiträge pro Spalte ausgeben
 -->
 <?php
@@ -33,15 +31,20 @@ if (isset ($_SESSION["signed-in"])) {
         //Auslesen der Themen und Nutzer denen ein Nutzer folgt
         $user = $_SESSION["user-id"];
         $followed_topics = array();
+        $i = 0;
 
         try {
             $db = new PDO($dsn, $dbuser, $dbpass, $option);
-            $stmt = $db->prepare("SELECT `followed_topic_id` FROM `user_follow_topic` WHERE `following_user_id_topic`=:user");
+            $stmt = $db->prepare("SELECT topic_name AS followed_name, priority FROM user_follow_topic_view WHERE following_user_id_topic = :user
+                                            UNION ALL
+                                            SELECT user_name AS followed_name, priority FROM user_follow_user_view Where following_user_id_user = :user
+                                            ORDER BY priority ASC");
+            //Das SQL Statement wählt die Nutzernamen und Topicnamen denen gefolgt wird und sortiert sie nach 'priority'
 
             if ($stmt->execute(array(":user" => $user))) {
                 while ($row = $stmt->fetch()) {
-                    $followed_topics[] = $row["followed_topic_id"];
-                    //fügt die topics jeder Zeile hinten an das Array an.
+                    $followed[] = $row["followed_name"];
+                    //fügt die topics oder Nutzernamen jeder Zeile hinten an das Array an.
                 }
             } else {
                 echo 'Fehler 123';
@@ -56,16 +59,9 @@ if (isset ($_SESSION["signed-in"])) {
         <div class="container">
             <div class="row">
                 <?php
-                for ($i = 0; $i < count($followed_topics); $i++) {
-                    $stmt = $db->prepare("SELECT `topic_name` FROM `topics` WHERE `topic_id`=:topic");
-                    if ($stmt->execute(array(":topic" => $followed_topics[$i]))) {
-                        while ($row = $stmt->fetch()) {
-                            $topic_name = $row["topic_name"];
-                        }
-                    }
-
+                for ($i = 0; $i < count($followed); $i++) {
                     echo '<div class="col-sm"><!--explore Spalte mit allen Beiträgen-->';
-                    echo '<h3>' . $topic_name . '</h3>';
+                    echo '<h3>' . $followed[$i] . '</h3>';
                     echo '</div>';
                 }
                 ?>
