@@ -71,7 +71,7 @@ if (!empty($name) & !empty($password) & !empty($password_repeat)) {
                     die();
                 }
                 $db = null;
-                //header('Location:feed.php');
+                header('Location:feed.php');
             } catch (PDOException $e) {
                 echo "Error!: Bitten wenden Sie sich an den Administrator...<br/>";
                 die();
