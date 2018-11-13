@@ -2,7 +2,9 @@
 	session_start();
 	if ( isset ( $_SESSION["signed-in"] )) {
 		$post = htmlspecialchars( $_POST["post"], ENT_QUOTES, "UTF-8" );
+		$topic = htmlspecialchars( $_POST["topic"], ENT_QUOTES, "UTF-8" );
 		$user_id =  $_SESSION["user-id"];
+
 
 		if ( !empty($post)) {
 			include_once 'userdata.php';
