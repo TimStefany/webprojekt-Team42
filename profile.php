@@ -68,6 +68,10 @@ if (isset ($_SESSION["signed-in"])) {
                           maxlength="200"></textarea></label></p>
         <p><input type="submit" value="Posten"></p>
     </form>
+    <div class="ui-widget">
+        <label for="tags">Tags: </label>
+        <input id="tags">
+    </div>
 
 </main>
 <footer>
