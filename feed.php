@@ -1,6 +1,6 @@
 <!-- ToDo
     - Spaltenbreite festlegen
-    - Beiträge pro Spalte ausgeben
+    - Bilder richtig einfügen in den Spalten
 -->
 <?php
 session_start();
@@ -69,15 +69,17 @@ if (isset ($_SESSION["signed-in"])) {
 
         try {
             $db = new PDO($dsn, $dbuser, $dbpass, $option);
-            $stmt = $db->prepare("SELECT topic_name AS followed_name, priority FROM user_follow_topic_view WHERE following_user_id_topic = :user
+            $stmt = $db->prepare("SELECT topic_id AS followed_id, topic_name AS followed_name, priority, `type` FROM user_follow_topic_view WHERE following_user_id_topic = :user
                                             UNION ALL
-                                            SELECT user_name AS followed_name, priority FROM user_follow_user_view Where following_user_id_user = :user
+                                            SELECT user_id AS followed_id, user_name AS followed_name, priority, `type` FROM user_follow_user_view Where following_user_id_user = :user
                                             ORDER BY priority ASC");
             //Das SQL Statement wählt die Nutzernamen und Topicnamen denen gefolgt wird und sortiert sie nach 'priority'
 
             if ($stmt->execute(array(":user" => $user))) {
                 while ($row = $stmt->fetch()) {
-                    $followed[] = $row["followed_name"];
+                    $followed_id[] = $row ["followed_id"];
+                    $followed_name[] = $row["followed_name"];
+                    $followed_type[] = $row["type"];
                     //fügt die topics oder Nutzernamen jeder Zeile hinten an das Array an.
                 }
             } else {
@@ -93,9 +95,55 @@ if (isset ($_SESSION["signed-in"])) {
         <div class="container">
             <div class="row">
                 <?php
-                for ($i = 0; $i < count($followed); $i++) {
-                    echo '<div class="col-sm"><!--explore Spalte mit allen Beiträgen-->';
-                    echo '<h3>' . $followed[$i] . '</h3>';
+
+                for ($i = 0; $i < count($followed_name); $i++) {
+                    //eine neue Spalte mit der Überschrift des Themas oder des Users wird auf gemacht
+                    echo '<div class="col-sm">';
+                    echo '<h3>' . $followed_name[$i] . '</h3>';
+
+                    //Abfrage aller Beiträge für die Spalte - muss nach gefolgten Nutzern und gefolgten Topics getrennt werden.
+                    if ($followed_type[$i]==1){     // Es geht um eine Topic
+                        if ($followed_id[$i]!=='1'){
+                            //alle Topics abgesehen von der Explore Topic werden so abgearbeitet (explore hat id=1)
+                            $db = new PDO($dsn, $dbuser, $dbpass, $option);
+                            $stmt = $db->prepare("SELECT content, picture_id FROM posts WHERE topic_id = :topic");
+                            if ($stmt->execute(array(":topic" => $followed_id[$i]))){
+                                while ($row = $stmt->fetch()){
+                                    echo '<p>'.$row["content"].'</p>'; //gibzt den Content in einem P Tag aus
+                                    if ($row["picture_id"]!==NULL){
+                                        echo 'hier steht der Pfad zum Bild';
+                                    }
+                                }
+                            }
+                        }
+                        else {      //Andere Auswahl für die Explore Spalte
+                            $db = new PDO($dsn, $dbuser, $dbpass, $option);
+                            $stmt = $db->prepare("SELECT content, picture_id FROM posts WHERE 1 = 1");
+                            if ($stmt->execute()){
+                                while ($row = $stmt->fetch()){
+                                    echo '<p>'.$row["content"].'</p>'; //gibzt den Content in einem P Tag aus
+                                    if ($row["picture_id"]!==NULL){     // wird ausgeführt wenn ein Bild hinterlegt wurde
+                                        echo 'hier steht der Pfad zum Bild';
+                                        //Todo
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+
+                    if ($followed_type[$i]==2){     // Es geht um einen User
+                        $db = new PDO($dsn, $dbuser, $dbpass, $option);
+                        $stmt = $db->prepare("SELECT content, picture_id FROM posts WHERE user_id = :user");
+                        if ($stmt->execute(array(":user" => $followed_id[$i]))){
+                            while ($row = $stmt->fetch()){
+                                echo '<p>'.$row["content"].'</p>'; //gibzt den Content in einem P Tag aus
+                                if ($row["picture_id"]!==NULL){
+                                    echo 'hier steht der Pfad zum Bild';
+                                }
+                            }
+                        }
+                    }
                     echo '</div>';
                 }
                 ?>
