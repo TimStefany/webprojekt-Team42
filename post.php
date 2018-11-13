@@ -6,7 +6,7 @@
 		$user_id =  $_SESSION["user-id"];
 
 
-		if ( !empty($post)) {
+		if ( !empty($post) & !empty($topic)) {
 			include_once 'userdata.php';
 			try {
 				$db    = new PDO( $dsn, $dbuser, $dbpass, $option );
