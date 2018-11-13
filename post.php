@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	$name = htmlspecialchars($_POST["post"], ENT_QUOTES, "UTF-8");
 
 	if ( ! empty( $name ) ) {
 		include_once 'userdata.php';
