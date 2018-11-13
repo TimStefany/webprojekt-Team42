@@ -92,16 +92,16 @@ if (isset ($_SESSION["signed-in"])) {
         <div class="d-flex"><img
                     src=https://img.fotocommunity.com/bb-bilder-9e10eb1c-ede3-47da-a2c5-97692e7faf8c.jpg?width=45&height=45
                     class="img-circle profil-image-small">
+            <a href="profile.php" class="nav-item active nav-link"> USERNAME </a>
             <a class="nav-link dropdown-toggle username" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                aria-haspopup="true" aria-expanded="false">
-                USERNAME
             </a>
             <div class="dropdown-menu dropdown-user-menu bg-primary" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#">Farbe ändern</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Edit Profile</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="profile.php">Ausloggen</a>
+                <a class="dropdown-item" href="logout.php">Ausloggen</a>
             </div>
         </div>
 </nav>
