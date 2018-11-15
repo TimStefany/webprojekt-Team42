@@ -1,14 +1,12 @@
 <!-- ToDo
-    - Spaltenbreite festlegen
+    - Spaltenbreite festlegen sodass maximal 4 Spalten im Viewport angezeigt werden (nach recht scrollbar)
     - Bilder richtig einfügen in den Spalten (SQL abfrage für den Pfad + <img>)
-    - Nutzerprofil des Autors in den Link einfügen
 -->
 <?php
 session_start();
 include_once 'userdata.php';
 
 if (isset ($_SESSION["signed-in"])) {
-
 
     ?>
     <!doctype html>
@@ -106,15 +104,17 @@ if (isset ($_SESSION["signed-in"])) {
 
                     //Abfrage aller Beiträge für die Spalte - muss nach gefolgten Nutzern und gefolgten Topics getrennt werden.
                     if ($followed_type[$i]==1){     // Es geht um eine Topic
+
                         //explore Topic soll alle Beiträge anzeigen und muss deshalb extra behandelt werden
                         if ($followed_id[$i]!=='1'){
                             //alle Topics abgesehen von der Explore Topic werden so abgearbeitet (explore hat id=1)
                             $db = new PDO($dsn, $dbuser, $dbpass, $option);
-                            $stmt = $db->prepare("SELECT user_name, content, picture_id FROM posts_registered_users_view WHERE topic_id = :topic");
+                            $stmt = $db->prepare("SELECT user_id, user_name, content, picture_id FROM posts_registered_users_view WHERE topic_id = :topic");
                             if ($stmt->execute(array(":topic" => $followed_id[$i]))){
                                 while ($row = $stmt->fetch()){
                                     echo '<p>'.$row["content"].'</p>'; //gibt den Content in einem P Tag aus
-                                    echo '<a href="#">Autor: '.$row["user_name"].'</a>'; //gibt den Nutzernamen des Autors als Link aus
+                                    echo '<a href="profile-foreign.php?id='.$row["user_id"].'">Autor: '.$row["user_name"].'</a>';
+                                    //gibt den Nutzernamen des Autors als Link aus
 
                                     //Wenn dem Beitrag ein Bild hinzugefügt wurde dann wird diese Schleife ausgeführt
                                     if ($row["picture_id"]!==NULL){
@@ -125,11 +125,12 @@ if (isset ($_SESSION["signed-in"])) {
                         }
                         else {      //Andere Auswahl für die Explore Spalte
                             $db = new PDO($dsn, $dbuser, $dbpass, $option);
-                            $stmt = $db->prepare("SELECT user_name, content, picture_id FROM posts_registered_users_view WHERE 1 = 1");
+                            $stmt = $db->prepare("SELECT user_id, user_name, content, picture_id FROM posts_registered_users_view WHERE 1 = 1");
                             if ($stmt->execute()){
                                 while ($row = $stmt->fetch()){
                                     echo '<p>'.$row["content"].'</p>'; //gibt den Content in einem P Tag aus
-                                    echo '<a href="#">Autor: '.$row["user_name"].'</a>'; //gibt den Nutzernamen des Autors als Link aus
+                                    echo '<a href="profile-foreign.php?id='.$row["user_id"].'">Autor: '.$row["user_name"].'</a>';
+                                    //gibt den Nutzernamen des Autors als Link aus
 
                                     if ($row["picture_id"]!==NULL){     // wird ausgeführt wenn ein Bild hinterlegt wurde
                                         echo 'hier steht der Pfad zum Bild';
@@ -142,11 +143,12 @@ if (isset ($_SESSION["signed-in"])) {
 
                     if ($followed_type[$i]==2){     // Es geht um einen User
                         $db = new PDO($dsn, $dbuser, $dbpass, $option);
-                        $stmt = $db->prepare("SELECT user_name, content, picture_id FROM posts_registered_users_view WHERE user_id = :user");
+                        $stmt = $db->prepare("SELECT user_id, user_name, content, picture_id FROM posts_registered_users_view WHERE user_id = :user");
                         if ($stmt->execute(array(":user" => $followed_id[$i]))){
                             while ($row = $stmt->fetch()){
                                 echo '<p>'.$row["content"].'</p>'; //gibt den Content in einem P Tag aus
-                                echo '<a href="#">Autor: '.$row["user_name"].'</a>'; //gibt den Nutzernamen des Autors als Link aus
+                                echo '<a href="profile-foreign.php?id='.$row["user_id"].'">Autor: '.$row["user_name"].'</a>';
+                                //gibt den Nutzernamen des Autors als Link aus
 
                                 if ($row["picture_id"]!==NULL){
                                     echo 'hier steht der Pfad zum Bild';
