@@ -1,6 +1,7 @@
 <!-- ToDo
     - Spaltenbreite festlegen
-    - Bilder richtig einfügen in den Spalten
+    - Bilder richtig einfügen in den Spalten (SQL abfrage für den Pfad + <img>)
+    - Nutzerprofil des Autors in den Link einfügen
 -->
 <?php
 session_start();
@@ -80,10 +81,12 @@ if (isset ($_SESSION["signed-in"])) {
                     $followed_id[] = $row ["followed_id"];
                     $followed_name[] = $row["followed_name"];
                     $followed_type[] = $row["type"];
-                    //fügt die topics oder Nutzernamen jeder Zeile hinten an das Array an.
+                    //fügt die id von dem Nutzer oder der Topic der gefolgt wird, die topics oder Nutzernamen dem
+                    // gefolgt wird und den type jeder Zeile hinten an das Array an.
                 }
             } else {
-                echo 'Fehler 123';
+                echo 'Datenbank Fehler';
+                echo 'bitte wende dich an den Administrator';
             }
             $stmt = 0;
         } catch (PDOException $e) {
@@ -97,19 +100,23 @@ if (isset ($_SESSION["signed-in"])) {
                 <?php
 
                 for ($i = 0; $i < count($followed_name); $i++) {
-                    //eine neue Spalte mit der Überschrift des Themas oder des Users wird auf gemacht
+                    //eine neue Spalte mit der Überschrift des Themas oder des Users wird aufgemacht
                     echo '<div class="col-sm">';
                     echo '<h3>' . $followed_name[$i] . '</h3>';
 
                     //Abfrage aller Beiträge für die Spalte - muss nach gefolgten Nutzern und gefolgten Topics getrennt werden.
                     if ($followed_type[$i]==1){     // Es geht um eine Topic
+                        //explore Topic soll alle Beiträge anzeigen und muss deshalb extra behandelt werden
                         if ($followed_id[$i]!=='1'){
                             //alle Topics abgesehen von der Explore Topic werden so abgearbeitet (explore hat id=1)
                             $db = new PDO($dsn, $dbuser, $dbpass, $option);
-                            $stmt = $db->prepare("SELECT content, picture_id FROM posts WHERE topic_id = :topic");
+                            $stmt = $db->prepare("SELECT user_name, content, picture_id FROM posts_registered_users_view WHERE topic_id = :topic");
                             if ($stmt->execute(array(":topic" => $followed_id[$i]))){
                                 while ($row = $stmt->fetch()){
-                                    echo '<p>'.$row["content"].'</p>'; //gibzt den Content in einem P Tag aus
+                                    echo '<p>'.$row["content"].'</p>'; //gibt den Content in einem P Tag aus
+                                    echo '<a href="#">Autor: '.$row["user_name"].'</a>'; //gibt den Nutzernamen des Autors als Link aus
+
+                                    //Wenn dem Beitrag ein Bild hinzugefügt wurde dann wird diese Schleife ausgeführt
                                     if ($row["picture_id"]!==NULL){
                                         echo 'hier steht der Pfad zum Bild';
                                     }
@@ -118,13 +125,14 @@ if (isset ($_SESSION["signed-in"])) {
                         }
                         else {      //Andere Auswahl für die Explore Spalte
                             $db = new PDO($dsn, $dbuser, $dbpass, $option);
-                            $stmt = $db->prepare("SELECT content, picture_id FROM posts WHERE 1 = 1");
+                            $stmt = $db->prepare("SELECT user_name, content, picture_id FROM posts_registered_users_view WHERE 1 = 1");
                             if ($stmt->execute()){
                                 while ($row = $stmt->fetch()){
-                                    echo '<p>'.$row["content"].'</p>'; //gibzt den Content in einem P Tag aus
+                                    echo '<p>'.$row["content"].'</p>'; //gibt den Content in einem P Tag aus
+                                    echo '<a href="#">Autor: '.$row["user_name"].'</a>'; //gibt den Nutzernamen des Autors als Link aus
+
                                     if ($row["picture_id"]!==NULL){     // wird ausgeführt wenn ein Bild hinterlegt wurde
                                         echo 'hier steht der Pfad zum Bild';
-                                        //Todo
                                     }
                                 }
                             }
@@ -134,10 +142,12 @@ if (isset ($_SESSION["signed-in"])) {
 
                     if ($followed_type[$i]==2){     // Es geht um einen User
                         $db = new PDO($dsn, $dbuser, $dbpass, $option);
-                        $stmt = $db->prepare("SELECT content, picture_id FROM posts WHERE user_id = :user");
+                        $stmt = $db->prepare("SELECT user_name, content, picture_id FROM posts_registered_users_view WHERE user_id = :user");
                         if ($stmt->execute(array(":user" => $followed_id[$i]))){
                             while ($row = $stmt->fetch()){
-                                echo '<p>'.$row["content"].'</p>'; //gibzt den Content in einem P Tag aus
+                                echo '<p>'.$row["content"].'</p>'; //gibt den Content in einem P Tag aus
+                                echo '<a href="#">Autor: '.$row["user_name"].'</a>'; //gibt den Nutzernamen des Autors als Link aus
+
                                 if ($row["picture_id"]!==NULL){
                                     echo 'hier steht der Pfad zum Bild';
                                 }
