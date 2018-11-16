@@ -14,12 +14,18 @@ $check = 0;
 
 //if(isset($_POST["absenden"])) { //Kommt vom Registrieren Button
 $name = htmlspecialchars($_POST["username"], ENT_QUOTES, "UTF-8");
-$password = htmlspecialchars($_POST["password"], ENT_QUOTES, "UTF-8");
+$passwordraw = htmlspecialchars($_POST["password"], ENT_QUOTES, "UTF-8");
 $password_repeat = htmlspecialchars($_POST["password-repeat"], ENT_QUOTES, "UTF-8");
 
-if (!empty($name) & !empty($password) & !empty($password_repeat)) {
 
-    if ($password == $password_repeat) {
+
+
+if (!empty($name) & !empty($passwordraw) & !empty($password_repeat)) {
+
+    if ($passwordraw == $password_repeat) {
+        //Wenn das Passwort dem Passwort_repeat entspricht wird das PAsswort gehashed
+	    $password = password_hash($passwordraw, PASSWORD_DEFAULT);
+
         $db = new PDO($dsn, $dbuser, $dbpass, $option);
 
         //sql Befehl zur Überprüfung ob der Nutzername bereits vergeben ist.
