@@ -4,7 +4,7 @@
 		$post    = htmlspecialchars( $_POST["post"], ENT_QUOTES, "UTF-8" );
 		$topic   = htmlspecialchars( $_POST["topic"], ENT_QUOTES, "UTF-8" );
 		$user_id = $_SESSION["user-id"];
-var_dump($topic);
+
 
 		include_once 'userdata.php';
 		$db1    = new PDO( $dsn, $dbuser, $dbpass, $option );
@@ -13,7 +13,6 @@ var_dump($topic);
 		$query1->execute();
 		$row1 = $query1->fetch();
 		$row = $row1[0];
-var_dump($row);
 
 		try {
 			$db2    = new PDO( $dsn, $dbuser, $dbpass, $option );
