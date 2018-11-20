@@ -67,7 +67,12 @@ if (isset ($_SESSION["signed-in"])) {
             <p><label style="color: white;">Blogeintrag:<br>
                     <textarea name="post" cols="80" rows="3" placeholder="neuer Eintrag!"
                               maxlength="200"></textarea></label></p>
-
+            <p>
+            <div class="ui-widget">
+                <label style="color: white;" for="tags">Topic: </label>
+                <input name="topic" id="tags">
+            </div>
+            </p>
             <p><input type="submit" value="Posten"></p>
         </form>
         <div class="container">
