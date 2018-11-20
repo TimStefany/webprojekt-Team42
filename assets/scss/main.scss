@@ -1,13 +1,10 @@
 @import '../../node_modules/bootstrap/scss/bootstrap';
-
 /*
 * Import der module
 */
-
 @import '../../assets/scss/module/loginblock.scss';
 @import "../../assets/scss/module/registerblock.scss";
 @import "../../assets/scss/module/navbar.scss";
-
 
 /*
 * Import der Page-Layouts
@@ -26,10 +23,12 @@ body { //wird noch nicht mitgegeben?!
 h1, .h1, h2, .h2, h3, .h3 {
   color: $secondary;
 }
+
 .btn-file {
   position: relative;
   overflow: hidden;
 }
+
 .btn-file input[type=file] {
   position: absolute;
   top: 0;
@@ -44,4 +43,24 @@ h1, .h1, h2, .h2, h3, .h3 {
   background: white;
   cursor: inherit;
   display: block;
+}
+
+#alert_popover {
+  display: block;
+  position: absolute;
+  bottom: 50px;
+  left: 50px;
+}
+
+.wrapper {
+  display: table-cell;
+  vertical-align: bottom;
+  height: auto;
+  width: 200px;
+}
+
+.alert_default {
+  color: #333333;
+  background-color: #f2f2f2;
+  border-color: #cccccc;
 }

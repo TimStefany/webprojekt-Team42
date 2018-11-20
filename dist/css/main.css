@@ -8539,6 +8539,7 @@ a.text-dark:hover, a.text-dark:focus {
   font-weight: bold;
   padding-left: 12px;
 }
+
 @media (max-width: 992px) {
   .navbar {
     justify-content: unset;
@@ -8593,4 +8594,24 @@ h1, .h1, h2, .h2, h3, .h3 {
   background: white;
   cursor: inherit;
   display: block;
+}
+
+#alert_popover {
+  display: block;
+  position: absolute;
+  bottom: 50px;
+  left: 50px;
+}
+
+.wrapper {
+  display: table-cell;
+  vertical-align: bottom;
+  height: auto;
+  width: 200px;
+}
+
+.alert_default {
+  color: #333333;
+  background-color: #f2f2f2;
+  border-color: #cccccc;
 }

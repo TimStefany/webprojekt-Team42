@@ -1,12 +1,12 @@
-(function() {
+(function () {
 
     $(".dropzone").dropzone({
         url: 'https://mars.iuk.hdm-stuttgart.de/~ts170/pictures',
         margin: 20,
-        params:{
+        params: {
             'action': 'save'
         },
-        success: function(res, index){
+        success: function (res, index) {
             console.log(res, index);
         }
     });
@@ -15,12 +15,12 @@
         url: 'https://mars.iuk.hdm-stuttgart.de/~ts170/pictures',
         margin: 20,
         allowedFileTypes: 'image.*, pdf',
-        params:{
+        params: {
             'action': 'save'
         },
         uploadOnDrop: true,
         uploadOnPreview: false,
-        success: function(res, index){
+        success: function (res, index) {
             console.log(res, index);
         }
     });
