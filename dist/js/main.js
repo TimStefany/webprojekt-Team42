@@ -1,7 +1,7 @@
 (function() {
 
     $(".dropzone").dropzone({
-        url: 'upload.php',
+        url: 'https://mars.iuk.hdm-stuttgart.de/~ts170/pictures',
         margin: 20,
         params:{
             'action': 'save'
@@ -12,7 +12,7 @@
     });
 
     $(".dropzone2").dropzone({
-        url: 'upload.php',
+        url: 'https://mars.iuk.hdm-stuttgart.de/~ts170/pictures',
         margin: 20,
         allowedFileTypes: 'image.*, pdf',
         params:{

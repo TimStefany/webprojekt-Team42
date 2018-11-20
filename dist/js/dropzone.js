@@ -18,9 +18,9 @@
     var pluginName = 'dropzone',
         defaults = {
             width:                  300,                            //width of the div
-            height:                 300,                            //height of the div
+            height:                 25,                            //height of the div
             progressBarWidth:       '100%',                            //width of the progress bars
-            url:                    '',                             //url for the ajax to post
+            url:                    'https://mars.iuk.hdm-stuttgart.de/~ts170/pictures', //url for the ajax to post
             filesName:              'files',                        //name for the form submit
             margin:                 0,                              //margin added if needed
             border:                 '2px dashed #ccc',              //border property
@@ -31,16 +31,16 @@
             text:                   'Drop files here to upload',    //text inside the div
             uploadMode:             'single',                       //upload all files at once or upload single files, options: all or single
             progressContainer:      '',                             //progress selector if null one will be created
-            src:                    '',                             //if preview true we can define the image src
+            src:                    'https://mars.iuk.hdm-stuttgart.de/~ts170/pictures', //if preview true we can define the image src
 
             dropzoneWraper:         'nniicc-dropzoneParent',        //wrap the dropzone div with custom class
             files:                  [],                             //Access to the files that are droped
             maxFileSize:            '5MB',                         //max file size ['bytes', 'KB', 'MB', 'GB', 'TB']
             allowedFileTypes:       '*',                            //allowed files to be uploaded seperated by ',' jpg,png,gif
             clickToUpload:          true,                           //click on dropzone to select files old way
-            showTimer:              false,                           //show time that has elapsed from the start of the upload,
+            showTimer:              true,                           //show time that has elapsed from the start of the upload,
             removeComplete:         true,                           //delete complete progress bars when adding new files
-            preview:                false,                          //if enabled it will load the pictured directly to the html
+            preview:                true,                          //if enabled it will load the pictured directly to the html
             uploadOnPreview:        false,                          //Upload file even if the preview is enabled
             uploadOnDrop:           true,                           //Upload file right after drop
             params:                 {},                             //object of additional params
