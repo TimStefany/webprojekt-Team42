@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 if (isset($_POST['upload'])) {
     $file = $_FILES['files'];
 
@@ -14,7 +14,7 @@ if (isset($_POST['upload'])) {
     $fileactualext = strtolower(end($fileext));
 
     #hier lege ich fest welche filetypes hochgeladen werden können
-    $allowed = array('jpg', 'jpeg', 'png', 'pdf');
+    $allowed = array('jpg', 'jpeg', 'png');
 
     if (in_array($fileactualext, $allowed)) {
         #error Test
@@ -22,10 +22,13 @@ if (isset($_POST['upload'])) {
             if ($filesize < 2000000) {
                 #wenn es unter 2mb ist bekommt es einen unique namen (mit der jeweiligen endung) damit es nicht überschrieben wird
                 $filenamenew = uniqid('', true) . "." . $fileactualext;
+
+                $_SESSION["imgdatabasename"] = $filenamenew;
+
                 $filedestination = '/home/fs119/public_html/uploads/user_img/' . $filenamenew;
                 move_uploaded_file($filetmpname, $filedestination);
                 #nach dem upload kommt man wieder auf die folgende Seite
-                header("Location:profile.php?uploadsuccsess");
+                header("Location:image-database-upload.php");
 
             } else {
                 echo "Du hast die maximale Dateigröße von 2 Mb überschritten";
