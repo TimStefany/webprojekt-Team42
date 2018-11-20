@@ -99,8 +99,14 @@ if (isset ($_SESSION["signed-in"])) {
 
                 for ($i = 0; $i < count($followed_name); $i++) {
                     //eine neue Spalte mit der Überschrift des Themas oder des Users wird aufgemacht
-                    echo '<div class="col-sm">';
-                    echo '<h3>' . $followed_name[$i] . '</h3>';
+                    if ($followed_type[$i]==1){     //Topics bekommen einen Link in der Überschrift auf die Topic Seite
+                        echo '<div class="col-sm">';
+                        echo '<a href="topic-profile.php?id='.$followed_id[$i].'" class= "h3" >'.$followed_name[$i].'</a>';
+                    } else {
+                        echo '<div class="col-sm">';
+                        echo '<a href="profile-foreign.php?id='.$followed_id[$i].'" class= "h3" >'.$followed_name[$i].'</a>';
+                    }
+
 
                     //Abfrage aller Beiträge für die Spalte - muss nach gefolgten Nutzern und gefolgten Topics getrennt werden.
                     if ($followed_type[$i]==1){     // Es geht um eine Topic
@@ -125,14 +131,18 @@ if (isset ($_SESSION["signed-in"])) {
                         }
                         else {      //Andere Auswahl für die Explore Spalte
                             $db = new PDO($dsn, $dbuser, $dbpass, $option);
-                            $stmt = $db->prepare("SELECT user_id, user_name, content, picture_id FROM posts_registered_users_view WHERE 1 = 1");
+                            $stmt = $db->prepare("SELECT user_id, user_name, content, picture_id, topic_id, topic_name FROM posts_registered_users_topics_view WHERE 1 = 1");
                             if ($stmt->execute()){
                                 while ($row = $stmt->fetch()){
                                     echo '<p>'.$row["content"].'</p>'; //gibt den Content in einem P Tag aus
                                     echo '<a href="profile-foreign.php?id='.$row["user_id"].'">Autor: '.$row["user_name"].'</a>';
                                     //gibt den Nutzernamen des Autors als Link aus
 
-                                    if ($row["picture_id"]!==NULL){     // wird ausgeführt wenn ein Bild hinterlegt wurde
+                                    //gibt die Topic des Posts als Link aus
+                                    if ($row["topic_id"]!= NULL){
+                                        echo '<a href="topic-profile.php?id='.$row["topic_id"].'"> Topic:'.$row["topic_name"].'</a>';
+                                    }
+                                    if ($row["picture_id"]!= NULL){     // wird ausgeführt wenn ein Bild hinterlegt wurde
                                         echo 'hier steht der Pfad zum Bild';
                                     }
                                 }
