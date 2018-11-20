@@ -60,6 +60,42 @@ if (isset ($_SESSION["signed-in"])) {
         </div>
     </nav>
     <main class="container"><!--ein Responsive Container in dem der Content steckt-->
+        <h1>Hier entsteht der geile Microblog von Team-42!</h1>
+        <!--input Box-->
+        <form action="post-feed.php" method="post" class="test" id="comment_form">
+            <p><label style="color: white;">Blogeintrag:<br>
+                    <textarea name="post" cols="80" rows="3" placeholder="neuer Eintrag!"
+                              maxlength="200"></textarea></label></p>
+            <p>
+            <div class="ui-widget">
+                <label style="color: white;" for="tags">Topic: </label>
+                <input name="topic" id="tags">
+            </div>
+            </p>
+            <p><input type="submit" value="Posten"></p>
+        </form>
+        <div class="container">
+            <!-- Standar Form -->
+            <!--            enctype muss rein weil es wichtig für die übergabe des IMGs ist-->
+            <!--            specifies how the form data should be encoded-->
+            <form action="upload.php" method="post" enctype="multipart/form-data">
+                <div class="form-inline">
+                    <div class="form-group">
+                        <input type="file" name="files" accept="image/*" onchange="loadFile(event)">
+                        <img id="output"/>
+                    </div>
+                    <button type="submit" name="upload" class="btn btn-sm btn-primary">Upload files</button>
+                </div>
+            </form>
+            <div class="jquery-script-clear"></div>
+        </div>
+        <div id="alert_popover">
+            <div class="wrapper">
+                <div class="content">
+
+                </div>
+            </div>
+        </div>
         <?php
         //Auslesen der Themen und Nutzer denen ein Nutzer folgt
         $user = $_SESSION["user-id"];
@@ -176,6 +212,47 @@ if (isset ($_SESSION["signed-in"])) {
     <footer>
 
     </footer>
+    <script>
+        $(document).ready(function(){
+
+            setInterval(function(){
+                load_last_notification();
+            }, 20000);
+
+            function load_last_notification()
+            {
+                $.ajax({
+                    url:"fetch.php",
+                    method:"POST",
+                    success:function(data)
+                    {
+                        $('.content').html(data);
+                    }
+                })
+            }
+
+            $('#comment_form').on('submit', function(event){
+                event.preventDefault();
+                if($('#subject').val() != '' && $('#comment').val() != '')
+                {
+                    var form_data = $(this).serialize();
+                    $.ajax({
+                        url:"post-feed.php",
+                        method:"POST",
+                        data:form_data,
+                        success:function(data)
+                        {
+                            $('#comment_form')[0].reset();
+                        }
+                    })
+                }
+                else
+                {
+                    alert("Both Fields are Required");
+                }
+            });
+        });
+    </script>
     </body>
 
     </html>
