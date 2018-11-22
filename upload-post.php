@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_POST['upload'])) {
+if (isset($_POST['upload_post'])) {
     $file = $_FILES['files'];
 
     $filename = $_FILES['files']['name'];
@@ -28,7 +28,7 @@ if (isset($_POST['upload'])) {
                 $filedestination = '/home/fs119/public_html/uploads/user_img/' . $filenamenew;
                 move_uploaded_file($filetmpname, $filedestination);
                 #nach dem upload kommt man wieder auf die folgende Seite
-                header("Location:image-database-upload.php");
+                header("Location:image-database-upload-profile.php");
 
             } else {
                 echo "Du hast die maximale Dateigröße von 2 Mb überschritten";
