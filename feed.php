@@ -144,10 +144,10 @@
 						//eine neue Spalte mit der Überschrift des Themas oder des Users wird aufgemacht
 						if ( $followed_type[ $i ] == 1 ) {     //Topics bekommen einen Link in der Überschrift auf die Topic Seite
 							echo '<div class="feed-scroll-row">';
-							echo '<a href="topic-profile.php?id=' . $followed_id[ $i ] . '" class= "h3" >' . $followed_name[ $i ] . '</a><div class="feed-scroll-row-container">';
+							echo '<a href="topic-profile.php?id=' . $followed_id[ $i ] . '" class= "h4" >+' . $followed_name[ $i ] . '</a><div class="feed-scroll-row-container">';
 						} else {
 							echo '<div class="feed-scroll-row">';
-							echo '<a href="profile-foreign.php?id=' . $followed_id[ $i ] . '" class= "h3" >' . $followed_name[ $i ] . '</a><div class="feed-scroll-row-container">';
+							echo '<a href="profile-foreign.php?id=' . $followed_id[ $i ] . '" class= "h4" >+' . $followed_name[ $i ] . '</a><div class="feed-scroll-row-container">';
 						}
 
 
@@ -163,8 +163,9 @@
 									while ( $row = $stmt->fetch() ) {
 										echo '<div class="feed-scroll-row-container-cell">';   //der Gesammte Post steckt in diesem DIV
 
+										echo '<a href="profile-foreign.php?id=' . $row["user_id"] . '" class="autor">+ Autor: ' . $row["user_name"] . '</a>';
+                                        echo '<hr class="my-1">';
 										echo '<p>' . $row["content"] . '</p>'; //gibt den Content in einem P Tag aus
-										echo '<a href="profile-foreign.php?id=' . $row["user_id"] . '">Autor: ' . $row["user_name"] . '</a>';
 										//gibt den Nutzernamen des Autors als Link aus
 
 										//Wenn dem Beitrag ein Bild hinzugefügt wurde dann wird diese Schleife ausgeführt
@@ -182,14 +183,15 @@
 									while ( $row = $stmt->fetch() ) {
 										echo '<div class="feed-scroll-row-container-cell">';   //der Gesammte Post steckt in diesem DIV
 
+										echo '<a href="profile-foreign.php?id=' . $row["user_id"] . '">+ Autor: ' . $row["user_name"] . '</a><br>';
+										if ( $row["topic_id"] != null ) {
+											echo '<a class="topic-link" href="topic-profile.php?id=' . $row["topic_id"] . '"> + Topic:' . $row["topic_name"] . '</a>';
+										}
+										echo '<hr class="my-1">';
 										echo '<p>' . $row["content"] . '</p>'; //gibt den Content in einem P Tag aus
-										echo '<a href="profile-foreign.php?id=' . $row["user_id"] . '">Autor: ' . $row["user_name"] . '</a>';
 										//gibt den Nutzernamen des Autors als Link aus
 
 										//gibt die Topic des Posts als Link aus
-										if ( $row["topic_id"] != null ) {
-											echo '<a href="topic-profile.php?id=' . $row["topic_id"] . '"> Topic:' . $row["topic_name"] . '</a>';
-										}
 										if ( $row["picture_id"] != null ) {     // wird ausgeführt wenn ein Bild hinterlegt wurde
 											echo 'hier steht der Pfad zum Bild';
 										}
@@ -208,8 +210,9 @@
 								while ( $row = $stmt->fetch() ) {
 									echo '<div class="feed-scroll-row-container-cell">';   //der Gesammte Post steckt in diesem DIV
 
+									echo '<a href="profile-foreign.php?id=' . $row["user_id"] . '">+ Autor: ' . $row["user_name"] . '</a>';
+									echo '<hr class="my-1">';
 									echo '<p>' . $row["content"] . '</p>'; //gibt den Content in einem P Tag aus
-									echo '<a href="profile-foreign.php?id=' . $row["user_id"] . '">Autor: ' . $row["user_name"] . '</a>';
 									//gibt den Nutzernamen des Autors als Link aus
 
 									if ( $row["picture_id"] !== null ) {

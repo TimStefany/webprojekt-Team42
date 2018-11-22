@@ -4,24 +4,36 @@
   overflow: scroll;
   background-color: white;
   margin-top: 1rem;
-  padding: 1rem;
+  padding: 0 1rem 1rem 0;
   &-row {
+    background-color: $background-feed-row;
     padding: 5px;
     width: 250px;
+    min-height: 103%;
     float: left;
-    margin-left: 1rem;
+    margin-left: 2rem;
     overflow: hidden;
-    border: 1px solid blue;
     a {
-
+      color: $secondary;
     }
     &-container {
-      margin-top: 3rem;
+      margin-top: 1.5rem;
       &-cell {
+        a {
+          font-weight: bold;
+          color: black !important;
+          .topic-link {
+            font-weight: normal !important;
+          }
+        }
+        p {
+          font-size: 13px;
+        }
+        border-radius: 8px;
+        padding: 5px;
         background-color: $background-feed-cell;
         margin: 1rem 0.5rem 0 0.5rem;
         -moz-hyphens: auto;
-        -o-hyphens: auto;
         -webkit-hyphens: auto;
         -ms-hyphens: auto;
         hyphens: auto;

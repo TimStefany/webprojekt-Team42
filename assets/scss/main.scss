@@ -3,9 +3,10 @@
 /*
 * Allgemeine Styles
  */
-$background-feed-cell: rgb(249, 231, 189);
-$primary: rgb(223, 226, 239);
-$secondary: rgb(0, 80, 255);
+$background-feed-cell: rgb(255,255,255);
+$background-feed-row: rgb(167,163,126);
+$primary: rgb(4, 99, 128);
+$secondary: rgb(255,255,255); // Überschriften und Überschriften in den rows
 
 /*
 * Import der module
@@ -31,6 +32,13 @@ body {
 
 h1, .h1, h2, .h2, h3, .h3 {
   color: $secondary;
+}
+
+a{
+  &:hover{
+    text-decoration: none;
+    cursor: pointer;
+  }
 }
 
 .btn-file {
