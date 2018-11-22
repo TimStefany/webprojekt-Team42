@@ -66,34 +66,34 @@ if (isset ($_SESSION["signed-in"])) {
     <main class="container"><!--ein Responsive Container in dem der Content steckt-->
         <h1>Hier entsteht der geile Microblog von Team-42!</h1>
         <!--input Box-->
-        <form action="post.php" method="post" class="test" id="comment_form">
+        <form action="post.php" method="post"  enctype="multipart/form-data" id="comment_form">
+
+            /*#############################################################################################################
+            Warum funktioniert es nicht wenn es " id="comment_form" "
+            ###############################################################################################################*/
+
             <p><label style="color: white;">Blogeintrag:<br>
                     <textarea name="post" cols="80" rows="3" placeholder="neuer Eintrag!"
                               maxlength="200"></textarea></label></p>
             <p>
             <div class="ui-widget">
                 <label style="color: white;" for="tags">Topic: </label>
-                <input name="topic" id="tags">
-            </div>
-            <form action="upload-post.php" method="post" enctype="multipart/form-data">
-                <div class="form-inline">
-                    <div class="form-group">
-                        <input type="file" name="files" accept="image/*" onchange="loadFile(event)">
-                        <img id="output"/>
-                    </div>
+
+                <textarea name="topic" id="tags" rows="1"></textarea>
+
+                <input type="file" name="files" accept="image/*" onchange="loadFile(event)">
+                <img id="output"/>
+
                     <button type="submit" name="upload-post" class="btn btn-sm btn-primary">Das hier ist zum Bild an
                         Post anhängen
                     </button>
                 </div>
-            </form>
-            </p>
-            <p><input type="submit" value="Posten"></p>
         </form>
         <div class="container">
             <!-- Standar Form -->
             <!--            enctype muss rein weil es wichtig für die übergabe des IMGs ist-->
             <!--            specifies how the form data should be encoded-->
-            <form action="upload-profile.php" method="post" enctype="multipart/form-data">
+            <!--<form action="image-database-upload-profile.php" method="post" enctype="multipart/form-data">
                 <div class="form-inline">
                     <div class="form-group">
                         <input type="file" name="files" accept="image/*" onchange="loadFile(event)">
@@ -103,7 +103,7 @@ if (isset ($_SESSION["signed-in"])) {
                         Profilfoto ändern
                     </button>
                 </div>
-            </form>
+            </form>-->
             <div class="jquery-script-clear"></div>
         </div>
         <div id="alert_popover">
