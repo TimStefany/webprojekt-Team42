@@ -1,22 +1,30 @@
 @import '../../node_modules/bootstrap/scss/bootstrap';
+
+/*
+* Allgemeine Styles
+ */
+$background-feed-cell: rgb(249, 231, 189);
+$primary: rgb(223, 226, 239);
+$secondary: rgb(0, 80, 255);
+
 /*
 * Import der module
 */
 @import '../../assets/scss/module/loginblock.scss';
 @import "../../assets/scss/module/registerblock.scss";
 @import "../../assets/scss/module/navbar.scss";
+@import "../../assets/scss/module/feed-scroll.scss";
+@import "../../assets/scss/module/post-formular.scss";
+
 
 /*
 * Import der Page-Layouts
  */
-/*
-/*
-* Allgemeine Styles
- */
-$primary: rgb(223, 226, 239);
-$secondary: rgb(0, 80, 255);
 
-body { //wird noch nicht mitgegeben?!
+
+
+
+body {
   background-color: $primary;
 }
 

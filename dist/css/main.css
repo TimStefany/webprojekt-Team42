@@ -8502,6 +8502,9 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 /*
+* Allgemeine Styles
+ */
+/*
 * Import der module
 */
 .navbar i {
@@ -8522,7 +8525,7 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .navbar .dropdown-item:hover {
-  background-color: #007bff;
+  background-color: #dfe2ef;
   color: rgba(255, 255, 255, 0.75);
 }
 
@@ -8560,12 +8563,45 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 
+.feed-scroll {
+  height: 100vh;
+  width: 100vw;
+  overflow: scroll;
+  background-color: white;
+  margin-top: 1rem;
+  padding: 1rem;
+}
+
+.feed-scroll-row {
+  padding: 5px;
+  width: 250px;
+  float: left;
+  margin-left: 1rem;
+  overflow: hidden;
+  border: 1px solid blue;
+}
+
+.feed-scroll-row-container {
+  margin-top: 3rem;
+}
+
+.feed-scroll-row-container-cell {
+  background-color: #f9e7bd;
+  margin: 1rem 0.5rem 0 0.5rem;
+  -moz-hyphens: auto;
+  -o-hyphens: auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+}
+
+.input-form {
+  background-color: white;
+  border-radius: 20px;
+}
+
 /*
 * Import der Page-Layouts
- */
-/*
-/*
-* Allgemeine Styles
  */
 body {
   background-color: #dfe2ef;

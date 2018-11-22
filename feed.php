@@ -68,7 +68,7 @@
             <div class="container">
                 <h1>Hier entsteht der geile Microblog von Team-42!</h1>
                 <!--input Box-->
-                <form action="post-feed.php" method="post" class="test" id="comment_form">
+                <form action="post-feed.php" method="post" class="input-form" id="comment_form">
                     <p><label style="color: white;">Blogeintrag:<br>
                             <textarea name="post" cols="80" rows="3" placeholder="neuer Eintrag!"
                                       maxlength="200" id="comment"></textarea></label></p>
@@ -136,98 +136,96 @@
 				}
 			?>
 
-            <div style="border:1px solid black;height:1000px;width:140000px;overflow-y:hidden;overflow-x:scroll;">
-                <div>
-                    <div style="">
-						<?php
+            <div class="feed-scroll">
 
-							for ( $i = 0; $i < count( $followed_name ); $i ++ ) {
-								//eine neue Spalte mit der Überschrift des Themas oder des Users wird aufgemacht
-								if ( $followed_type[ $i ] == 1 ) {     //Topics bekommen einen Link in der Überschrift auf die Topic Seite
-									echo '<div class="" style="width: 200px; float:left; margin-left:10px; display:table">';
-									echo '<a href="topic-profile.php?id=' . $followed_id[ $i ] . '" class= "h3" >' . $followed_name[ $i ] . '</a>';
-								} else {
-									echo '<div class="" style="width: 200px;float:left;margin-left:10px; display:table">';
-									echo '<a href="profile-foreign.php?id=' . $followed_id[ $i ] . '" class= "h3" >' . $followed_name[ $i ] . '</a>';
-								}
+				<?php
+
+					for ( $i = 0; $i < count( $followed_name ); $i ++ ) {
+						//eine neue Spalte mit der Überschrift des Themas oder des Users wird aufgemacht
+						if ( $followed_type[ $i ] == 1 ) {     //Topics bekommen einen Link in der Überschrift auf die Topic Seite
+							echo '<div class="feed-scroll-row">';
+							echo '<a href="topic-profile.php?id=' . $followed_id[ $i ] . '" class= "h3" >' . $followed_name[ $i ] . '</a><div class="feed-scroll-row-container">';
+						} else {
+							echo '<div class="feed-scroll-row">';
+							echo '<a href="profile-foreign.php?id=' . $followed_id[ $i ] . '" class= "h3" >' . $followed_name[ $i ] . '</a><div class="feed-scroll-row-container">';
+						}
 
 
-								//Abfrage aller Beiträge für die Spalte - muss nach gefolgten Nutzern und gefolgten Topics getrennt werden.
-								if ( $followed_type[ $i ] == 1 ) {     // Es geht um eine Topic
+						//Abfrage aller Beiträge für die Spalte - muss nach gefolgten Nutzern und gefolgten Topics getrennt werden.
+						if ( $followed_type[ $i ] == 1 ) {     // Es geht um eine Topic
 
-									//explore Topic soll alle Beiträge anzeigen und muss deshalb extra behandelt werden
-									if ( $followed_id[ $i ] !== '1' ) {
-										//alle Topics abgesehen von der Explore Topic werden so abgearbeitet (explore hat id=1)
-										$db   = new PDO( $dsn, $dbuser, $dbpass, $option );
-										$stmt = $db->prepare( "SELECT user_id, user_name, content, picture_id FROM posts_registered_users_view WHERE topic_id = :topic" );
-										if ( $stmt->execute( array( ":topic" => $followed_id[ $i ] ) ) ) {
-											while ( $row = $stmt->fetch() ) {
-												echo '<div>';   //der Gesammte Post steckt in diesem DIV
+							//explore Topic soll alle Beiträge anzeigen und muss deshalb extra behandelt werden
+							if ( $followed_id[ $i ] !== '1' ) {
+								//alle Topics abgesehen von der Explore Topic werden so abgearbeitet (explore hat id=1)
+								$db   = new PDO( $dsn, $dbuser, $dbpass, $option );
+								$stmt = $db->prepare( "SELECT user_id, user_name, content, picture_id FROM posts_registered_users_view WHERE topic_id = :topic" );
+								if ( $stmt->execute( array( ":topic" => $followed_id[ $i ] ) ) ) {
+									while ( $row = $stmt->fetch() ) {
+										echo '<div class="feed-scroll-row-container-cell">';   //der Gesammte Post steckt in diesem DIV
 
-												echo '<p style="max-width: 200px;">' . $row["content"] . '</p>'; //gibt den Content in einem P Tag aus
-												echo '<a href="profile-foreign.php?id=' . $row["user_id"] . '">Autor: ' . $row["user_name"] . '</a>';
-												//gibt den Nutzernamen des Autors als Link aus
+										echo '<p>' . $row["content"] . '</p>'; //gibt den Content in einem P Tag aus
+										echo '<a href="profile-foreign.php?id=' . $row["user_id"] . '">Autor: ' . $row["user_name"] . '</a>';
+										//gibt den Nutzernamen des Autors als Link aus
 
-												//Wenn dem Beitrag ein Bild hinzugefügt wurde dann wird diese Schleife ausgeführt
-												if ( $row["picture_id"] !== null ) {
-													echo 'hier steht der Pfad zum Bild';
-												}
-
-												echo '</div>';  //der Gesammte Post steckt in diesem DIV
-											}
+										//Wenn dem Beitrag ein Bild hinzugefügt wurde dann wird diese Schleife ausgeführt
+										if ( $row["picture_id"] !== null ) {
+											echo 'hier steht der Pfad zum Bild';
 										}
-									} else {      //Andere Auswahl für die Explore Spalte
-										$db   = new PDO( $dsn, $dbuser, $dbpass, $option );
-										$stmt = $db->prepare( "SELECT user_id, user_name, content, picture_id, topic_id, topic_name FROM posts_registered_users_topics_view WHERE 1 = 1" );
-										if ( $stmt->execute() ) {
-											while ( $row = $stmt->fetch() ) {
-												echo '<div>';   //der Gesammte Post steckt in diesem DIV
 
-												echo '<p style="max-width: 200px;">' . $row["content"] . '</p>'; //gibt den Content in einem P Tag aus
-												echo '<a href="profile-foreign.php?id=' . $row["user_id"] . '">Autor: ' . $row["user_name"] . '</a>';
-												//gibt den Nutzernamen des Autors als Link aus
-
-												//gibt die Topic des Posts als Link aus
-												if ( $row["topic_id"] != null ) {
-													echo '<a href="topic-profile.php?id=' . $row["topic_id"] . '"> Topic:' . $row["topic_name"] . '</a>';
-												}
-												if ( $row["picture_id"] != null ) {     // wird ausgeführt wenn ein Bild hinterlegt wurde
-													echo 'hier steht der Pfad zum Bild';
-												}
-
-												echo '</div>';   //der Gesammte Post steckt in diesem DIV
-											}
-										}
-									}
-
-								}
-
-								if ( $followed_type[ $i ] == 2 ) {     // Es geht um einen User
-									$db   = new PDO( $dsn, $dbuser, $dbpass, $option );
-									$stmt = $db->prepare( "SELECT user_id, user_name, content, picture_id FROM posts_registered_users_view WHERE user_id = :user" );
-									if ( $stmt->execute( array( ":user" => $followed_id[ $i ] ) ) ) {
-										while ( $row = $stmt->fetch() ) {
-											echo '<div>';   //der Gesammte Post steckt in diesem DIV
-
-											echo '<p style="max-width: 200px;">' . $row["content"] . '</p>'; //gibt den Content in einem P Tag aus
-											echo '<a href="profile-foreign.php?id=' . $row["user_id"] . '">Autor: ' . $row["user_name"] . '</a>';
-											//gibt den Nutzernamen des Autors als Link aus
-
-											if ( $row["picture_id"] !== null ) {
-												echo 'hier steht der Pfad zum Bild';
-											}
-
-											echo '</div>';  //der Gesammte Post steckt in diesem DIV
-										}
+										echo '</div>';  //der Gesammte Post steckt in diesem DIV
 									}
 								}
-								echo '</div>';
+							} else {      //Andere Auswahl für die Explore Spalte
+								$db   = new PDO( $dsn, $dbuser, $dbpass, $option );
+								$stmt = $db->prepare( "SELECT user_id, user_name, content, picture_id, topic_id, topic_name FROM posts_registered_users_topics_view WHERE 1 = 1" );
+								if ( $stmt->execute() ) {
+									while ( $row = $stmt->fetch() ) {
+										echo '<div class="feed-scroll-row-container-cell">';   //der Gesammte Post steckt in diesem DIV
+
+										echo '<p>' . $row["content"] . '</p>'; //gibt den Content in einem P Tag aus
+										echo '<a href="profile-foreign.php?id=' . $row["user_id"] . '">Autor: ' . $row["user_name"] . '</a>';
+										//gibt den Nutzernamen des Autors als Link aus
+
+										//gibt die Topic des Posts als Link aus
+										if ( $row["topic_id"] != null ) {
+											echo '<a href="topic-profile.php?id=' . $row["topic_id"] . '"> Topic:' . $row["topic_name"] . '</a>';
+										}
+										if ( $row["picture_id"] != null ) {     // wird ausgeführt wenn ein Bild hinterlegt wurde
+											echo 'hier steht der Pfad zum Bild';
+										}
+
+										echo '</div>';   //der Gesammte Post steckt in diesem DIV
+									}
+								}
 							}
-						?>
 
-                    </div>
-                </div>
+						}
+
+						if ( $followed_type[ $i ] == 2 ) {     // Es geht um einen User
+							$db   = new PDO( $dsn, $dbuser, $dbpass, $option );
+							$stmt = $db->prepare( "SELECT user_id, user_name, content, picture_id FROM posts_registered_users_view WHERE user_id = :user" );
+							if ( $stmt->execute( array( ":user" => $followed_id[ $i ] ) ) ) {
+								while ( $row = $stmt->fetch() ) {
+									echo '<div class="feed-scroll-row-container-cell">';   //der Gesammte Post steckt in diesem DIV
+
+									echo '<p>' . $row["content"] . '</p>'; //gibt den Content in einem P Tag aus
+									echo '<a href="profile-foreign.php?id=' . $row["user_id"] . '">Autor: ' . $row["user_name"] . '</a>';
+									//gibt den Nutzernamen des Autors als Link aus
+
+									if ( $row["picture_id"] !== null ) {
+										echo 'hier steht der Pfad zum Bild';
+									}
+
+									echo '</div>';  //der Gesammte Post steckt in diesem DIV
+								}
+							}
+						}
+						echo '</div></div>';
+					}
+				?>
+
             </div>
+
         </main>
         <footer>
 
