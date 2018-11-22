@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_POST['upload'])) {
+if (isset($_POST['upload'])) {  #Wenn eine Datei zum Upload ausgewählt wurde:
     $file = $_FILES['files'];
 
     $filename = $_FILES['files']['name'];
@@ -10,7 +10,7 @@ if (isset($_POST['upload'])) {
     $filetype = $_FILES['files']['type'];
 
     $fileext = explode('.', $filename);
-    #everytime we make it lower case before checking it
+    #Die Dateiendung wird immer auf lowercase gesetzt
     $fileactualext = strtolower(end($fileext));
 
     #hier lege ich fest welche filetypes hochgeladen werden können
@@ -28,7 +28,7 @@ if (isset($_POST['upload'])) {
                 $filedestination = '/home/fs119/public_html/uploads/user_img/' . $filenamenew;
                 move_uploaded_file($filetmpname, $filedestination);
                 #nach dem upload kommt man wieder auf die folgende Seite
-                header("Location:image-database-upload-profile.php");
+                header("Location:profile.php");
 
             } else {
                 echo "Du hast die maximale Dateigröße von 2 Mb überschritten";
