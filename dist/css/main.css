@@ -8603,6 +8603,10 @@ a.text-dark:hover, a.text-dark:focus {
 /*
 * Import der Page-Layouts
  */
+.profile-header img {
+  border-radius: 200px;
+}
+
 body {
   background-color: #dfe2ef;
 }

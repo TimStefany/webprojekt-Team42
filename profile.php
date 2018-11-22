@@ -65,6 +65,18 @@
 
     <main class="container"><!--ein Responsive Container in dem der Content steckt-->
         <h1>Hier entsteht der geile Microblog von Team-42!</h1>
+        <div class="profile-header">
+            <div class="row">
+                <div class="col-sm-4">
+                    <img src="https://www.g33kdating.com/ow_userfiles/plugins/articles/article_image_5968bde712c2f.jpg" width="300" height="auto" alt="Profilbild">
+                </div>
+                <div class="col-sm-8">
+                    Test
+                </div>
+            </div>
+        </div>
+        </div>
+
         <!--input Box-->
         <form action="post.php" method="post"  enctype="multipart/form-data" id="comment_form">
 

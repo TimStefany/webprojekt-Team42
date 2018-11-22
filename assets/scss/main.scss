@@ -20,6 +20,7 @@ $secondary: rgb(0, 80, 255);
 /*
 * Import der Page-Layouts
  */
+@import "../../assets/scss/pages/profile-header.scss";
 
 
 
@@ -72,3 +73,4 @@ h1, .h1, h2, .h2, h3, .h3 {
   background-color: #f2f2f2;
   border-color: #cccccc;
 }
+
