@@ -70,7 +70,7 @@ if (isset ($_SESSION["signed-in"])) {
         <form action="post-feed.php" method="post" class="test" id="comment_form">
             <p><label style="color: white;">Blogeintrag:<br>
                     <textarea name="post" cols="80" rows="3" placeholder="neuer Eintrag!"
-                              maxlength="200"></textarea></label></p>
+                              maxlength="200" id="comment"></textarea></label></p>
             <p>
             <div class="ui-widget">
                 <label style="color: white;" for="tags">Topic: </label>
@@ -134,7 +134,7 @@ if (isset ($_SESSION["signed-in"])) {
         }
         ?>
 
-        <div class="container">
+        <div>
             <div class="row">
                 <?php
 
@@ -159,6 +159,8 @@ if (isset ($_SESSION["signed-in"])) {
                             $stmt = $db->prepare("SELECT user_id, user_name, content, picture_id FROM posts_registered_users_view WHERE topic_id = :topic");
                             if ($stmt->execute(array(":topic" => $followed_id[$i]))){
                                 while ($row = $stmt->fetch()){
+                                    echo '<div>';   //der Gesammte Post steckt in diesem DIV
+
                                     echo '<p>'.$row["content"].'</p>'; //gibt den Content in einem P Tag aus
                                     echo '<a href="profile-foreign.php?id='.$row["user_id"].'">Autor: '.$row["user_name"].'</a>';
                                     //gibt den Nutzernamen des Autors als Link aus
@@ -167,6 +169,8 @@ if (isset ($_SESSION["signed-in"])) {
                                     if ($row["picture_id"]!==NULL){
                                         echo 'hier steht der Pfad zum Bild';
                                     }
+
+                                    echo '</div>';  //der Gesammte Post steckt in diesem DIV
                                 }
                             }
                         }
@@ -175,6 +179,8 @@ if (isset ($_SESSION["signed-in"])) {
                             $stmt = $db->prepare("SELECT user_id, user_name, content, picture_id, topic_id, topic_name FROM posts_registered_users_topics_view WHERE 1 = 1");
                             if ($stmt->execute()){
                                 while ($row = $stmt->fetch()){
+                                    echo '<div>';   //der Gesammte Post steckt in diesem DIV
+
                                     echo '<p>'.$row["content"].'</p>'; //gibt den Content in einem P Tag aus
                                     echo '<a href="profile-foreign.php?id='.$row["user_id"].'">Autor: '.$row["user_name"].'</a>';
                                     //gibt den Nutzernamen des Autors als Link aus
@@ -186,6 +192,8 @@ if (isset ($_SESSION["signed-in"])) {
                                     if ($row["picture_id"]!= NULL){     // wird ausgeführt wenn ein Bild hinterlegt wurde
                                         echo 'hier steht der Pfad zum Bild';
                                     }
+
+                                    echo '</div>';   //der Gesammte Post steckt in diesem DIV
                                 }
                             }
                         }
@@ -197,6 +205,8 @@ if (isset ($_SESSION["signed-in"])) {
                         $stmt = $db->prepare("SELECT user_id, user_name, content, picture_id FROM posts_registered_users_view WHERE user_id = :user");
                         if ($stmt->execute(array(":user" => $followed_id[$i]))){
                             while ($row = $stmt->fetch()){
+                                echo '<div>';   //der Gesammte Post steckt in diesem DIV
+
                                 echo '<p>'.$row["content"].'</p>'; //gibt den Content in einem P Tag aus
                                 echo '<a href="profile-foreign.php?id='.$row["user_id"].'">Autor: '.$row["user_name"].'</a>';
                                 //gibt den Nutzernamen des Autors als Link aus
@@ -204,6 +214,8 @@ if (isset ($_SESSION["signed-in"])) {
                                 if ($row["picture_id"]!==NULL){
                                     echo 'hier steht der Pfad zum Bild';
                                 }
+
+                                echo '</div>';  //der Gesammte Post steckt in diesem DIV
                             }
                         }
                     }
@@ -217,6 +229,12 @@ if (isset ($_SESSION["signed-in"])) {
     <footer>
 
     </footer>
+    <script> //Preview vom picture Upload
+        var loadFile = function (event) {
+            var output = document.getElementById('output');
+            output.src = URL.createObjectURL(event.target.files[0]);
+        };
+    </script>
     <script>
         $(document).ready(function(){
 
@@ -238,7 +256,7 @@ if (isset ($_SESSION["signed-in"])) {
 
             $('#comment_form').on('submit', function(event){
                 event.preventDefault();
-                if($('#subject').val() != '' && $('#comment').val() != '')
+                if($('#tags').val() != '' && $('#comment').val() != '')
                 {
                     var form_data = $(this).serialize();
                     $.ajax({
