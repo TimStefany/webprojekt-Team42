@@ -37,4 +37,3 @@
 		echo '<p>gehen sie hier zu unserer Startseite und melden sie sich an</p><br>';
 		echo '<a href="index.php">Startseite</a>';
 	}
-?>

@@ -38,19 +38,23 @@ if (isset ($_SESSION["signed-in"])) {
                 </li>
             </ul>
         </div>
-        <a href="#">
-            <button type="button" class="btn btn-light">
-                News <span class="badge badge-light">8</span>
-            </button>
-        </a>
+        <div>
+            <li class="dropdown" style="list-style-type:none; margin-left:10px; margin-right:10px;">
+                <a href="#" data-toggle="dropdown"><span
+                            class="label label-pill label-danger count" style="border-radius:10px;"></span> <span <i
+                            class="fas fa-bell"></i> </a>
+                <ul class="dropdown-menu"></ul>
+            </li>
+        </div>
         <div class="d-flex"><img
                     src=https://img.fotocommunity.com/bb-bilder-9e10eb1c-ede3-47da-a2c5-97692e7faf8c.jpg?width=45&height=45
                     class="img-circle profil-image-small">
             <a href="profile.php" class="nav-item active nav-link username">USERNAME </a>
-            <a class="nav-link dropdown-toggle username" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            <a class="nav-link dropdown-toggle username" href="#" id="navbarDropdown" role="button"
+               data-toggle="dropdown"
                aria-haspopup="true" aria-expanded="false">
             </a>
-            <div class="dropdown-menu dropdown-user-menu bg-primary bg-dark" aria-labelledby="navbarDropdown">
+            <div class="dropdown-menu dropdown-user-menu bg-dark" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#">Farbe ändern</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Edit Profile</a>
@@ -59,6 +63,7 @@ if (isset ($_SESSION["signed-in"])) {
             </div>
         </div>
     </nav>
+
     <main class="container"><!--ein Responsive Container in dem der Content steckt-->
         <h1>Hier entsteht der geile Microblog von Team-42!</h1>
         <!--input Box-->
@@ -217,7 +222,7 @@ if (isset ($_SESSION["signed-in"])) {
 
             setInterval(function(){
                 load_last_notification();
-            }, 20000);
+            }, 2000);
 
             function load_last_notification()
             {

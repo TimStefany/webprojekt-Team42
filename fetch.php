@@ -9,7 +9,8 @@
 		$output .= '
  <div class="alert alert_default">
   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-  <p><strong>' . $row["topic_id"] . '</strong>
+  <p>  <strong>' . $row["user_id"] . '</strong><br>
+  <strong>' . $row["topic_id"] . '</strong><br>
    <small><em>' . $row["content"] . '</em></small>
   </p>
  </div>
