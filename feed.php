@@ -70,7 +70,7 @@ if (isset ($_SESSION["signed-in"])) {
         <form action="post-feed.php" method="post" class="test" id="comment_form">
             <p><label style="color: white;">Blogeintrag:<br>
                     <textarea name="post" cols="80" rows="3" placeholder="neuer Eintrag!"
-                              maxlength="200"></textarea></label></p>
+                              maxlength="200" id="comment"></textarea></label></p>
             <p>
             <div class="ui-widget">
                 <label style="color: white;" for="tags">Topic: </label>
@@ -217,6 +217,12 @@ if (isset ($_SESSION["signed-in"])) {
     <footer>
 
     </footer>
+    <script> //Preview vom picture Upload
+        var loadFile = function (event) {
+            var output = document.getElementById('output');
+            output.src = URL.createObjectURL(event.target.files[0]);
+        };
+    </script>
     <script>
         $(document).ready(function(){
 
@@ -238,7 +244,7 @@ if (isset ($_SESSION["signed-in"])) {
 
             $('#comment_form').on('submit', function(event){
                 event.preventDefault();
-                if($('#subject').val() != '' && $('#comment').val() != '')
+                if($('#tags').val() != '' && $('#comment').val() != '')
                 {
                     var form_data = $(this).serialize();
                     $.ajax({
