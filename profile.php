@@ -96,7 +96,7 @@ if (isset ($_SESSION["signed-in"])) {
                 <textarea name="topic" id="tags" rows="1"></textarea>
 
                 <input type="file" name="files" accept="image/*" onchange="loadFile(event)">
-                <img id="output"/>
+                <img id="output" class="image-preview"/>
 
                 <button type="submit" name="upload-post" class="btn btn-sm btn-primary">Das hier ist zum Bild an
                     Post anhängen
