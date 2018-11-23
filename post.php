@@ -40,7 +40,7 @@ if (isset ($_SESSION["signed-in"])) {
                     var_dump($file);
                     // $_SESSION["imgdatabasename"] = $filenamenew;
 
-                    $filedestination = '/home/fs119/public_html/uploads/user_img/' . $filenamenew;
+                    $filedestination = '/home/fs119/public_html/uploads/post_img/' . $filenamenew;
                     move_uploaded_file($filetmpname, $filedestination);
 
                     try {

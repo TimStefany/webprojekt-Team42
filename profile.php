@@ -78,12 +78,12 @@
         </div>
 
         <!--input Box-->
-        <form action="post.php" method="post"  enctype="multipart/form-data" id="comment_form">
+        <form action="post.php" method="post"  enctype="multipart/form-data">
 
-            /*#############################################################################################################
+           <!-- /*#############################################################################################################
             Warum funktioniert es nicht wenn es " id="comment_form" "
             ###############################################################################################################*/
-
+-->
             <p><label style="color: white;">Blogeintrag:<br>
                     <textarea name="post" cols="80" rows="3" placeholder="neuer Eintrag!"
                               maxlength="200"></textarea></label></p>
@@ -159,7 +159,9 @@
                 })
             }
 
-            $('#comment_form').on('submit', function (event) {
+            $x=document.getElementsByTagName('form');
+
+            $x.on('submit', function (event) {
                 event.preventDefault();
                 if ($('#subject').val() != '' && $('#comment').val() != '') {
                     var form_data = $(this).serialize();
