@@ -8632,8 +8632,17 @@ a.text-dark:hover, a.text-dark:focus {
   border-radius: 200px;
 }
 
+.image-preview {
+  width: auto;
+  height: 100px;
+}
+
 .loginpage {
-  background-image: url("../../images/background-loginpage.jpg") !important;
+  background-image: url("../") !important;
+}
+
+body {
+  background-color: #046380;
 }
 
 h1, .h1, h2, .h2, h3, .h3 {
