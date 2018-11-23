@@ -5,7 +5,7 @@ if (isset ($_SESSION["signed-in"])) {
     $post = htmlspecialchars($_POST["post"], ENT_QUOTES, "UTF-8");
     $topic = htmlspecialchars($_POST["topic"], ENT_QUOTES, "UTF-8");
     $user_id = $_SESSION["user-id"];
-    include_once 'userdata.php';
+    include_once '../outsourced-php-code/userdata.php';
 
     /*#############################################################################################################
         Ab hier wird getestet ob der Post ein Bild angehängt hat
@@ -103,7 +103,7 @@ if (isset ($_SESSION["signed-in"])) {
                 ":user" => $user_id,
                 ":topic" => $row,
                 ":post" => $post,
-                ":picture" => $picture_id,
+                ":picture" => NULL,
             ));
             $db2 = null;
         } catch (PDOException $e) {
@@ -131,19 +131,19 @@ if (isset ($_SESSION["signed-in"])) {
                 ":user" => $user_id,
                 ":topic" => $row,
                 ":post" => $post,
-                ":picture" => $picture,
+                ":picture" => NULL,
             ));
             $db2 = null;
         } catch (PDOException $e) {
             echo "Error!: Bitten wenden Sie sich an den Administrator...";
             die();
         }
-        header('Location: profile.php');
+        header('Location: ../profile.php');
 
     }
 } else {
     echo '<h1>Sie sind nicht angemeldet</h1>';
     echo '<p>gehen sie hier zu unserer Startseite und melden sie sich an</p><br>';
-    echo '<a href="index.php">Startseite</a>';
+    echo '<a href="../index.php">Startseite</a>';
 }
 

@@ -4,7 +4,7 @@
 -->
 <?php
 	session_start();
-	include_once 'userdata.php';
+	include_once 'outsourced-php-code/userdata.php';
 
 	if ( isset ( $_SESSION["signed-in"] ) ) {
 
@@ -17,7 +17,7 @@
             <title>Microblog Team-42</title>
             <meta name="description" content="">
 			<?php
-				include 'header.php';
+				include 'outsourced-php-code/header.php';
 			?>
         </head>
         <body>
@@ -59,7 +59,7 @@
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Edit Profile</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="logout.php">Ausloggen</a>
+                    <a class="dropdown-item" href="invisible-pages/logout.php">Ausloggen</a>
                 </div>
             </div>
         </nav>
@@ -68,7 +68,7 @@
             <div class="container">
                 <h1>Hier entsteht der geile Microblog von Team-42!</h1>
                 <!--input Box-->
-                <form action="post-feed.php" method="post" class="input-form" id="comment_form">
+                <form action="invisible-pages/post-feed.php" method="post" class="input-form" id="comment_form">
                     <p><label style="color: white;">Blogeintrag:<br>
                             <textarea name="post" cols="80" rows="3" placeholder="neuer Eintrag!"
                                       maxlength="200" id="comment"></textarea></label></p>
@@ -84,7 +84,7 @@
                     <!-- Standar Form -->
                     <!--            enctype muss rein weil es wichtig für die übergabe des IMGs ist-->
                     <!--            specifies how the form data should be encoded-->
-                    <form action="upload.php" method="post" enctype="multipart/form-data">
+                    <form action="invisible-pages/post.php" method="post" enctype="multipart/form-data">
                         <div class="form-inline">
                             <div class="form-group">
                                 <input type="file" name="files" accept="image/*" onchange="loadFile(event)">
@@ -248,7 +248,7 @@
 
                 function load_last_notification() {
                     $.ajax({
-                        url: "fetch.php",
+                        url: "invisible-pages/fetch.php",
                         method: "POST",
                         success: function (data) {
                             $('.content').html(data);
@@ -261,7 +261,7 @@
                     if ($('#tags').val() != '' && $('#comment').val() != '') {
                         var form_data = $(this).serialize();
                         $.ajax({
-                            url: "post-feed.php",
+                            url: "invisible-pages/post-feed.php",
                             method: "POST",
                             data: form_data,
                             success: function (data) {

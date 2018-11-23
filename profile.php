@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once 'userdata.php';
+include_once 'outsourced-php-code/userdata.php';
 //pushhelp
 if (isset ($_SESSION["signed-in"])) {
 
@@ -15,7 +15,7 @@ if (isset ($_SESSION["signed-in"])) {
         <title>Microblog Team-42</title>
         <meta name="description" content="">
         <?php
-        include 'header.php';
+        include 'outsourced-php-code/header.php';
         ?>
 
     </head>
@@ -58,7 +58,7 @@ if (isset ($_SESSION["signed-in"])) {
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Edit Profile</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="logout.php">Ausloggen</a>
+                <a class="dropdown-item" href="invisible-pages/logout.php">Ausloggen</a>
             </div>
         </div>
     </nav>
@@ -79,7 +79,7 @@ if (isset ($_SESSION["signed-in"])) {
         </div>
 
         <!--input Box-->
-        <form action="post.php" method="post" enctype="multipart/form-data">
+        <form action="invisible-pages/post.php" method="post" enctype="multipart/form-data">
 
             <!-- /*#############################################################################################################
              Warum funktioniert es nicht wenn es " id="comment_form"
@@ -107,7 +107,7 @@ if (isset ($_SESSION["signed-in"])) {
             <!-- Standar Form -->
             <!--            enctype muss rein weil es wichtig für die übergabe des IMGs ist-->
             <!--            specifies how the form data should be encoded-->
-            <!--<form action="image-database-upload-profile.php" method="post" enctype="multipart/form-data">
+            <!--<form action="invisible-pages/image-database-upload-profile.php" method="post" enctype="multipart/form-data">
                 <div class="form-inline">
                     <div class="form-group">
                         <input type="file" name="files" accept="image/*" onchange="loadFile(event)">
@@ -153,7 +153,7 @@ if (isset ($_SESSION["signed-in"])) {
 
             function load_last_notification() {
                 $.ajax({
-                    url: "fetch.php",
+                    url: "invisible-pages/fetch.php",
                     method: "POST",
                     success: function (data) {
                         $('.content').html(data);
@@ -168,7 +168,7 @@ if (isset ($_SESSION["signed-in"])) {
                 if ($('#subject').val() != '' && $('#comment').val() != '') {
                     var form_data = $(this).serialize();
                     $.ajax({
-                        url: "post.php",
+                        url: "invisible-pages/post.php",
                         method: "POST",
                         data: form_data,
                         success: function (data) {

@@ -3,10 +3,11 @@
     - Stylen
     - Beiträge des Nutzers ausgeben
     - URL bearbeiten?
+    - Aktuellen Nutzer auf die profile.php Seite umleiten
 -->
 <?php
 session_start();
-include_once 'userdata.php';
+include_once 'outsourced-php-code/userdata.php';
 
 if (isset ($_SESSION["signed-in"])) {
 
@@ -36,7 +37,7 @@ if (isset ($_SESSION["signed-in"])) {
         <title>Microblog Team-42</title>
         <meta name="description" content="">
         <?php
-        include 'header.php';
+        include 'outsourced-php-code/header.php';
         ?>
     </head>
 
@@ -76,7 +77,7 @@ if (isset ($_SESSION["signed-in"])) {
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Edit Profile</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="logout.php">Ausloggen</a>
+                <a class="dropdown-item" href="invisible-pages/logout.php">Ausloggen</a>
             </div>
         </div>
     </nav>

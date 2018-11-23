@@ -4,7 +4,7 @@ Der Seite müssen immer die IDs für die Topic oder den Nutzer und der Type (1=T
 -->
 <?php
 session_start();
-include_once 'userdata.php';
+include_once '../outsourced-php-code/userdata.php';
 
 if (isset ($_SESSION["signed-in"])) {
     //Überprüfen ob alle Wete die für die Seite notwending sind übergben wurden
@@ -43,7 +43,7 @@ if (isset ($_SESSION["signed-in"])) {
 
     } else {
         echo '<p>ups da ist etwas schief gelaufen.<br>';
-        echo '<a href="feed.php">Feed</a>';
+        echo '<a href="../feed.php">Feed</a>';
     }
 
 

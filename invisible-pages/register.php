@@ -9,7 +9,7 @@
 */
 
 session_start();
-include 'userdata.php';
+include '../outsourced-php-code/userdata.php';
 $check = 0;
 
 //if(isset($_POST["absenden"])) { //Kommt vom Registrieren Button
@@ -45,7 +45,7 @@ if (!empty($name) & !empty($passwordraw) & !empty($password_repeat)) {
         }
         if ($check == 1) {
             echo "<h3>Nutzername schon Vergeben, veruche es erneut mit einem anderen!<br/></h3>";
-            echo "<a href='index.php'>Zurück</a>";
+            echo "<a href='../index.php'>Zurück</a>";
             die();
         } else {
             try {
@@ -78,7 +78,7 @@ if (!empty($name) & !empty($passwordraw) & !empty($password_repeat)) {
                     die();
                 }
                 $db = null;
-                header('Location:feed.php');
+                header('Location:../feed.php');
             } catch (PDOException $e) {
                 echo "Error!: Bitten wenden Sie sich an den Administrator...<br/>";
                 die();
@@ -89,7 +89,7 @@ if (!empty($name) & !empty($passwordraw) & !empty($password_repeat)) {
     }
 } else {
     echo "Error: Bitte alle Felder ausfüllen!<br/>
-			<a href='index.php'>zurück</a>";
+			<a href='../index.php'>zurück</a>";
 }
 //}
 ?>

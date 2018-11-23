@@ -4,7 +4,7 @@
 		- Passwörter Hashen und Salten
 	*/
 	session_start();
-	include_once 'userdata.php';
+	include_once '../outsourced-php-code/userdata.php';
 
 //übernehmen der Variablen aus dem Vormular der Startseite
 	if ( isset( $_POST["username"] ) AND isset( $_POST["password"] ) ) {
@@ -15,7 +15,7 @@
 	else {
 		echo '<h1>Keine Daten übergeben</h1>';
 		echo '<p>Du hast keine vollständigen Daten zur anmeldung übergeben. Probiers nochmal.</p><br>';
-		echo '<a href="index.php">Startseite</a>';
+		echo '<a href="../index.php">Startseite</a>';
 		die();
 	}
 
@@ -33,11 +33,11 @@
 				//Wenn das Statement ein Ergebnis liefert haben die Zugangsdaten gestimmt - Session Angemeldet wird gesetzt und ID gespeichert
 				$_SESSION["signed-in"] = 1;
 				$_SESSION["user-id"]   = $row["user_id"];
-				header( 'Location: feed.php' );
+				header( 'Location: ../feed.php' );
 			} else {
 				echo '<h1>Ungültige Zugangsdaten</h1>';
 				echo '<p>Deine eingegebenen Daten sind leider falsch. Probiers nochmal</p><br>';
-				echo '<a href="index.php">Startseite</a>';
+				echo '<a href="../index.php">Startseite</a>';
 			}
 		} else {
 			echo "Datenbank-Fehler:";

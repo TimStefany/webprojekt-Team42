@@ -5,7 +5,7 @@
 -->
 <?php
 session_start();
-include_once 'userdata.php';
+include_once 'outsourced-php-code/userdata.php';
 
 if (isset ($_SESSION["signed-in"])) {
 
@@ -34,7 +34,7 @@ if (isset ($_SESSION["signed-in"])) {
         <title>Microblog Team-42</title>
         <meta name="description" content="">
         <?php
-        include 'header.php';
+        include 'outsourced-php-code/header.php';
         ?>
     </head>
 
@@ -74,7 +74,7 @@ if (isset ($_SESSION["signed-in"])) {
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Edit Profile</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="logout.php">Ausloggen</a>
+            <a class="dropdown-item" href="invisible-pages/logout.php">Ausloggen</a>
         </div>
     </div>
 </nav>
@@ -82,7 +82,7 @@ if (isset ($_SESSION["signed-in"])) {
     <h2><?php echo $topic_name ?></h2>
 </div>
     <?php
-    echo '<a href="follow.php?followed_id=' . $visited_topic . '&type=1">Folgen</a>';
+    echo '<a href="invisible-pages/follow.php?followed_id=' . $visited_topic . '&type=1">Folgen</a>';
 } else {
     echo '<h1>Sie sind nicht angemeldet</h1>';
     echo '<p>gehen sie hier zu unserer Startseite und melden sie sich an</p><br>';

@@ -11,7 +11,7 @@
     <title>Microblog Team-42</title>
     <meta name="description" content="">
     <?php
-        include 'header.php';
+        include 'outsourced-php-code/header.php';
     ?>
 </head>
 <body class="loginpage">
@@ -24,7 +24,7 @@
         <h3 class='test'>Sie müssen sich zuerst einloggen!</h3>
         <!-- Login-->
         <div class="">
-            <form action="login-check.php" method="post">
+            <form action="invisible-pages/login-check.php" method="post">
                 <span>Benutzername:</span><br> <input name="username" type="text"
                                                       placeholder="Benutzername eingeben!"><br>
                 Passwort:<br> <input name="password" type="password" placeholder="Passwort eingeben!"><br>
@@ -50,7 +50,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action='register.php' method='post'>
+                <form action='invisible-pages/register.php' method='post'>
                     <div class="modal-body">
                         <label for="uname"><b>Username</b></label>
                         <input type="text" placeholder="Benutzername Eingeben" name="username" required>

@@ -6,7 +6,7 @@
 		$user_id = $_SESSION["user-id"];
 
 
-		include_once 'userdata.php';
+		include_once '../outsourced-php-code/userdata.php';
 		$db1    = new PDO( $dsn, $dbuser, $dbpass, $option );
 		$query1 = $db1->prepare(
 			"SELECT `topic_id` FROM `topics` WHERE `topic_name` = '".$topic."'" );
@@ -22,18 +22,18 @@
 				":user"    => $user_id,
 				":topic"   => $row,
 				":post"    => $post,
-				":picture" => $picture,
+				":picture" => NULL,
 			) );
 			$db2 = null;
 		} catch ( PDOException $e ) {
 			echo "Error!: Bitten wenden Sie sich an den Administrator...";
 			die();
 		}
-		header( 'Location: feed.php' );
+		header( 'Location: ../feed.php' );
 
 
 	} else {
 		echo '<h1>Sie sind nicht angemeldet</h1>';
 		echo '<p>gehen sie hier zu unserer Startseite und melden sie sich an</p><br>';
-		echo '<a href="index.php">Startseite</a>';
+		echo '<a href="../index.php">Startseite</a>';
 	}

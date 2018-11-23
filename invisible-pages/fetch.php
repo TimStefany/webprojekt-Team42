@@ -1,5 +1,5 @@
 <?php
-	include( 'userdata.php' );
+	include_once '../outsourced-php-code/userdata.php';
 	$db    = new PDO( $dsn, $dbuser, $dbpass, $option );
 	$query = $db->prepare(
 		"SELECT * FROM posts_registered_users_topics_view WHERE post_status = 0 ORDER BY post_id DESC" );

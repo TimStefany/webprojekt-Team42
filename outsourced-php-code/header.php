@@ -19,13 +19,13 @@ Einbindung siehe -> index.php-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="dist/css/main.css" />
+<link rel="stylesheet" type="text/css" href="../dist/css/main.css" />
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script>
     $(function () {
         var availableTags = [
 			<?php
-			include_once "autocomplete-adjustment.php"?>
+            include_once "autocomplete-adjustment.php"?>
 
         ];
         $("#tags").autocomplete({
