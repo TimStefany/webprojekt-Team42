@@ -76,7 +76,8 @@ a{
 
 .alert_default {
   color: #333333;
-  background-color: #f2f2f2;
+  background-color: $warning;
   border-color: #cccccc;
+  border-radius: 10px;
 }
 

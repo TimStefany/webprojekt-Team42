@@ -8638,7 +8638,7 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .loginpage {
-  background-image: url("../") !important;
+  background-image: url("../../images/background-loginpage.jpg") !important;
 }
 
 body {
@@ -8691,6 +8691,7 @@ a:hover {
 
 .alert_default {
   color: #333333;
-  background-color: #f2f2f2;
+  background-color: #ffc107;
   border-color: #cccccc;
+  border-radius: 10px;
 }

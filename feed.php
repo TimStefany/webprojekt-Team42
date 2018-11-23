@@ -237,7 +237,7 @@
         <script type="text/javascript" src="dist/js/dropzone.js"></script>
         <script type="text/javascript" src="dist/js/main.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script> //Preview vom picture Upload
+        <script>
             var loadFile = function (event) {
                 var output = document.getElementById('output');
                 output.src = URL.createObjectURL(event.target.files[0]);
@@ -248,7 +248,7 @@
 
                 setInterval(function () {
                     load_last_notification();
-                }, 2000);
+                }, 20000);
 
                 function load_last_notification() {
                     $.ajax({
@@ -260,12 +260,14 @@
                     })
                 }
 
-                $('#comment_form').on('submit', function (event) {
+                $x = document.getElementsByTagName('form1');
+
+                $x.on('submit', function (event) {
                     event.preventDefault();
-                    if ($('#tags').val() != '' && $('#comment').val() != '') {
+                    if ($('#subject').val() != '' && $('#comment').val() != '') {
                         var form_data = $(this).serialize();
                         $.ajax({
-                            url: "invisible-pages/post-feed.php",
+                            url: "invisible-pages/post.php",
                             method: "POST",
                             data: form_data,
                             success: function (data) {
