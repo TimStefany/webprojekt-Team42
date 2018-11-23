@@ -14,16 +14,16 @@
         include 'header.php';
     ?>
 </head>
-<body>
+<body class="loginpage">
 <nav>
 
 </nav>
 <main class="container"><!--ein Responsive Container in dem der Content steckt-->
     <h1>Hier entsteht der geile Microblog von Team-42!</h1>
-    <div class="text-center"> <!--Klasse wird schon von bootstrap mitgegeben-->
+    <div class="text-center loginblock"> <!--Klasse wird schon von bootstrap mitgegeben-->
         <h3 class='test'>Sie müssen sich zuerst einloggen!</h3>
         <!-- Login-->
-        <div class='loginblock'>
+        <div class="">
             <form action="login-check.php" method="post">
                 <span>Benutzername:</span><br> <input name="username" type="text"
                                                       placeholder="Benutzername eingeben!"><br>

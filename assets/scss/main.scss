@@ -22,12 +22,10 @@ $secondary: rgb(255,255,255); // Überschriften und Überschriften in den rows
 * Import der Page-Layouts
  */
 @import "../../assets/scss/pages/profile-header.scss";
-
-
-
+@import "../../assets/scss/pages/login-page.scss";
 
 body {
-  background-color: $primary;
+  //background-color: $primary;
 }
 
 h1, .h1, h2, .h2, h3, .h3 {
