@@ -14,6 +14,12 @@ if (isset ($_SESSION["signed-in"])) {
     //User id die über die URL übergeben wird in eine Variable schreiben
     $visited_user = $_GET["id"];
 
+    //Falls der Nutzer auf seinen eigenen Nutzernamen geklickt hat wird er auf seine Profil Seite weitergeleitet
+    if ($visited_user == $_SESSION["user-id"]){
+        header('Location:profile.php');
+        die();
+    }
+
     //Datenbankabfrage um alle Nutzerinformationen zu sammeln
     try {
         $db = new PDO($dsn, $dbuser, $dbpass, $option);
@@ -85,7 +91,7 @@ if (isset ($_SESSION["signed-in"])) {
         <h2><?php echo $user_name ?></h2>
     </div>
     <?php
-    echo '<a href="follow.php?followed_id=' . $visited_user . '&type=2">Folgen</a>';
+    echo '<a href="invisible-pages/follow.php?followed_id=' . $visited_user . '&type=2">Folgen</a>';
 } else {
     echo '<h1>Sie sind nicht angemeldet</h1>';
     echo '<p>gehen sie hier zu unserer Startseite und melden sie sich an</p><br>';

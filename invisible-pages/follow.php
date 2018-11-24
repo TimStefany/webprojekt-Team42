@@ -21,7 +21,7 @@ if (isset ($_SESSION["signed-in"])) {
                 $db = new PDO($dsn, $dbuser, $dbpass, $option);
                 $stmt = $db->prepare("INSERT INTO `user_follow_topic`(`following_user_id_topic`, `followed_topic_id`) VALUES (:user,:topic)");
                 $stmt->execute(array(":user"=>$_SESSION["user-id"],":topic"=>$followed_id));
-                header('Location:topic-profile.php?id='.$followed_id);
+                header('Location:../topic-profile.php?id='.$followed_id);
             } catch (PDOException $e) {
                 echo "Error!: Bitten wenden Sie sich an den Administrator...<br/>";
                 die();
@@ -34,7 +34,7 @@ if (isset ($_SESSION["signed-in"])) {
                 $db = new PDO($dsn, $dbuser, $dbpass, $option);
                 $stmt = $db->prepare("INSERT INTO `user_follow_user`(`following_user_id_user`, `followed_user_id`) VALUES (:following , :followed)");
                 $stmt->execute(array("following"=>$_SESSION["user-id"],":followed"=>$followed_id));
-                header('Location:profile-foreign.php?id='.$followed_id);
+                header('Location:../profile-foreign.php?id='.$followed_id);
             } catch (PDOException $e) {
                 echo "Error!: Bitten wenden Sie sich an den Administrator...<br/>";
                 die();

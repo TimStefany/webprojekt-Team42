@@ -104,7 +104,9 @@
                 </div>
             </div>
 			<?php
-				//Auslesen der Themen und Nutzer denen ein Nutzer folgt
+            /*###########################################################################################################
+                Hier wird ausgelesen, welchen Nutzern und welcher Topic der Nutzer folgt
+            ###########################################################################################################*/
 				$user            = $_SESSION["user-id"];
 				$followed_topics = array();
 				$i               = 0;
@@ -137,10 +139,13 @@
 			?>
 
             <div class="feed-scroll">
-
+<!--####################################################################################################################
+    Dieser Teil gibt die Spalten mit den Beiträgen aus
+    ####################################################################################################################-->
 				<?php
 
 					for ( $i = 0; $i < count( $followed_name ); $i ++ ) {
+
 						//eine neue Spalte mit der Überschrift des Themas oder des Users wird aufgemacht
 						if ( $followed_type[ $i ] == 1 ) {     //Topics bekommen einen Link in der Überschrift auf die Topic Seite
 							echo '<div class="feed-scroll-row">';
@@ -150,6 +155,9 @@
 							echo '<a href="profile-foreign.php?id=' . $followed_id[ $i ] . '" class= "h4" >+' . $followed_name[ $i ] . '</a><div class="feed-scroll-row-container">';
 						}
 
+                /*###########################################################################################################
+                    Hier werden alle Topics ausgegeben - zuerst alle anderen Topics und danach die explore Topic
+                ###########################################################################################################*/
 
 						//Abfrage aller Beiträge für die Spalte - muss nach gefolgten Nutzern und gefolgten Topics getrennt werden.
 						if ( $followed_type[ $i ] == 1 ) {     // Es geht um eine Topic
@@ -203,15 +211,20 @@
 
 						}
 
+                /*###########################################################################################################
+                    Hier werden alle Nutzer denen gefolgt wird ausgegeben
+                ###########################################################################################################*/
 						if ( $followed_type[ $i ] == 2 ) {     // Es geht um einen User
 							$db   = new PDO( $dsn, $dbuser, $dbpass, $option );
-							$stmt = $db->prepare( "SELECT user_id, user_name, content, picture_id FROM posts_registered_users_view WHERE user_id = :user" );
+							$stmt = $db->prepare( "SELECT user_id, user_name, content, topic_id, topic_name, picture_id FROM posts_registered_users_topics_pictures_view WHERE user_id = :user" );
 							if ( $stmt->execute( array( ":user" => $followed_id[ $i ] ) ) ) {
 								while ( $row = $stmt->fetch() ) {
 									echo '<div class="feed-scroll-row-container-cell">';   //der Gesammte Post steckt in diesem DIV
-
-									echo '<a href="profile-foreign.php?id=' . $row["user_id"] . '">+ Autor: ' . $row["user_name"] . '</a>';
-									echo '<hr class="my-1">';
+                                    //In der Spalte eines gefolgten Nutzers soll nur die Topic des Posts ausgegeben werden
+                                    if ($row["topic_id"]){
+                                        echo '<a href="topic-profile.php?id=' . $row["topic_id"] . '">+ Topic: ' . $row["topic_name"] . '</a>';
+                                    }
+                                    echo '<hr class="my-1">';
 									echo '<p>' . $row["content"] . '</p>'; //gibt den Content in einem P Tag aus
 									//gibt den Nutzernamen des Autors als Link aus
 
