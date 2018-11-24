@@ -49,7 +49,7 @@
             <div class="d-flex"><img
                         src=https://img.fotocommunity.com/bb-bilder-9e10eb1c-ede3-47da-a2c5-97692e7faf8c.jpg?width=45&height=45
                         class="img-circle profil-image-small">
-                <a href="profile.php" class="nav-item active nav-link username">USERNAME </a>
+                <a href="profile.php" class="nav-item active nav-link username"><?php echo $_SESSION["user-name"]; ?></a>
                 <a class="nav-link dropdown-toggle username" href="#" id="navbarDropdown" role="button"
                    data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">

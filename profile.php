@@ -48,7 +48,7 @@ if (isset ($_SESSION["signed-in"])) {
         <div class="d-flex"><img
                     src=https://img.fotocommunity.com/bb-bilder-9e10eb1c-ede3-47da-a2c5-97692e7faf8c.jpg?width=45&height=45
                     class="img-circle profil-image-small">
-            <a href="profile.php" class="nav-item active nav-link username">USERNAME </a>
+            <a href="profile.php" class="nav-item active nav-link username"><?php echo $_SESSION["user-name"]; ?></a>
             <a class="nav-link dropdown-toggle username" href="#" id="navbarDropdown" role="button"
                data-toggle="dropdown"
                aria-haspopup="true" aria-expanded="false">
@@ -126,6 +126,38 @@ if (isset ($_SESSION["signed-in"])) {
 
                 </div>
             </div>
+        </div>
+
+        <div>
+            <h2>Deine Beiträge:</h2>
+        <?php
+        /*#############################################################################################################
+            Alle Beiträge des Nutzers anzeigen
+        ###############################################################################################################*/
+        try {
+            $db   = new PDO( $dsn, $dbuser, $dbpass, $option );
+            $stmt = $db->prepare( "SELECT * FROM posts_registered_users_topics_pictures_view WHERE user_id = :user" );
+
+            if ($stmt->execute(array(":user"=>$_SESSION["user-id"]))){
+                while ($row = $stmt -> fetch()){
+                    echo '<div>';
+                    echo '<p>'.$row["content"].'</p>';
+                    if ($row["picture_id"] != NULL){
+                        echo 'hier soll das Bild hin';
+                    }
+                }
+            }
+            else {
+                echo 'Datenbank Fehler';
+                echo 'bitte wende dich an den Administrator';
+            }
+
+        }catch ( PDOException $e ) {
+            echo "Error!: Bitten wenden Sie sich an den Administrator...<br/>";
+            die();
+        }
+
+        ?>
         </div>
 
     </main>

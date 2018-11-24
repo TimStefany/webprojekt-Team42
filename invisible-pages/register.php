@@ -68,10 +68,11 @@ if (!empty($name) & !empty($passwordraw) & !empty($password_repeat)) {
                 $_SESSION["signed-in"] = 1;
 
                 //user-id in der Session speichern
-                $stmt = $db->prepare("SELECT `user_id` FROM `registered_users` WHERE `user_name`=:name AND `user_pass`=:password");
+                $stmt = $db->prepare("SELECT `user_id`, `user_name` FROM `registered_users` WHERE `user_name`=:name AND `user_pass`=:password");
                 if ($stmt->execute(array(':name' => $name, ':password' => $password))) {
                     if ($row = $stmt->fetch()) {
                         $_SESSION["user-id"] = $row["user_id"];
+                        $_SESSION["user-name"] = $row["user_name"];
                     };
                 } else {
                     echo 'Datenbankfehler siehe Zeile 55';

@@ -1,7 +1,5 @@
 <?php
 	/*Todo
-		Funktioniert so weit. Wollten wir später vielleicht in die feed.php Seite Integrieren.
-		- Passwörter Hashen und Salten
 	*/
 	session_start();
 	include_once '../outsourced-php-code/userdata.php';
@@ -21,7 +19,7 @@
 
 //sql Statement überprüft Nutzernamen und Passwort auf einmal. Hat nur ein ergebnis wenn beide Daten stimmen.
 	$db   = new PDO( $dsn, $dbuser, $dbpass, $option );
-	$stmt = $db->prepare( "SELECT `user_id`, `user_pass`  FROM `registered_users` WHERE `user_name`=:name" );
+	$stmt = $db->prepare( "SELECT `user_id`, `user_pass`, `user_name`  FROM `registered_users` WHERE `user_name`=:name" );
 
 
 		if ( $stmt->execute( array( ':name' => $name ) ) ) {
@@ -33,6 +31,7 @@
 				//Wenn das Statement ein Ergebnis liefert haben die Zugangsdaten gestimmt - Session Angemeldet wird gesetzt und ID gespeichert
 				$_SESSION["signed-in"] = 1;
 				$_SESSION["user-id"]   = $row["user_id"];
+				$_SESSION["user-name"] = $row["user_name"];
 				header( 'Location: ../feed.php' );
 			} else {
 				echo '<h1>Ungültige Zugangsdaten</h1>';
