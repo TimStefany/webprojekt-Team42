@@ -24,7 +24,8 @@
         <!--####################################################################################################################
             Hier steht der NAV Bar
         ####################################################################################################################-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div style="height:61px;"></div>
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="#">Plus - Microblog</a>
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -52,7 +53,8 @@
             <div class="d-flex"><img
                         src=https://img.fotocommunity.com/bb-bilder-9e10eb1c-ede3-47da-a2c5-97692e7faf8c.jpg?width=45&height=45
                         class="img-circle profil-image-small">
-                <a href="profile.php" class="nav-item active nav-link username"><?php echo $_SESSION["user-name"]; ?></a>
+                <a href="profile.php"
+                   class="nav-item active nav-link username"><?php echo $_SESSION["user-name"]; ?></a>
                 <a class="nav-link dropdown-toggle username" href="#" id="navbarDropdown" role="button"
                    data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
@@ -122,10 +124,13 @@
                     </div>
                 </div>
             </div>
+            <div class="placeholder">
+
+            </div>
 			<?php
-            /*###########################################################################################################
-                Hier wird ausgelesen, welchen Nutzern und welcher Topic der Nutzer folgt
-            ###########################################################################################################*/
+				/*###########################################################################################################
+					Hier wird ausgelesen, welchen Nutzern und welcher Topic der Nutzer folgt
+				###########################################################################################################*/
 				$user            = $_SESSION["user-id"];
 				$followed_topics = array();
 				$i               = 0;
@@ -140,28 +145,31 @@
 
 
 					if ( $stmt->execute( array( ":user" => $user ) ) ) {
+					    $counter =0; // wird benötigt um die anzahl der gefolgten Topics und User rauszufinden.
 						while ( $row = $stmt->fetch() ) {
 							$followed_id[]   = $row ["followed_id"];
 							$followed_name[] = $row["followed_name"];
 							$followed_type[] = $row["type"];
 							//fügt die id von dem Nutzer oder der Topic der gefolgt wird, die topics oder Nutzernamen dem
 							// gefolgt wird und den type jeder Zeile hinten an das Array an.
+							$counter++;
 						}
 					} else {
 						echo 'Datenbank Fehler';
 						echo 'bitte wende dich an den Administrator';
 					}
 					$stmt = 0;
+
 				} catch ( PDOException $e ) {
 					echo "Error!: Bitten wenden Sie sich an den Administrator...<br/>";
 					die();
 				}
 			?>
 
-            <div class="feed-scroll">
-<!--####################################################################################################################
-    Dieser Teil gibt die Spalten mit den Beiträgen aus
-    ####################################################################################################################-->
+            <div class="feed-scroll" style="width:<?php echo ($counter*282)+32 ?>px;">
+                <!--####################################################################################################################
+					Dieser Teil gibt die Spalten mit den Beiträgen aus
+					####################################################################################################################-->
 				<?php
 
 					for ( $i = 0; $i < count( $followed_name ); $i ++ ) {
@@ -175,9 +183,9 @@
 							echo '<a href="profile-foreign.php?id=' . $followed_id[ $i ] . '" class= "h4" >+' . $followed_name[ $i ] . '</a><div class="feed-scroll-row-container">';
 						}
 
-                /*###########################################################################################################
-                    Hier werden alle Topics ausgegeben - zuerst alle anderen Topics und danach die explore Topic
-                ###########################################################################################################*/
+						/*###########################################################################################################
+							Hier werden alle Topics ausgegeben - zuerst alle anderen Topics und danach die explore Topic
+						###########################################################################################################*/
 
 						//Abfrage aller Beiträge für die Spalte - muss nach gefolgten Nutzern und gefolgten Topics getrennt werden.
 						if ( $followed_type[ $i ] == 1 ) {     // Es geht um eine Topic
@@ -192,7 +200,7 @@
 										echo '<div class="feed-scroll-row-container-cell">';   //der Gesammte Post steckt in diesem DIV
 
 										echo '<a href="profile-foreign.php?id=' . $row["user_id"] . '" class="autor">+ Autor: ' . $row["user_name"] . '</a>';
-                                        echo '<hr class="my-1">';
+										echo '<hr class="my-1">';
 										echo '<p>' . $row["content"] . '</p>'; //gibt den Content in einem P Tag aus
 										//gibt den Nutzernamen des Autors als Link aus
 
@@ -231,20 +239,20 @@
 
 						}
 
-                /*###########################################################################################################
-                    Hier werden alle Nutzer denen gefolgt wird ausgegeben
-                ###########################################################################################################*/
+						/*###########################################################################################################
+							Hier werden alle Nutzer denen gefolgt wird ausgegeben
+						###########################################################################################################*/
 						if ( $followed_type[ $i ] == 2 ) {     // Es geht um einen User
 							$db   = new PDO( $dsn, $dbuser, $dbpass, $option );
 							$stmt = $db->prepare( "SELECT user_id, user_name, content, topic_id, topic_name, picture_id FROM posts_registered_users_topics_pictures_view WHERE user_id = :user" );
 							if ( $stmt->execute( array( ":user" => $followed_id[ $i ] ) ) ) {
 								while ( $row = $stmt->fetch() ) {
 									echo '<div class="feed-scroll-row-container-cell">';   //der Gesammte Post steckt in diesem DIV
-                                    //In der Spalte eines gefolgten Nutzers soll nur die Topic des Posts ausgegeben werden
-                                    if ($row["topic_id"]){
-                                        echo '<a href="topic-profile.php?id=' . $row["topic_id"] . '">+ Topic: ' . $row["topic_name"] . '</a>';
-                                    }
-                                    echo '<hr class="my-1">';
+									//In der Spalte eines gefolgten Nutzers soll nur die Topic des Posts ausgegeben werden
+									if ( $row["topic_id"] ) {
+										echo '<a href="topic-profile.php?id=' . $row["topic_id"] . '">+ Topic: ' . $row["topic_name"] . '</a>';
+									}
+									echo '<hr class="my-1">';
 									echo '<p>' . $row["content"] . '</p>'; //gibt den Content in einem P Tag aus
 									//gibt den Nutzernamen des Autors als Link aus
 

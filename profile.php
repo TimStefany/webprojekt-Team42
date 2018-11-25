@@ -20,7 +20,7 @@ if (isset ($_SESSION["signed-in"])) {
 
     </head>
     <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar  fixed-top navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Plus - Microblog</a>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

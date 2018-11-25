@@ -8570,8 +8570,9 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .feed-scroll {
+  position: absolute;
+  top: 340px;
   height: 100vh;
-  width: 100vw;
   overflow: scroll;
   background-color: white;
   margin-top: 1rem;
@@ -8637,6 +8638,11 @@ a.text-dark:hover, a.text-dark:focus {
   height: 100px;
 }
 
+.placeholder {
+  height: 340px;
+  background-color: #046380;
+}
+
 .loginpage {
   background-image: url("../../images/background-loginpage.jpg") !important;
 }
@@ -8694,4 +8700,8 @@ a:hover {
   background-color: #ffc107;
   border-color: #cccccc;
   border-radius: 10px;
+}
+
+.container {
+  position: fixed;
 }
