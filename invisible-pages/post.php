@@ -9,7 +9,7 @@ if (isset ($_SESSION["signed-in"])) {
 
     /*#############################################################################################################
         Ab hier wird getestet ob der Post ein Bild angehängt hat
-        ###############################################################################################################*/
+    ###############################################################################################################*/
 
     if (isset($_POST['upload-post'])) {
         $file = $_FILES['files'];
@@ -24,14 +24,14 @@ if (isset ($_SESSION["signed-in"])) {
         echo "1";
 
         $fileext = explode('.', $filename);
-        #everytime we make it lower case before checking it
+        //Dateiendung wird immer klein geschrieben
         $fileactualext = strtolower(end($fileext));
 
-        #hier lege ich fest welche filetypes hochgeladen werden können
+        //hier lege ich fest welche filetypes hochgeladen werden können
         $allowed = array('jpg', 'jpeg', 'png');
 
         if (in_array($fileactualext, $allowed)) {
-            #error Test
+            //error Test
             if ($fileerror === 0) {
                 if ($filesize < 2000000) {
                     #wenn es unter 2mb ist bekommt es einen unique namen (mit der jeweiligen endung) damit es nicht überschrieben wird
@@ -55,8 +55,6 @@ if (isset ($_SESSION["signed-in"])) {
                         if ($stmt->execute(array(":imgpath" => $filenamenew))) {
                             while ($row = $stmt->fetch()) {
                                 $picture_id = $row ["picture_id"];
-                                //fügt die id von dem Nutzer oder der Topic der gefolgt wird, die topics oder Nutzernamen dem
-                                // gefolgt wird und den type jeder Zeile hinten an das Array an.
                             }
                         } else {
                             echo 'Datenbank Fehler';
@@ -67,7 +65,7 @@ if (isset ($_SESSION["signed-in"])) {
                         echo "Error!: Bitten wenden Sie sich an den Administrator...<br/>";
                         die();
                     }
-                    #hier fängt benny code an der jetzt die picture id in das post feld schickt nachdem die rausgezogen wurde
+                    //hier fängt benny code an der jetzt die picture id in das post feld schickt nachdem die rausgezogen wurde
 
                 } else {
                     echo "Du hast die maximale Dateigröße von 2 Mb überschritten";
@@ -91,8 +89,8 @@ if (isset ($_SESSION["signed-in"])) {
 
             $db1 = new PDO($dsn, $dbuser, $dbpass, $option);
             $query1 = $db1->prepare(
-                "SELECT `topic_id` FROM `topics` WHERE `topic_name` = '" . $topic . "'");
-            $query1->execute();
+                "SELECT `topic_id` FROM `topics` WHERE `topic_name` = :topic");
+            $query1->execute(array(":topic"=>$topic));
             $row1 = $query1->fetch();
             $row = $row1[0];
 
@@ -103,16 +101,17 @@ if (isset ($_SESSION["signed-in"])) {
                 ":user" => $user_id,
                 ":topic" => $row,
                 ":post" => $post,
-                ":picture" => NULL,
+                ":picture" => $picture_id,
             ));
             $db2 = null;
         } catch (PDOException $e) {
             echo "Error!: Bitten wenden Sie sich an den Administrator...";
             die();
         }
+        header('Location: ../profile.php');
 
         /*#############################################################################################################
-        Dieser Abschnitt schreibt den Post in die Datenbank wenn kein Bild mit geliefert wird
+            Dieser Abschnitt schreibt den Post in die Datenbank wenn kein Bild mit geliefert wird
         ###############################################################################################################*/
     } else {
 

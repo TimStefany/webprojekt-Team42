@@ -21,6 +21,9 @@
 			?>
         </head>
         <body>
+        <!--####################################################################################################################
+            Hier steht der NAV Bar
+        ####################################################################################################################-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="#">Plus - Microblog</a>
             <form class="form-inline my-2 my-lg-0">
@@ -63,11 +66,14 @@
                 </div>
             </div>
         </nav>
-
+        <!--####################################################################################################################
+            Hier beginnt der Inhalt der Seite
+        ####################################################################################################################-->
         <main><!--ein Responsive Container in dem der Content steckt-->
             <div class="container">
                 <h1>Hier entsteht der geile Microblog von Team-42!</h1>
-                <!--input Box-->
+
+                <!--input Box zum posten von Beiträgen-->
                 <form action="invisible-pages/post-feed.php" method="post" class="input-form" id="comment_form">
                     <p><label style="color: white;">Blogeintrag:<br>
                             <textarea name="post" cols="80" rows="3" placeholder="neuer Eintrag!"
@@ -81,10 +87,10 @@
                     <p><input type="submit" value="Posten"></p>
                 </form>
                 <div class="container">
-                    <!-- Standar Form -->
+                    <!-- Standart Form -->
                     <!--            enctype muss rein weil es wichtig für die übergabe des IMGs ist-->
                     <!--            specifies how the form data should be encoded-->
-                    <form action="invisible-pages/post.php" method="post" enctype="multipart/form-data">
+                    <form action="invisible-pages/post-feed.php" method="post" enctype="multipart/form-data">
                         <div class="form-inline">
                             <div class="form-group">
                                 <input type="file" name="files" accept="image/*" onchange="loadFile(event)">
