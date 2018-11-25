@@ -72,33 +72,46 @@
         <main><!--ein Responsive Container in dem der Content steckt-->
             <div class="container">
                 <h1>Hier entsteht der geile Microblog von Team-42!</h1>
+                <!--input Box-->
+                <form action="invisible-pages/post-feed.php" method="post" enctype="multipart/form-data">
 
-                <!--input Box zum posten von Beiträgen-->
-                <form action="invisible-pages/post-feed.php" method="post" class="input-form" id="comment_form">
+                    <!-- /*#############################################################################################################
+					 Warum funktioniert es nicht wenn es " id="comment_form"
+					 Es ffunktioniert auch nicht wenn es mit class="XX"
+					 ###############################################################################################################*/
+		 -->
                     <p><label style="color: white;">Blogeintrag:<br>
                             <textarea name="post" cols="80" rows="3" placeholder="neuer Eintrag!"
-                                      maxlength="200" id="comment"></textarea></label></p>
+                                      maxlength="200"></textarea></label></p>
                     <p>
                     <div class="ui-widget">
                         <label style="color: white;" for="tags">Topic: </label>
-                        <input name="topic" id="tags">
+
+                        <textarea name="topic" id="tags" rows="1"></textarea>
+
+                        <input type="file" name="files" accept="image/*" onchange="loadFile(event)">
+                        <img id="output" class="image-preview"/>
+
+                        <button type="submit" name="upload-post" class="btn btn-sm btn-primary">Das hier ist zum Bild an
+                            Post anhängen
+                        </button>
                     </div>
-                    </p>
-                    <p><input type="submit" value="Posten"></p>
                 </form>
                 <div class="container">
                     <!-- Standart Form -->
                     <!--            enctype muss rein weil es wichtig für die übergabe des IMGs ist-->
                     <!--            specifies how the form data should be encoded-->
-                    <form action="invisible-pages/post-feed.php" method="post" enctype="multipart/form-data">
-                        <div class="form-inline">
-                            <div class="form-group">
-                                <input type="file" name="files" accept="image/*" onchange="loadFile(event)">
-                                <img id="output"/>
-                            </div>
-                            <button type="submit" name="upload" class="btn btn-sm btn-primary">Upload files</button>
-                        </div>
-                    </form>
+                    <!--<form action="invisible-pages/image-database-upload-profile.php" method="post" enctype="multipart/form-data">
+						<div class="form-inline">
+							<div class="form-group">
+								<input type="file" name="files" accept="image/*" onchange="loadFile(event)">
+								<img id="output"/>
+							</div>
+							<button type="submit" name="upload-profile" class="btn btn-sm btn-primary">Das hier ist zum
+								Profilfoto ändern
+							</button>
+						</div>
+					</form>-->
                     <div class="jquery-script-clear"></div>
                 </div>
                 <div id="alert_popover">
@@ -124,6 +137,7 @@
                                             SELECT user_id AS followed_id, user_name AS followed_name, priority, `type` FROM user_follow_user_view Where following_user_id_user = :user
                                             ORDER BY priority ASC" );
 					//Das SQL Statement wählt die Nutzernamen und Topicnamen denen gefolgt wird und sortiert sie nach 'priority'
+
 
 					if ( $stmt->execute( array( ":user" => $user ) ) ) {
 						while ( $row = $stmt->fetch() ) {
