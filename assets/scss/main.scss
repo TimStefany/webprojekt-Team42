@@ -23,6 +23,8 @@ $secondary: rgb(255,255,255); // Überschriften und Überschriften in den rows
  */
 @import "../../assets/scss/pages/profile-page.scss";
 @import "../../assets/scss/pages/login-page.scss";
+@import "../../assets/scss/pages/feed-page.scss";
+
 
 body {
   background-color: $primary;
@@ -79,7 +81,4 @@ a{
   background-color: $warning;
   border-color: #cccccc;
   border-radius: 10px;
-}
-.container {
-  position: fixed;
 }

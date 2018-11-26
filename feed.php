@@ -73,7 +73,7 @@
             Hier beginnt der Inhalt der Seite
         ####################################################################################################################-->
         <main><!--ein Responsive Container in dem der Content steckt-->
-            <div class="container">
+            <div class="container-feed">
                 <h1>Hier entsteht der geile Microblog von Team-42!</h1>
                 <!--input Box-->
                 <form action="invisible-pages/post-feed.php" method="post" enctype="multipart/form-data">
@@ -167,7 +167,7 @@
 				}
 			?>
 
-            <div class="feed-scroll" style="width:<?php echo ($counter*282)+32 ?>px;">
+            <div class="feed-scroll" style="min-width:<?php echo ($counter*282)+32 ?>px;">
                 <!--####################################################################################################################
 					Dieser Teil gibt die Spalten mit den Beiträgen aus
 					####################################################################################################################-->

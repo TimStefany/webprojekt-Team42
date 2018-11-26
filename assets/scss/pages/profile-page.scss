@@ -1,14 +1,32 @@
 .profile-header {
-  img {
-    border-radius: 200px;
+  background-color: white;
+  border-radius: 20px;
+  &-cols {
+    img {
+      border-radius: 200px;
+    }
   }
 }
-
+.profile-container-row{
+  background-color: #a7a37e;
+  padding: 5px;
+  &-cell{
+    background-color: white;
+    border-radius: 8px;
+    padding: 5px;
+    margin: 1rem 0.5rem 0 0.5rem;
+  }
+}
 .image-preview {
   width: auto;
   height: 100px;
 }
-.placeholder{
+
+.placeholder {
   height: 340px;
   background-color: $primary;
+}
+
+.container-profile {
+  margin-top: 80px;
 }
