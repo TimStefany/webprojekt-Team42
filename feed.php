@@ -5,6 +5,7 @@
 <?php
 	session_start();
 	include_once 'outsourced-php-code/userdata.php';
+	include_once  'outsourced-php-code/necessary-variables.php';
 
 	if ( isset ( $_SESSION["signed-in"] ) ) {
 
@@ -194,7 +195,7 @@
 							if ( $followed_id[ $i ] !== '1' ) {
 								//alle Topics abgesehen von der Explore Topic werden so abgearbeitet (explore hat id=1)
 								$db   = new PDO( $dsn, $dbuser, $dbpass, $option );
-								$stmt = $db->prepare( "SELECT user_id, user_name, content, picture_id FROM posts_registered_users_view WHERE topic_id = :topic" );
+								$stmt = $db->prepare( "SELECT user_id, user_name, content, picture_path FROM posts_registered_users_topics_pictures_view WHERE topic_id = :topic" );
 								if ( $stmt->execute( array( ":topic" => $followed_id[ $i ] ) ) ) {
 									while ( $row = $stmt->fetch() ) {
 										echo '<div class="feed-scroll-row-container-cell">';   //der Gesammte Post steckt in diesem DIV
@@ -205,8 +206,8 @@
 										//gibt den Nutzernamen des Autors als Link aus
 
 										//Wenn dem Beitrag ein Bild hinzugefügt wurde dann wird diese Schleife ausgeführt
-										if ( $row["picture_id"] !== null ) {
-											echo 'hier steht der Pfad zum Bild';
+										if ( $row["picture_path"] !== null ) {
+											echo '<img src="'.$picture_path_server.$row["picture_path"].'">';
 										}
 
 										echo '</div>';  //der Gesammte Post steckt in diesem DIV
@@ -214,7 +215,7 @@
 								}
 							} else {      //Andere Auswahl für die Explore Spalte
 								$db   = new PDO( $dsn, $dbuser, $dbpass, $option );
-								$stmt = $db->prepare( "SELECT user_id, user_name, content, picture_id, topic_id, topic_name FROM posts_registered_users_topics_view WHERE 1 = 1" );
+								$stmt = $db->prepare( "SELECT user_id, user_name, content, picture_path, topic_id, topic_name FROM posts_registered_users_topics_pictures_view WHERE 1 = 1" );
 								if ( $stmt->execute() ) {
 									while ( $row = $stmt->fetch() ) {
 										echo '<div class="feed-scroll-row-container-cell">';   //der Gesammte Post steckt in diesem DIV
@@ -228,8 +229,8 @@
 										//gibt den Nutzernamen des Autors als Link aus
 
 										//gibt die Topic des Posts als Link aus
-										if ( $row["picture_id"] != null ) {     // wird ausgeführt wenn ein Bild hinterlegt wurde
-											echo 'hier steht der Pfad zum Bild';
+										if ( $row["picture_path"] != null ) {     // wird ausgeführt wenn ein Bild hinterlegt wurde
+                                            echo '<img src="'.$picture_path_server.$row["picture_path"].'">';
 										}
 
 										echo '</div>';   //der Gesammte Post steckt in diesem DIV
@@ -244,7 +245,7 @@
 						###########################################################################################################*/
 						if ( $followed_type[ $i ] == 2 ) {     // Es geht um einen User
 							$db   = new PDO( $dsn, $dbuser, $dbpass, $option );
-							$stmt = $db->prepare( "SELECT user_id, user_name, content, topic_id, topic_name, picture_id FROM posts_registered_users_topics_pictures_view WHERE user_id = :user" );
+							$stmt = $db->prepare( "SELECT user_id, user_name, content, topic_id, topic_name, picture_path FROM posts_registered_users_topics_pictures_view WHERE user_id = :user" );
 							if ( $stmt->execute( array( ":user" => $followed_id[ $i ] ) ) ) {
 								while ( $row = $stmt->fetch() ) {
 									echo '<div class="feed-scroll-row-container-cell">';   //der Gesammte Post steckt in diesem DIV
@@ -256,8 +257,8 @@
 									echo '<p>' . $row["content"] . '</p>'; //gibt den Content in einem P Tag aus
 									//gibt den Nutzernamen des Autors als Link aus
 
-									if ( $row["picture_id"] !== null ) {
-										echo 'hier steht der Pfad zum Bild';
+									if ( $row["picture_path"] !== null ) {
+                                        echo '<img src="'.$picture_path_server.$row["picture_path"].'">';
 									}
 
 									echo '</div>';  //der Gesammte Post steckt in diesem DIV

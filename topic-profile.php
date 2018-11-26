@@ -6,6 +6,7 @@
 <?php
 session_start();
 include_once 'outsourced-php-code/userdata.php';
+include_once 'outsourced-php-code/necessary-variables.php';
 
 if (isset ($_SESSION["signed-in"])) {
 
@@ -126,7 +127,7 @@ if (isset ($_SESSION["signed-in"])) {
                 echo '<div>';
                 echo '<p>'.$row["content"].'</p>';
                 if ($row["picture_id"] != NULL){
-                    echo 'hier soll das Bild hin';
+                    echo '<img src="'.$picture_path_server.$row["picture_path"].'">';
                 }
             }
         }
