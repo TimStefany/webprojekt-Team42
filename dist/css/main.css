@@ -8728,3 +8728,7 @@ a:hover {
   border-color: #cccccc;
   border-radius: 10px;
 }
+
+.formular-label-color {
+  color: white;
+}

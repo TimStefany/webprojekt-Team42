@@ -73,8 +73,9 @@
                             <img src="https://www.g33kdating.com/ow_userfiles/plugins/articles/article_image_5968bde712c2f.jpg"
                                  width="300" height="auto" alt="Profilbild">
                         </div>
-                        <div class="col-sm-8">
-                            Test
+                        <div class="col-sm-8 p-5">Test
+
+
                         </div>
                     </div>
                 </div>
@@ -90,12 +91,12 @@
 				 Es ffunktioniert auch nicht wenn es mit class="XX"
 				 ###############################################################################################################*/
 	 -->
-                <p><label style="color: white;">Blogeintrag:<br>
+                <p><label class="formular-label-color">Blogeintrag:<br>
                         <textarea name="post" cols="80" rows="3" placeholder="neuer Eintrag!"
                                   maxlength="200"></textarea></label></p>
                 <p>
                 <div class="ui-widget">
-                    <label style="color: white;" for="tags">Topic: </label>
+                    <label class="formular-label-color" for="tags">Topic: </label>
 
                     <textarea name="topic" id="tags" rows="1"></textarea>
 

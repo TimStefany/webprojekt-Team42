@@ -3,10 +3,11 @@
 /*
 * Allgemeine Styles
  */
-$background-feed-cell: rgb(255,255,255);
-$background-feed-row: rgb(167,163,126);
+$background-feed-cell: rgb(255, 255, 255);
+$label-text-formular:rgb(255, 255, 255);
+$background-feed-row: rgb(167, 163, 126);
 $primary: rgb(4, 99, 128);
-$secondary: rgb(255,255,255); // Überschriften und Überschriften in den rows
+$secondary: rgb(255, 255, 255); // Überschriften und Überschriften in den rows
 
 /*
 * Import der module
@@ -17,14 +18,12 @@ $secondary: rgb(255,255,255); // Überschriften und Überschriften in den rows
 @import "../../assets/scss/module/feed-scroll.scss";
 @import "../../assets/scss/module/post-formular.scss";
 
-
 /*
 * Import der Page-Layouts
  */
 @import "../../assets/scss/pages/profile-page.scss";
 @import "../../assets/scss/pages/login-page.scss";
 @import "../../assets/scss/pages/feed-page.scss";
-
 
 body {
   background-color: $primary;
@@ -34,8 +33,8 @@ h1, .h1, h2, .h2, h3, .h3 {
   color: $secondary;
 }
 
-a{
-  &:hover{
+a {
+  &:hover {
     text-decoration: none;
     cursor: pointer;
   }
@@ -81,4 +80,8 @@ a{
   background-color: $warning;
   border-color: #cccccc;
   border-radius: 10px;
+}
+
+.formular-label-color {
+  color: $label-text-formular;
 }
