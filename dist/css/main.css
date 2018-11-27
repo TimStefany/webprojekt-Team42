@@ -8569,6 +8569,12 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 
+.nav-bar-profile-picture img {
+  max-width: 45px;
+  max-height: 45px;
+  object-fit: cover;
+}
+
 .feed-scroll {
   position: absolute;
   top: 340px;

@@ -1,39 +1,32 @@
 <!-- ToDo
-    - Profilbild des Nutzers einfügen
     - Stylen
-    - Beiträge des Nutzers ausgeben
     - URL bearbeiten?
-    - Aktuellen Nutzer auf die profile.php Seite umleiten
 -->
 <?php
-	session_start();
-	include_once 'outsourced-php-code/userdata.php';
-	include_once 'outsourced-php-code/necessary-variables.php';
+session_start();
+include_once 'outsourced-php-code/userdata.php';
+include_once 'outsourced-php-code/necessary-variables.php';
+include_once 'outsourced-php-code/select-profile-funktion.php';
 
-	if ( isset ( $_SESSION["signed-in"] ) ) {
+//ausführen der Funktion, um alle Benutzerinformationen in eine Variable zu schreiben und die des besuchten Profils in eine andere
+$user_information = get_profile_information($_SESSION["user-id"]);
+$profile_information = get_profile_information($_GET["id"]);
 
-	//User id die über die URL übergeben wird in eine Variable schreiben
-	$visited_user = $_GET["id"];
+if (isset ($_SESSION["signed-in"])) {
 
-	//Falls der Nutzer auf seinen eigenen Nutzernamen geklickt hat wird er auf seine Profil Seite weitergeleitet
-	if ( $visited_user == $_SESSION["user-id"] ) {
-		header( 'Location:profile.php' );
-		die();
-	}
+//User id die über die URL übergeben wird in eine Variable schreiben
+$visited_user = $_GET["id"];
 
-	//Datenbankabfrage um alle Nutzerinformationen zu sammeln
-	try {
-		$db   = new PDO( $dsn, $dbuser, $dbpass, $option );
-		$stmt = $db->prepare( "SELECT user_name, picture_id FROM registered_users WHERE user_id = :user" );
-		$stmt->execute( array( ":user" => $visited_user ) );
-		while ( $row = $stmt->fetch() ) {
-			$user_name = $row ["user_name"];
-			$picture   = $row ["picture_id"];
-		}
-	} catch ( PDOException $e ) {
-		echo "Error!: Bitten wenden Sie sich an den Administrator...<br/>";
-		die();
-	}
+//Falls der Nutzer auf seinen eigenen Nutzernamen geklickt hat wird er auf seine Profil Seite weitergeleitet
+if ($visited_user == $_SESSION["user-id"]) {
+    header('Location:profile.php');
+    die();
+}
+
+//Datenbankabfrage um alle Nutzerinformationen zu sammeln
+
+$user_name = $profile_information[0];
+
 ?>
 <!doctype html>
 
@@ -43,9 +36,9 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Microblog Team-42</title>
     <meta name="description" content="">
-	<?php
-		include 'outsourced-php-code/header.php';
-	?>
+    <?php
+    include 'outsourced-php-code/header.php';
+    ?>
 </head>
 <body>
 
@@ -71,8 +64,8 @@
             News <span class="badge badge-light">8</span>
         </button>
     </a>
-    <div class="d-flex"><img
-                src=https://img.fotocommunity.com/bb-bilder-9e10eb1c-ede3-47da-a2c5-97692e7faf8c.jpg?width=45&height=45
+    <div class="d-flex nav-bar-profile-picture"><img
+                src="<?php echo $picture_path_server . $user_information[2]; ?>"
                 class="img-circle profil-image-small">
         <a href="profile.php" class="nav-item active nav-link username"><?php echo $_SESSION["user-name"]; ?></a>
         <a class="nav-link dropdown-toggle username" href="#" id="navbarDropdown" role="button"
@@ -89,73 +82,87 @@
     </div>
 </nav>
 <main class="container">
-    <div>
-        <h2><?php echo $user_name ?></h2>
+    <h1><?php echo $profile_information[0]; ?></h1>
+    <div class="profile-header">
+        <div class="profile-header-cols">
+            <div class="row">
+                <div class="col-sm-4">
+                    <img src="<?php echo $picture_path_server . $profile_information[2]; ?>"
+                         width="300" height="auto" alt="Profilbild">
+                </div>
+
+                <div class="col-sm-8 p-5">Test
+
+
+                </div>
+            </div>
+        </div>
     </div>
-	<?php
-		/*#############################################################################################################
-		   Follow Button bzw Unfollow Button ausgeben
-	   ###############################################################################################################*/
-		try {
-			$db   = new PDO( $dsn, $dbuser, $dbpass, $option );
-			$stmt = $db->prepare( "SELECT `user_follow_id`, `type` FROM `user_follow_user` WHERE `following_user_id_user` = :user AND `followed_user_id` = :followed" );
+    <hr>
+    <?php
+    /*#############################################################################################################
+       Follow Button bzw Unfollow Button ausgeben
+   ###############################################################################################################*/
+    try {
+        $db = new PDO($dsn, $dbuser, $dbpass, $option);
+        $stmt = $db->prepare("SELECT `user_follow_id`, `type` FROM `user_follow_user` WHERE `following_user_id_user` = :user AND `followed_user_id` = :followed");
 
-			if ( $stmt->execute( array( ":user" => $_SESSION["user-id"], ":followed" => $visited_user ) ) ) {
-				$row = $stmt->fetch();
-				if ( $row == [] ) {
-					echo '<div><a href="invisible-pages/follow.php?followed_id=' . $visited_user . '&type=2">Folgen</a></div>';
-				} else {
-					$follow_id = $row["user_follow_id"];
-					echo '<div><a href="invisible-pages/unfollow.php?followed_id=' . $visited_user . '&type=2&follow_id=' . $follow_id . '">Entfolgen</a></div>';
-				}
-			} else {
-				echo 'Datenbank Fehler';
-				echo 'bitte wende dich an den Administrator';
-			}
+        if ($stmt->execute(array(":user" => $_SESSION["user-id"], ":followed" => $visited_user))) {
+            $row = $stmt->fetch();
+            if ($row == []) {
+                echo '<div><a href="invisible-pages/follow.php?followed_id=' . $visited_user . '&type=2">Folgen</a></div>';
+            } else {
+                $follow_id = $row["user_follow_id"];
+                echo '<div><a href="invisible-pages/unfollow.php?followed_id=' . $visited_user . '&type=2&follow_id=' . $follow_id . '">Entfolgen</a></div>';
+            }
+        } else {
+            echo 'Datenbank Fehler';
+            echo 'bitte wende dich an den Administrator';
+        }
 
 
-		} catch ( PDOException $e ) {
-			echo "Error!: Bitten wenden Sie sich an den Administrator...<br/>";
-			die();
-		}
-		/*#############################################################################################################
-			Alle Beiträge des Nutzers anzeigen
-		###############################################################################################################*/
-		echo '<div>';
-		echo '<h2>Beiträge von ' . $user_name . ':</h2>';
+    } catch (PDOException $e) {
+        echo "Error!: Bitten wenden Sie sich an den Administrator...<br/>";
+        die();
+    }
+    /*#############################################################################################################
+        Alle Beiträge des Nutzers anzeigen
+    ###############################################################################################################*/
+    echo '<div>';
+    echo '<h2>Beiträge von ' . $user_name . ':</h2>';
 
-		try {
-			$db   = new PDO( $dsn, $dbuser, $dbpass, $option );
-			$stmt = $db->prepare( "SELECT * FROM posts_registered_users_topics_pictures_view WHERE user_id = :user" );
+    try {
+        $db = new PDO($dsn, $dbuser, $dbpass, $option);
+        $stmt = $db->prepare("SELECT * FROM posts_registered_users_topics_pictures_view WHERE user_id = :user");
 
-			if ( $stmt->execute( array( ":user" => $visited_user ) ) ) {
-				while ( $row = $stmt->fetch() ) {
-					echo '<div class="profile-container-row">';
-					echo '<div class="profile-container-row-cell">';
-					echo '<p>' . $row["content"] . '</p>';
-					if ( $row["picture_id"] != null ) {
-						echo '<img src="' . $picture_path_server . $row["picture_path"] . '">';
-					}
-					echo '</div>';
-					echo '</div>';
-				}
-			} else {
-				echo 'Datenbank Fehler';
-				echo 'bitte wende dich an den Administrator';
-			}
+        if ($stmt->execute(array(":user" => $visited_user))) {
+            while ($row = $stmt->fetch()) {
+                echo '<div class="profile-container-row">';
+                echo '<div class="profile-container-row-cell">';
+                echo '<p>' . $row["content"] . '</p>';
+                if ($row["picture_id"] != null) {
+                    echo '<img src="' . $picture_path_server . $row["picture_path"] . '">';
+                }
+                echo '</div>';
+                echo '</div>';
+            }
+        } else {
+            echo 'Datenbank Fehler';
+            echo 'bitte wende dich an den Administrator';
+        }
 
-		} catch ( PDOException $e ) {
-			echo "Error!: Bitten wenden Sie sich an den Administrator...<br/>";
-			die();
-		}
+    } catch (PDOException $e) {
+        echo "Error!: Bitten wenden Sie sich an den Administrator...<br/>";
+        die();
+    }
 
-		echo '</div>';
-		}
-		else {
-			echo '<h1>Sie sind nicht angemeldet</h1>';
-			echo '<p>gehen sie hier zu unserer Startseite und melden sie sich an</p><br>';
-			echo '<a href="index.php">Startseite</a>';
-		} ?>
+    echo '</div>';
+    }
+    else {
+        echo '<h1>Sie sind nicht angemeldet</h1>';
+        echo '<p>gehen sie hier zu unserer Startseite und melden sie sich an</p><br>';
+        echo '<a href="index.php">Startseite</a>';
+    } ?>
 </main>
 <footer>
 
