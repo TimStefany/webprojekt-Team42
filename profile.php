@@ -2,6 +2,11 @@
 	session_start();
 	include_once 'outsourced-php-code/userdata.php';
 	include_once 'outsourced-php-code/necessary-variables.php';
+    include_once 'outsourced-php-code/select-profile-funktion.php';
+
+    //ausführen der Funktion, um alle Benutzerinformationen in eine Variable zu schreiben
+    $user_information = get_profile_information($_SESSION["user-id"]);
+
 //pushhelp
 	if ( isset ( $_SESSION["signed-in"] ) ) {
 
@@ -46,8 +51,8 @@
                     <ul class="dropdown-menu"></ul>
                 </li>
             </div>
-            <div class="d-flex"><img
-                        src=https://img.fotocommunity.com/bb-bilder-9e10eb1c-ede3-47da-a2c5-97692e7faf8c.jpg?width=45&height=45
+            <div class="d-flex nav-bar-profile-picture"><img
+                        src="<?php echo $picture_path_server . $user_information[2]; ?>"
                         class="img-circle profil-image-small">
                 <a href="profile.php"
                    class="nav-item active nav-link username"><?php echo $_SESSION["user-name"]; ?></a>
@@ -70,7 +75,7 @@
         <div class="profile-header-cols">
         <div class="row">
         <div class="col-sm-4">
-            <img src="https://www.g33kdating.com/ow_userfiles/plugins/articles/article_image_5968bde712c2f.jpg"
+            <img src="<?php echo $picture_path_server . $user_information[2]; ?>"
                  width="300" height="auto" alt="Profilbild">
         </div>
         <div class="col-sm-8 p-5">
@@ -129,11 +134,6 @@
             <!--input Box-->
             <form action="invisible-pages/post.php" method="post" enctype="multipart/form-data">
 
-                <!-- /*#############################################################################################################
-				 Warum funktioniert es nicht wenn es " id="comment_form"
-				 Es ffunktioniert auch nicht wenn es mit class="XX"
-				 ###############################################################################################################*/
-	 -->
                 <p><label class="formular-label-color">Blogeintrag:<br>
                         <textarea name="post" cols="80" rows="3" placeholder="neuer Eintrag!"
                                   maxlength="200"></textarea></label></p>

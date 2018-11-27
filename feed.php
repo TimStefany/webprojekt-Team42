@@ -1,11 +1,13 @@
 <!-- ToDo
-    - Spaltenbreite festlegen sodass maximal 4 Spalten im Viewport angezeigt werden (nach recht scrollbar)
-    - Bilder richtig einfügen in den Spalten (SQL abfrage für den Pfad + <img>)
 -->
 <?php
 	session_start();
 	include_once 'outsourced-php-code/userdata.php';
-	include_once  'outsourced-php-code/necessary-variables.php';
+	include_once 'outsourced-php-code/necessary-variables.php';
+	include_once 'outsourced-php-code/select-profile-funktion.php';
+
+    //ausführen der Funktion, um alle Benutzerinformationen in eine Variable zu schreiben
+    $user_information = get_profile_information($_SESSION["user-id"]);
 
 	if ( isset ( $_SESSION["signed-in"] ) ) {
 
@@ -51,8 +53,8 @@
                     <ul class="dropdown-menu"></ul>
                 </li>
             </div>
-            <div class="d-flex"><img
-                        src=https://img.fotocommunity.com/bb-bilder-9e10eb1c-ede3-47da-a2c5-97692e7faf8c.jpg?width=45&height=45
+            <div class="d-flex nav-bar-profile-picture"><img
+                        src="<?php echo $picture_path_server . $user_information[2]; ?>"
                         class="img-circle profil-image-small">
                 <a href="profile.php"
                    class="nav-item active nav-link username"><?php echo $_SESSION["user-name"]; ?></a>
