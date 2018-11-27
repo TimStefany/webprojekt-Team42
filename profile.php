@@ -20,7 +20,7 @@
 			?>
 
         </head>
-        <body>
+    <body>
         <nav class="navbar  fixed-top navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="#">Plus - Microblog</a>
             <form class="form-inline my-2 my-lg-0">
@@ -65,20 +65,63 @@
             </div>
         </nav>
 
-        <main class="container container-profile"><!--ein Responsive Container in dem der Content steckt-->
-            <div class="profile-header">
-                <div class="profile-header-cols">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <img src="https://www.g33kdating.com/ow_userfiles/plugins/articles/article_image_5968bde712c2f.jpg"
-                                 width="300" height="auto" alt="Profilbild">
-                        </div>
-                        <div class="col-sm-8 p-5">Test
+    <main class="container container-profile"><!--ein Responsive Container in dem der Content steckt-->
+        <div class="profile-header">
+        <div class="profile-header-cols">
+        <div class="row">
+        <div class="col-sm-4">
+            <img src="https://www.g33kdating.com/ow_userfiles/plugins/articles/article_image_5968bde712c2f.jpg"
+                 width="300" height="auto" alt="Profilbild">
+        </div>
+        <div class="col-sm-8 p-5">
+		<?php
+		$user = $_SESSION["user-id"];
 
+		try {
+			$db    = new PDO( $dsn, $dbuser, $dbpass, $option );
+			$sql   = "SELECT profile_text FROM registered_users WHERE user_id = :user;";
+			$query = $db->prepare( $sql );
+			$query->execute( array( ":user" => $user ) );
 
+			$zeile = $query->fetchObject();
+			echo "<span class='profile-headline'>Profiltext:</span>";
+			echo "<div>" . $zeile->profile_text . "</div>";
+			?>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Bearbeiten
+            </button>
+            <div class="modal fade registerblock" id="exampleModal" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Profiltext Bearbeiten:</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
+                        <form action='invisible-pages/update-profile-text.php' method='post'>
+                            <div class="modal-body">
+                                <p><label class="formular-label-color">Blogeintrag:<br>
+                                        <textarea name="post" cols="80" rows="3"
+                                                  maxlength="200"> <?php echo $zeile->profile_text ?></textarea></label></p>
+                                <p>
+                            </div>
+                            <!-- Aktuell schließen beide Buttons das Modal und keiner führt die Registrierung aus -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zurück</button>
+                                <input type="submit" name="absenden" class="btn btn-primary" value="Update" >
+                            </div>
+                        </form>
                     </div>
                 </div>
+            </div>
+
+
+            </div>
+            </div>
+            </div>
             </div>
             <hr>
 
@@ -168,63 +211,70 @@
 				?>
             </div>
 
-        </main>
-        <footer>
+            </main>
+            <footer>
 
-        </footer>
+            </footer>
 
-        <!--Hier stehen die J Query codes welche dann ausgeführt werden wenn das Dokument geladen ist-->
-        <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script type="text/javascript" src="dist/js/dropzone.js"></script>
-        <script type="text/javascript" src="dist/js/main.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script>
-            var loadFile = function (event) {
-                var output = document.getElementById('output');
-                output.src = URL.createObjectURL(event.target.files[0]);
-            };
-        </script>
-        <script>
-            $(document).ready(function () {
+            <!--Hier stehen die J Query codes welche dann ausgeführt werden wenn das Dokument geladen ist-->
+            <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+            <script type="text/javascript" src="dist/js/dropzone.js"></script>
+            <script type="text/javascript" src="dist/js/main.js"></script>
+            <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+            <script>
+                var loadFile = function (event) {
+                    var output = document.getElementById('output');
+                    output.src = URL.createObjectURL(event.target.files[0]);
+                };
+            </script>
+            <script>
+                $(document).ready(function () {
 
-                setInterval(function () {
-                    load_last_notification();
-                }, 20000);
+                    setInterval(function () {
+                        load_last_notification();
+                    }, 20000);
 
-                function load_last_notification() {
-                    $.ajax({
-                        url: "invisible-pages/fetch.php",
-                        method: "POST",
-                        success: function (data) {
-                            $('.content').html(data);
-                        }
-                    })
-                }
-
-                $x = document.getElementsByTagName('form1');
-
-                $x.on('submit', function (event) {
-                    event.preventDefault();
-                    if ($('#subject').val() != '' && $('#comment').val() != '') {
-                        var form_data = $(this).serialize();
+                    function load_last_notification() {
                         $.ajax({
-                            url: "invisible-pages/post.php",
+                            url: "invisible-pages/fetch.php",
                             method: "POST",
-                            data: form_data,
                             success: function (data) {
-                                $('#comment_form')[0].reset();
+                                $('.content').html(data);
                             }
                         })
                     }
-                    else {
-                        alert("Both Fields are Required");
-                    }
-                });
-            });
-        </script>
-        </body>
 
-        </html>
+                    $x = document.getElementsByTagName('form1');
+
+                    $x.on('submit', function (event) {
+                        event.preventDefault();
+                        if ($('#subject').val() != '' && $('#comment').val() != '') {
+                            var form_data = $(this).serialize();
+                            $.ajax({
+                                url: "invisible-pages/post.php",
+                                method: "POST",
+                                data: form_data,
+                                success: function (data) {
+                                    $('#comment_form')[0].reset();
+                                }
+                            })
+                        }
+                        else {
+                            alert("Both Fields are Required");
+                        }
+                    });
+                });
+            </script>
+            </body>
+
+            </html>
+			<?php
+			$db = null;
+		} catch ( PDOException $e ) {
+			echo "Error!: Bitte wenden Sie sich an den Administrator!?..." . $e;
+			die();
+		}
+		?>
 		<?php
 	} else {
 		echo '<h1>Sie sind nicht angemeldet</h1>';

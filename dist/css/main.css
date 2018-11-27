@@ -8665,6 +8665,10 @@ a.text-dark:hover, a.text-dark:focus {
   margin-top: 80px;
 }
 
+.profile-headline {
+  font-weight: bold;
+}
+
 .loginpage {
   background-image: url("../../images/background-loginpage.jpg") !important;
 }
