@@ -10,7 +10,7 @@
   &-row {
     background-color: $background-feed-row;
     padding: 5px;
-    width: 250px;
+    width: 400px;
     min-height: 103%;
     float: left;
     margin-left: 2rem;
@@ -21,6 +21,14 @@
     &-container {
       margin-top: 1.5rem;
       &-cell {
+        border-radius: 8px;
+        padding: 5px;
+        background-color: $background-feed-cell;
+        margin: 1rem 0.5rem 0 0.5rem;
+        -moz-hyphens: auto;
+        -webkit-hyphens: auto;
+        -ms-hyphens: auto;
+        hyphens: auto;
         a {
           font-weight: bold;
           color: black !important;
@@ -31,14 +39,16 @@
         p {
           font-size: 13px;
         }
-        border-radius: 8px;
-        padding: 5px;
-        background-color: $background-feed-cell;
-        margin: 1rem 0.5rem 0 0.5rem;
-        -moz-hyphens: auto;
-        -webkit-hyphens: auto;
-        -ms-hyphens: auto;
-        hyphens: auto;
+        img {
+          width: 100%;
+          height: auto;
+        }
+        &-profilepicture {
+          max-width: 45px;
+          max-height: 45px;
+          object-fit: cover;
+          border-radius: 100px;
+        }
       }
     }
   }

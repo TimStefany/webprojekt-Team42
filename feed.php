@@ -169,7 +169,7 @@
 				}
 			?>
 
-            <div class="feed-scroll" style="min-width:<?php echo ($counter*282)+32 ?>px;">
+            <div class="feed-scroll" style="min-width:<?php echo ($counter*432)+32 ?>px;">
                 <!--####################################################################################################################
 					Dieser Teil gibt die Spalten mit den Beiträgen aus
 					####################################################################################################################-->
@@ -203,9 +203,9 @@
 									    //Informationen über den Autor für das Prfilbild in eine Variable schreiben
 									    $author_information = get_profile_information($row["user_id"]);
 
-									    echo '<div class="feed-scroll-row-container-cell nav-bar-profile-picture">';   //der Gesammte Post steckt in diesem DIV
+									    echo '<div class="feed-scroll-row-container-cell">';   //der Gesammte Post steckt in diesem DIV
 
-										echo '<img src="'.$picture_path_server.$author_information[2].'" class="img-circle profil-image-small" >';
+										echo '<img src="'.$picture_path_server.$author_information[2].'" class="feed-scroll-row-container-cell-profilepicture" >';
                                         echo '<a href="profile-foreign.php?id=' . $row["user_id"] . '" class="autor"> +' . $row["user_name"] . '</a>';
                                         echo ' /';
                                         echo '<a class="topic-link" href="topic-profile.php?id=' . $row["topic_id"] . '"> +' . $row["topic_name"] . '</a>';
@@ -215,7 +215,9 @@
 
 										//Wenn dem Beitrag ein Bild hinzugefügt wurde dann wird diese Schleife ausgeführt
 										if ( $row["picture_path"] !== null ) {
-											echo '<img src="'.$picture_path_server.$row["picture_path"].'">';
+											echo '<a href="'.$picture_path_server.$row["picture_path"].'">';
+											echo '<img  src="'.$picture_path_server.$row["picture_path"].'">';
+											echo '</a>';
 										}
 
 										echo '</div>';  //der Gesammte Post steckt in diesem DIV
@@ -229,9 +231,9 @@
                                         //Informationen über den Autor für das Prfilbild in eine Variable schreiben
                                         $author_information = get_profile_information($row["user_id"]);
 
-										echo '<div class="feed-scroll-row-container-cell nav-bar-profile-picture">';   //der Gesammte Post steckt in diesem DIV
+										echo '<div class="feed-scroll-row-container-cell">';   //der Gesammte Post steckt in diesem DIV
 
-                                        echo '<img src="'.$picture_path_server.$author_information[2].'" class="img-circle profil-image-small" >';
+                                        echo '<img src="'.$picture_path_server.$author_information[2].'" class="feed-scroll-row-container-cell-profilepicture" >';
                                         echo '<a href="profile-foreign.php?id=' . $row["user_id"] . '" class="autor"> +' . $row["user_name"] . '</a><br>';
 										if ( $row["topic_id"] != null ) {
 											echo ' /';
@@ -243,7 +245,9 @@
 
 										//gibt die Topic des Posts als Link aus
 										if ( $row["picture_path"] != null ) {     // wird ausgeführt wenn ein Bild hinterlegt wurde
-                                            echo '<img src="'.$picture_path_server.$row["picture_path"].'">';
+											echo '<a href="'.$picture_path_server.$row["picture_path"].'">';
+											echo '<img  src="'.$picture_path_server.$row["picture_path"].'">';
+											echo '</a>';
 										}
 
 										echo '</div>';   //der Gesammte Post steckt in diesem DIV
@@ -264,9 +268,9 @@
                                 $author_information = get_profile_information($followed_id[$i]);
 
 								while ( $row = $stmt->fetch() ) {
-									echo '<div class="feed-scroll-row-container-cell nav-bar-profile-picture">';   //der Gesammte Post steckt in diesem DIV
+									echo '<div class="feed-scroll-row-container-cell">';   //der Gesammte Post steckt in diesem DIV
 
-                                    echo '<img src="'.$picture_path_server.$author_information[2].'" class="img-circle profil-image-small" >';
+                                    echo '<img src="'.$picture_path_server.$author_information[2].'" class="feed-scroll-row-container-cell-profilepicture" >';
                                     echo '<a href="profile-foreign.php?id=' . $row["user_id"] . '" class="autor">+ Autor: ' . $row["user_name"] . '</a><br>';
                                     if ( $row["topic_id"] ) {
 										echo '<a href="topic-profile.php?id=' . $row["topic_id"] . '">+ Topic: ' . $row["topic_name"] . '</a>';
@@ -276,7 +280,9 @@
 									//gibt den Nutzernamen des Autors als Link aus
 
 									if ( $row["picture_path"] !== null ) {
-                                        echo '<img src="'.$picture_path_server.$row["picture_path"].'">';
+										echo '<a href="'.$picture_path_server.$row["picture_path"].'">';
+										echo '<img  src="'.$picture_path_server.$row["picture_path"].'">';
+										echo '</a>';
 									}
 
 									echo '</div>';  //der Gesammte Post steckt in diesem DIV
@@ -293,17 +299,18 @@
         <footer>
 
         </footer>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
         <script type="text/javascript" src="dist/js/dropzone.js"></script>
         <script type="text/javascript" src="dist/js/main.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script>
+        <script> <!--Pic Upload-->
             var loadFile = function (event) {
                 var output = document.getElementById('output');
                 output.src = URL.createObjectURL(event.target.files[0]);
             };
         </script>
-        <script>
+        <script> <!--notifcation-->
             $(document).ready(function () {
 
                 setInterval(function () {
