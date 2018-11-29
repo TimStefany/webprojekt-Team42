@@ -4,6 +4,9 @@
   &-cols {
     img {
       border-radius: 200px;
+      padding:1rem;
+      width: 300px;
+      height: auto;
     }
   }
 }
@@ -15,6 +18,10 @@
     border-radius: 8px;
     padding: 5px;
     margin: 1rem 0.5rem 0 0.5rem;
+    img{
+      width:100%;
+      height:auto;
+    }
   }
 }
 .image-preview {
@@ -32,4 +39,13 @@
 }
 .profile-headline{
   font-weight: bold;
+}
+@media (max-width: 992px) {
+  .profile-header-cols{
+    img{
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
 }

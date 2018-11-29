@@ -7,7 +7,8 @@ $background-feed-cell: rgb(255, 255, 255);
 $label-text-formular:rgb(255, 255, 255);
 $background-feed-row: rgb(167, 163, 126);
 $primary: rgb(4, 99, 128);
-$secondary: rgb(255, 255, 255); // Überschriften und Überschriften in den rows
+$secondary: rgb(255, 255, 255); // Überschriften und Überschriften in den rows.
+$third: rgb(0,0,0); //Überschrift im Profile oder Topic header.
 
 /*
 * Import der module
@@ -28,7 +29,6 @@ $secondary: rgb(255, 255, 255); // Überschriften und Überschriften in den rows
 body {
   background-color: $primary;
 }
-
 h1, .h1, h2, .h2, h3, .h3 {
   color: $secondary;
 }
@@ -84,4 +84,7 @@ a {
 
 .formular-label-color {
   color: $label-text-formular;
+}
+.profile-topic-headline{
+  color: $black;
 }

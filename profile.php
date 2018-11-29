@@ -74,11 +74,16 @@
         <div class="profile-header">
         <div class="profile-header-cols">
         <div class="row">
-        <div class="col-sm-4">
-            <img src="<?php echo $picture_path_server . $user_information[2]; ?>"
-                 width="300" height="auto" alt="Profilbild">
+        <div class="col-lg-4">
+            <img src="<?php echo $picture_path_server . $user_information[2]; ?>" alt="Profilbild">
         </div>
-        <div class="col-sm-8 p-5">
+        <div class="col-lg-8 p-5">
+        <div>
+            <?php
+	           echo '<h1 class="profile-topic-headline">'.$_SESSION["user-name"].'</h1>';
+            ?>
+        </div>
+        <hr>
 		<?php
 		$user = $_SESSION["user-id"];
 
@@ -96,8 +101,12 @@
 			echo "<span class='profile-headline'>Profiltext:</span>";
 			echo "<div>" . $zeile["profile_text"] . "</div>";
 			?>
+            <hr>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                 Bearbeiten
+            </button>
+            <button type="button" class="btn btn-primary">
+               Bild ändern
             </button>
             <div class="modal fade registerblock" id="exampleModal" tabindex="-1" role="dialog"
                  aria-labelledby="exampleModalLabel"
