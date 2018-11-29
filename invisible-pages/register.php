@@ -10,6 +10,7 @@
 
 session_start();
 include '../outsourced-php-code/userdata.php';
+include_once '../outsourced-php-code/necessary-variables.php';
 $check = 0;
 
 //if(isset($_POST["absenden"])) { //Kommt vom Registrieren Button
@@ -49,8 +50,8 @@ if (!empty($name) & !empty($passwordraw) & !empty($password_repeat)) {
             die();
         } else {
             try {
-                $query = $db->prepare("INSERT INTO `registered_users` (`user_name`, `user_pass`) VALUES (:name, :pass);");
-                $query->execute(array(":name" => $name, ":pass" => $password));
+                $query = $db->prepare("INSERT INTO `registered_users` (`user_name`, `user_pass`, `picture_id`) VALUES (:name, :pass, :picture);");
+                $query->execute(array(":name" => $name, ":pass" => $password, ":picture" => $default_avatar_id));
                 echo "Sie wurden erfolgreich Registriert<br/>";
 
                 //Follow für die explore Topic hinzufügen

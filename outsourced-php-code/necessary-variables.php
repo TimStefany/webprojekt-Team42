@@ -5,3 +5,4 @@ Hier werden Variablen eingebunden die an mehreren Stellen verwendet werden müss
 Damit muss der Wert nur an einer Stelle verändert werden falls notwendig
 ######################################################################################################################*/
 $picture_path_server = 'https://mars.iuk.hdm-stuttgart.de/~fs119/uploads/post_img/';
+$default_avatar_id = 49;

@@ -88,9 +88,13 @@
 			$query = $db->prepare( $sql );
 			$query->execute( array( ":user" => $user ) );
 
-			$zeile = $query->fetchObject();
+			$zeile = $query->fetch();
+			//Hinzufügen einer Erklärung für den Profiltext falls keiner vorhanden ist
+			if ($zeile["profile_text"] == NULL) {
+                $zeile["profile_text"] = "Klicke auf bearbeiten um deine Beschreibung hinzuzufügen.";
+            }
 			echo "<span class='profile-headline'>Profiltext:</span>";
-			echo "<div>" . $zeile->profile_text . "</div>";
+			echo "<div>" . $zeile["profile_text"] . "</div>";
 			?>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                 Bearbeiten
@@ -110,7 +114,7 @@
                             <div class="modal-body">
                                 <p><label class="formular-label-color">Blogeintrag:<br>
                                         <textarea name="post" cols="80" rows="3"
-                                                  maxlength="200"> <?php echo $zeile->profile_text ?></textarea></label></p>
+                                                  maxlength="200"> <?php echo $zeile["profile_text"] ?></textarea></label></p>
                                 <p>
                             </div>
                             <!-- Aktuell schließen beide Buttons das Modal und keiner führt die Registrierung aus -->
