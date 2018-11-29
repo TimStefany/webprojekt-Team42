@@ -197,13 +197,19 @@
 							if ( $followed_id[ $i ] !== '1' ) {
 								//alle Topics abgesehen von der Explore Topic werden so abgearbeitet (explore hat id=1)
 								$db   = new PDO( $dsn, $dbuser, $dbpass, $option );
-								$stmt = $db->prepare( "SELECT user_id, user_name, content, picture_path FROM posts_registered_users_topics_pictures_view WHERE topic_id = :topic" );
+								$stmt = $db->prepare( "SELECT user_id, user_name, content, picture_path, topic_name FROM posts_registered_users_topics_pictures_view WHERE topic_id = :topic" );
 								if ( $stmt->execute( array( ":topic" => $followed_id[ $i ] ) ) ) {
 									while ( $row = $stmt->fetch() ) {
-										echo '<div class="feed-scroll-row-container-cell">';   //der Gesammte Post steckt in diesem DIV
+									    //Informationen über den Autor für das Prfilbild in eine Variable schreiben
+									    $author_information = get_profile_information($row["user_id"]);
 
-										echo '<a href="profile-foreign.php?id=' . $row["user_id"] . '" class="autor">+ Autor: ' . $row["user_name"] . '</a>';
-										echo '<hr class="my-1">';
+									    echo '<div class="feed-scroll-row-container-cell nav-bar-profile-picture">';   //der Gesammte Post steckt in diesem DIV
+
+										echo '<img src="'.$picture_path_server.$author_information[2].'" class="img-circle profil-image-small" >';
+                                        echo '<a href="profile-foreign.php?id=' . $row["user_id"] . '" class="autor"> +' . $row["user_name"] . '</a>';
+                                        echo ' /';
+                                        echo '<a class="topic-link" href="topic-profile.php?id=' . $row["topic_id"] . '"> +' . $row["topic_name"] . '</a>';
+                                        echo '<hr class="my-1">';
 										echo '<p>' . $row["content"] . '</p>'; //gibt den Content in einem P Tag aus
 										//gibt den Nutzernamen des Autors als Link aus
 
@@ -220,11 +226,16 @@
 								$stmt = $db->prepare( "SELECT user_id, user_name, content, picture_path, topic_id, topic_name FROM posts_registered_users_topics_pictures_view WHERE 1 = 1" );
 								if ( $stmt->execute() ) {
 									while ( $row = $stmt->fetch() ) {
-										echo '<div class="feed-scroll-row-container-cell">';   //der Gesammte Post steckt in diesem DIV
+                                        //Informationen über den Autor für das Prfilbild in eine Variable schreiben
+                                        $author_information = get_profile_information($row["user_id"]);
 
-										echo '<a href="profile-foreign.php?id=' . $row["user_id"] . '">+ Autor: ' . $row["user_name"] . '</a><br>';
+										echo '<div class="feed-scroll-row-container-cell nav-bar-profile-picture">';   //der Gesammte Post steckt in diesem DIV
+
+                                        echo '<img src="'.$picture_path_server.$author_information[2].'" class="img-circle profil-image-small" >';
+                                        echo '<a href="profile-foreign.php?id=' . $row["user_id"] . '" class="autor"> +' . $row["user_name"] . '</a><br>';
 										if ( $row["topic_id"] != null ) {
-											echo '<a class="topic-link" href="topic-profile.php?id=' . $row["topic_id"] . '"> + Topic:' . $row["topic_name"] . '</a>';
+											echo ' /';
+										    echo '<a class="topic-link" href="topic-profile.php?id=' . $row["topic_id"] . '"> +' . $row["topic_name"] . '</a>';
 										}
 										echo '<hr class="my-1">';
 										echo '<p>' . $row["content"] . '</p>'; //gibt den Content in einem P Tag aus
@@ -249,10 +260,15 @@
 							$db   = new PDO( $dsn, $dbuser, $dbpass, $option );
 							$stmt = $db->prepare( "SELECT user_id, user_name, content, topic_id, topic_name, picture_path FROM posts_registered_users_topics_pictures_view WHERE user_id = :user" );
 							if ( $stmt->execute( array( ":user" => $followed_id[ $i ] ) ) ) {
+                                global $author_information;
+                                $author_information = get_profile_information($followed_id[$i]);
+
 								while ( $row = $stmt->fetch() ) {
-									echo '<div class="feed-scroll-row-container-cell">';   //der Gesammte Post steckt in diesem DIV
-									//In der Spalte eines gefolgten Nutzers soll nur die Topic des Posts ausgegeben werden
-									if ( $row["topic_id"] ) {
+									echo '<div class="feed-scroll-row-container-cell nav-bar-profile-picture">';   //der Gesammte Post steckt in diesem DIV
+
+                                    echo '<img src="'.$picture_path_server.$author_information[2].'" class="img-circle profil-image-small" >';
+                                    echo '<a href="profile-foreign.php?id=' . $row["user_id"] . '" class="autor">+ Autor: ' . $row["user_name"] . '</a><br>';
+                                    if ( $row["topic_id"] ) {
 										echo '<a href="topic-profile.php?id=' . $row["topic_id"] . '">+ Topic: ' . $row["topic_name"] . '</a>';
 									}
 									echo '<hr class="my-1">';
