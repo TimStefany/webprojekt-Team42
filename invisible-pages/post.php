@@ -108,7 +108,7 @@ if (isset ($_SESSION["signed-in"])) {
             echo "Error!: Bitten wenden Sie sich an den Administrator...";
             die();
         }
-        header('Location: ../profile.php');
+        header('Location: find-followers.php');
 
         /*#############################################################################################################
             Dieser Abschnitt schreibt den Post in die Datenbank wenn kein Bild mit geliefert wird
@@ -137,7 +137,8 @@ if (isset ($_SESSION["signed-in"])) {
             echo "Error!: Bitten wenden Sie sich an den Administrator...";
             die();
         }
-        header('Location: ../profile.php');
+        include '../outsourced-php-code/find-followers.php';
+        header('Location: find-followers.php');
 
     }
 } else {

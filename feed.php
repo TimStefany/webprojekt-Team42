@@ -46,11 +46,14 @@
                 </ul>
             </div>
             <div>
+                <!-- Notification Bell -->
                 <li class="dropdown" style="list-style-type:none; margin-left:10px; margin-right:10px;">
                     <a href="#" data-toggle="dropdown"><span
                                 class="label label-pill label-danger count" style="border-radius:10px;"></span> <span <i
                                 class="fas fa-bell"></i> </a>
-                    <ul class="dropdown-menu"></ul>
+                    <ul id="reloaded" class="dropdown-menu">
+
+                    </ul>
                 </li>
             </div>
             <div class="d-flex nav-bar-profile-picture"><img
@@ -197,7 +200,7 @@
 							if ( $followed_id[ $i ] !== '1' ) {
 								//alle Topics abgesehen von der Explore Topic werden so abgearbeitet (explore hat id=1)
 								$db   = new PDO( $dsn, $dbuser, $dbpass, $option );
-								$stmt = $db->prepare( "SELECT user_id, user_name, content, picture_path, topic_name FROM posts_registered_users_topics_pictures_view WHERE topic_id = :topic" );
+								$stmt = $db->prepare( "SELECT user_id, user_name, content, picture_path, topic_name, topic_id FROM posts_registered_users_topics_pictures_view WHERE topic_id = :topic" );
 								if ( $stmt->execute( array( ":topic" => $followed_id[ $i ] ) ) ) {
 									while ( $row = $stmt->fetch() ) {
 									    //Informationen über den Autor für das Prfilbild in eine Variable schreiben
@@ -347,6 +350,13 @@
                     }
                 });
             });
+        </script>
+        <script>
+            setInterval(function(){
+                $.get('invisible-pages/notification-request.php', function(data) {
+                    $('#reloaded').html(data);
+                });
+            }, 5000);
         </script>
         </body>
 
