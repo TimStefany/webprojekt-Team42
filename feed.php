@@ -80,14 +80,9 @@
         <main><!--ein Responsive Container in dem der Content steckt-->
             <div class="container-feed">
                 <h1>Blogname</h1>
-                <!--input Box-->
-                <form action="invisible-pages/post-feed.php" method="post" enctype="multipart/form-data">
+                <!--input Box um Beiträge zu posten-->
+                <form action="invisible-pages/post.php" method="post" enctype="multipart/form-data">
 
-                    <!-- /*#############################################################################################################
-					 Warum funktioniert es nicht wenn es " id="comment_form"
-					 Es ffunktioniert auch nicht wenn es mit class="XX"
-					 ###############################################################################################################*/
-		 -->
                     <p><label class="formular-label-color">Blogeintrag:<br>
                             <textarea name="post" cols="80" rows="3" placeholder="neuer Eintrag!"
                                       maxlength="200"></textarea></label></p>
@@ -100,9 +95,7 @@
                         <input type="file" name="files" accept="image/*" onchange="loadFile(event)">
                         <img id="output" class="image-preview"/>
 
-                        <button type="submit" name="upload-post" class="btn btn-sm btn-primary">Das hier ist zum Bild an
-                            Post anhängen
-                        </button>
+                        <button type="submit" name="upload-post-feed" class="btn btn-sm btn-primary">Posten</button>
                     </div>
                 </form>
                 <div class="container">
@@ -172,7 +165,7 @@
 				}
 			?>
 
-            <div class="feed-scroll" style="min-width:<?php echo ($counter*432)+32 ?>px;">
+            <div class="feed-scroll" style="min-width:<?php echo ($counter*432)+42 ?>px;">
                 <!--####################################################################################################################
 					Dieser Teil gibt die Spalten mit den Beiträgen aus
 					####################################################################################################################-->
@@ -304,7 +297,6 @@
         </footer>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script type="text/javascript" src="dist/js/dropzone.js"></script>
         <script type="text/javascript" src="dist/js/main.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script> <!--Pic Upload-->
@@ -313,6 +305,7 @@
                 output.src = URL.createObjectURL(event.target.files[0]);
             };
         </script>
+
         <script> <!--notifcation-->
             $(document).ready(function () {
 

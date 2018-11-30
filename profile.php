@@ -144,7 +144,7 @@
             <hr>
 
 
-            <!--input Box-->
+            <!--input Box für Posts-->
             <form action="invisible-pages/post.php" method="post" enctype="multipart/form-data">
 
                 <p><label class="formular-label-color">Blogeintrag:<br>
@@ -159,14 +159,12 @@
                     <input type="file" name="files" accept="image/*" onchange="loadFile(event)">
                     <img id="output" class="image-preview"/>
 
-                    <button type="submit" name="upload-post" class="btn btn-sm btn-primary">Das hier ist zum Bild an
-                        Post anhängen
-                    </button>
+                    <button type="submit" name="upload-post-profile" class="btn btn-sm btn-primary">Posten</button>
                 </div>
             </form>
             <hr>
             <div class="container">
-                <!-- Standar Form -->
+                <!-- Standart Form -->
                 <!--            enctype muss rein weil es wichtig für die übergabe des IMGs ist-->
                 <!--            specifies how the form data should be encoded-->
                 <!--<form action="invisible-pages/image-database-upload-profile.php" method="post" enctype="multipart/form-data">
@@ -277,6 +275,13 @@
                         }
                     });
                 });
+            </script>
+            <script>
+                setInterval(function(){
+                    $.get('invisible-pages/notification-request.php', function(data) {
+                        $('#reloaded').html(data);
+                    });
+                }, 5000);
             </script>
             </body>
 

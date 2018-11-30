@@ -9,10 +9,6 @@ try {
     $stmt = $db->prepare("SELECT `post_id`, `topic_id` FROM `posts` ORDER BY `post_id` DESC LIMIT 0,1");
     $stmt->execute();
     $post_information=$stmt->fetch();
-    var_dump($post_information);
-    echo '<br>';
-    $user_id = $_SESSION["user_id"];
-    var_dump($_SESSION);
 
 }catch (PDOException $e) {
     echo "Error!: Bitten wenden Sie sich an den Administrator...";
@@ -25,10 +21,7 @@ try {
                                     UNION ALL 
                                     SELECT `following_user_id_topic` FROM `user_follow_topic` WHERE `followed_topic_id`= :topic");
     if ($stmt->execute(array(":user"=>$_SESSION["user-id"], ":topic"=>$post_information["topic_id"]))){
-        echo 'test';
         while ($spalte = $stmt->fetch()){
-            var_dump($spalte);
-            echo '<br>';
             if (in_array($spalte[0], $result)){
 
             }
@@ -45,8 +38,6 @@ try {
     }
     $db = 0;
 
-    var_dump($result);
-    echo '<br>';
 } catch (PDOException $e){
     echo "Error!: Bitten wenden Sie sich an den Administrator...";
     die();

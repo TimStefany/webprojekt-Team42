@@ -11,7 +11,7 @@ if (isset ($_SESSION["signed-in"])) {
         Ab hier wird getestet ob der Post ein Bild angehängt hat
     ###############################################################################################################*/
 
-    if (isset($_POST['upload-post'])) {
+    if (isset($_POST['upload-post-profile']) or isset($_POST['upload-post-feed'])) {
         $file = $_FILES['files'];
 
         $filename = $_FILES['files']['name'];
@@ -69,6 +69,7 @@ if (isset ($_SESSION["signed-in"])) {
 
                 } else {
                     echo "Du hast die maximale Dateigröße von 2 Mb überschritten";
+                    die();
                 }
             } else {
                 echo "Fehler beim uploaden der Datei";
@@ -90,7 +91,7 @@ if (isset ($_SESSION["signed-in"])) {
             $db1 = new PDO($dsn, $dbuser, $dbpass, $option);
             $query1 = $db1->prepare(
                 "SELECT `topic_id` FROM `topics` WHERE `topic_name` = :topic");
-            $query1->execute(array(":topic"=>$topic));
+            $query1->execute(array(":topic" => $topic));
             $row1 = $query1->fetch();
             $row = $row1[0];
 
@@ -108,12 +109,15 @@ if (isset ($_SESSION["signed-in"])) {
             echo "Error!: Bitten wenden Sie sich an den Administrator...";
             die();
         }
-        header('Location: find-followers.php');
-
-        /*#############################################################################################################
-            Dieser Abschnitt schreibt den Post in die Datenbank wenn kein Bild mit geliefert wird
-        ###############################################################################################################*/
-    } else {
+        include 'find-followers.php';
+        if (isset($_POST['upload-post-profile'])) {
+            header('Location: ../profile.php');
+        }
+        if (isset($_POST['upload-post-feed'])) {
+            header('Location: ../feed.php');
+        }
+    }
+    else {
 
         try {
             $db1 = new PDO($dsn, $dbuser, $dbpass, $option);
@@ -137,8 +141,13 @@ if (isset ($_SESSION["signed-in"])) {
             echo "Error!: Bitten wenden Sie sich an den Administrator...";
             die();
         }
-        include '../outsourced-php-code/find-followers.php';
-        header('Location: find-followers.php');
+        include 'find-followers.php';
+        if (isset($_POST['upload-post-profile'])) {
+            header('Location: ../profile.php');
+        }
+        if (isset($_POST['upload-post-feed'])) {
+            header('Location: ../feed.php');
+        }
 
     }
 } else {
@@ -146,4 +155,3 @@ if (isset ($_SESSION["signed-in"])) {
     echo '<p>gehen sie hier zu unserer Startseite und melden sie sich an</p><br>';
     echo '<a href="../index.php">Startseite</a>';
 }
-
