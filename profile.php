@@ -74,7 +74,7 @@
         <div class="profile-header">
         <div class="profile-header-cols">
         <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-4 p-3">
             <img src="<?php echo $picture_path_server . $user_information[2]; ?>" alt="Profilbild">
         </div>
         <div class="col-lg-8 p-5">
@@ -103,7 +103,7 @@
 			?>
             <hr>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                Bearbeiten
+                Profiltext bearbeiten
             </button>
             <button type="button" class="btn btn-primary">
                Bild ändern
