@@ -59,6 +59,9 @@ typings/
 
 # next.js build output
 .next
+
+# von uns angefügt
 package-lock.json
 userdata.php
 README.md
+.idea/
