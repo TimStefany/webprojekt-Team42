@@ -1,3 +1,18 @@
 .loginpage{
   background-image: url("../../images/background-loginpage.jpg")!important;
 }
+
+/*Vorsicht hier wird das Background pic festgelegt welches im Modal zusehn ist es sollte also farblich gut zu dem ausgangs Bild Passen */
+
+.bg {
+  background: url('http://hintergrundbild.org/wallpaper/full/9/3/e/43157-widescreen-hintergrundbilder-4k-fuer-handy-3840x2160-ios.jpg') no-repeat;
+  width: 100%;
+  height: 100%;
+}
+
+.fontnorm {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #212529;
+  text-align: left;
+}
