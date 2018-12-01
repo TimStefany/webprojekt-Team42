@@ -16,7 +16,7 @@
     margin-left: 2rem;
     overflow: hidden;
     a {
-      color: $secondary;
+        color: darkslategrey;
     }
     &-container {
       margin-top: 1.5rem;
@@ -28,7 +28,7 @@
         -webkit-hyphens: auto;
         -ms-hyphens: auto;
         hyphens: auto;
-        box-shadow: 5px 5px 10px silver;
+        box-shadow: 0 5px 10px silver;
         a {
           font-weight: bold;
           color: black !important;
