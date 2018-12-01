@@ -5,7 +5,7 @@
  */
 $background-feed-cell: rgb(255, 255, 255);
 $label-text-formular:rgb(255, 255, 255);
-$background-feed-row: rgb(167, 163, 126);
+$background-feed-row: rgb(235, 236, 235);
 $primary: rgb(4, 99, 128);
 $secondary: rgb(255, 255, 255); // Überschriften und Überschriften in den rows.
 $third: rgb(0,0,0); //Überschrift im Profile oder Topic header.
@@ -62,14 +62,15 @@ a {
   cursor: inherit;
   display: block;
 }
-
+/*
+*       NOTIFICATION
+ */
 #alert_popover {
   display: block;
   position: absolute;
   bottom: 50px;
   left: 50px;
 }
-
 .wrapper {
   display: table-cell;
   vertical-align: bottom;
@@ -83,6 +84,9 @@ a {
   border-color: #cccccc;
   border-radius: 10px;
 }
+/*
+*     WIEDER UNSER NORMALES CSS
+ */
 
 .formular-label-color {
   color: $label-text-formular;

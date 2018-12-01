@@ -10,13 +10,14 @@
   }
 }
 .profile-container-row{
-  background-color: #a7a37e;
+  background-color: $background-feed-row;
   padding: 5px;
   &-cell{
-    background-color: white;
-    border-radius: 8px;
+    background-color: $background-feed-cell;
     padding: 5px;
     margin: 1rem 0.5rem 0 0.5rem;
+    box-shadow: 5px 5px 10px silver;
+
     img{
       width:100%;
       height:auto;

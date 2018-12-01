@@ -21,7 +21,6 @@
     &-container {
       margin-top: 1.5rem;
       &-cell {
-        border-radius: 8px;
         padding: 5px;
         background-color: $background-feed-cell;
         margin: 1rem 0.5rem 0 0.5rem;
@@ -29,6 +28,7 @@
         -webkit-hyphens: auto;
         -ms-hyphens: auto;
         hyphens: auto;
+        box-shadow: 5px 5px 10px silver;
         a {
           font-weight: bold;
           color: black !important;
