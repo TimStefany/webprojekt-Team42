@@ -97,12 +97,12 @@
 			if ( $stmt->execute( array( ":user" => $_SESSION["user-id"], ":topic" => $visited_topic ) ) ) {
 				$row = $stmt->fetch();
 				if ( $row == [] ) {
-					echo '<a href="invisible-pages/follow.php?followed_id=' . $visited_topic . '&type=1"><button type="button" class="btn btn-primary">
+					echo '<a href="invisible-pages/follow.php?followed_id=' . $visited_topic . '&type=1"><button type="button" class="btn btn-dark">
                Folgen
             </button></a>';
 				} else {
 					$follow_id = $row["topic_follow_id"];
-					echo '<a href="invisible-pages/unfollow.php?followed_id=' . $visited_topic . '&type=1&follow_id=' . $follow_id . '"><button type="button" class="btn btn-primary">
+					echo '<a href="invisible-pages/unfollow.php?followed_id=' . $visited_topic . '&type=1&follow_id=' . $follow_id . '"><button type="button" class="btn btn-dark">
                Entfolgen
             </button></a>';
 				}
