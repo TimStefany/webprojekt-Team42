@@ -11,6 +11,7 @@
 	//ausführen der Funktion, um alle Benutzerinformationen in eine Variable zu schreiben und die des besuchten Profils in eine andere
 	$user_information    = get_profile_information( $_SESSION["user-id"] );
 	$profile_information = get_profile_information( $_GET["id"] );
+	$profile_foreign_text = $_GET["id"];
 
 	if ( isset ( $_SESSION["signed-in"] ) ) {
 
@@ -89,13 +90,13 @@
         <div class="profile-header-cols">
             <div class="row">
                 <div class="col-lg-4 p-3">
-                    <img src="<?php echo $picture_path_server . $profile_information[2]; ?>"
+                    <img src="<?php echo $picture_path_server . $profile_information[2];?>"
                          width="300" height="auto" alt="Profilbild">
                 </div>
 
                 <div class="col-lg-8 p-5">
                     <div>
-                        <h1 class="profile-topic-headline"><?php echo $profile_information[0]; ?></h1>
+                        <h1 class="profile-topic-headline"><?php echo $profile_information[0];?></h1>
                     </div>
                     <hr>
                     <?php
@@ -105,7 +106,7 @@
 			$db    = new PDO( $dsn, $dbuser, $dbpass, $option );
 			$sql   = "SELECT profile_text FROM registered_users WHERE user_id = :user;";
 			$query = $db->prepare( $sql );
-			$query->execute( array( ":user" => $user ) );
+			$query->execute( array( ":user" => $profile_foreign_text ) );
 
 			$zeile = $query->fetch();
 			//Hinzufügen einer Erklärung für den Profiltext falls keiner vorhanden ist
