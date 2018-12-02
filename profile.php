@@ -102,10 +102,10 @@
 			echo "<div>" . $zeile["profile_text"] . "</div>";
 			?>
             <hr>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
                 Profiltext bearbeiten
             </button>
-            <button type="button" class="btn btn-primary">
+            <button type="button" class="btn btn-dark">
                Bild ändern
             </button>
             <div class="modal fade registerblock" id="exampleModal" tabindex="-1" role="dialog"

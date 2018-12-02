@@ -1,6 +1,6 @@
 .profile-header {
-  background-color: white;
-  border-radius: 20px;
+  background-color: $background-feed-row;
+  //border-radius: 20px;
   &-cols {
     img {
       border-radius: 200px;
@@ -11,7 +11,7 @@
 }
 .profile-container-row{
   background-color: $background-feed-row;
-  padding: 5px;
+  padding: 10px;
   &-cell{
     background-color: $background-feed-cell;
     padding: 5px;

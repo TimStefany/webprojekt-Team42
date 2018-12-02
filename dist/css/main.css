@@ -8508,7 +8508,7 @@ a.text-dark:hover, a.text-dark:focus {
 * Import der module
 */
 .loginblock {
-  background-color: #046380;
+  background-color: white;
   opacity: 50%;
   border-radius: 20px;
 }
@@ -8531,7 +8531,7 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .navbar .dropdown-item:hover {
-  background-color: #046380;
+  background-color: white;
   color: rgba(255, 255, 255, 0.75);
 }
 
@@ -8649,8 +8649,7 @@ a.text-dark:hover, a.text-dark:focus {
 * Import der Page-Layouts
  */
 .profile-header {
-  background-color: white;
-  border-radius: 20px;
+  background-color: #ebeceb;
 }
 
 .profile-header-cols img {
@@ -8661,7 +8660,7 @@ a.text-dark:hover, a.text-dark:focus {
 
 .profile-container-row {
   background-color: #ebeceb;
-  padding: 5px;
+  padding: 10px;
 }
 
 .profile-container-row-cell {
@@ -8683,7 +8682,7 @@ a.text-dark:hover, a.text-dark:focus {
 
 .placeholder {
   height: 340px;
-  background-color: #046380;
+  background-color: white;
 }
 
 .container-profile {
@@ -8737,11 +8736,11 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 body {
-  background-color: #046380;
+  background-color: white;
 }
 
 h1, .h1, h2, .h2, h3, .h3 {
-  color: white;
+  color: darkslategray;
 }
 
 a:hover {
