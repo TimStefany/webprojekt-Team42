@@ -1,11 +1,10 @@
 .feed-scroll {
+  background-image: url("../../assets/images/background-loginpage.jpg") !important;
   position: absolute;
-  top: 340px;
   height: 100vh;
   width: 100vw;
   overflow: scroll;
   background-color: white;
-  margin-top: 1rem;
   padding: 0 1rem 1rem 0;
   &-row {
     background-color: $background-feed-row;
@@ -15,6 +14,7 @@
     float: left;
     margin-left: 2rem;
     overflow: hidden;
+    box-shadow: 5px 0 15px -4px silver, -5px 0 8px -4px silver;
     a {
         color: darkslategrey;
     }

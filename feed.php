@@ -78,17 +78,17 @@
             Hier beginnt der Inhalt der Seite
         ####################################################################################################################-->
         <main><!--ein Responsive Container in dem der Content steckt-->
-            <div class="container-feed">
+            <!--<div class="container-feed">
                 <h1>Blogname</h1>
                 <!--input Box um Beiträge zu posten-->
-                <form action="invisible-pages/post.php" method="post" enctype="multipart/form-data">
+                <!--<form action="invisible-pages/post.php" method="post" enctype="multipart/form-data">
 
-                    <p><label class="formular-label-color">Blogeintrag:<br>
+                    <p><label class="formular-label-color text-dark">Blogeintrag:<br>
                             <textarea name="post" cols="80" rows="3" placeholder="neuer Eintrag!"
                                       maxlength="200"></textarea></label></p>
                     <p>
                     <div class="ui-widget">
-                        <label class="formular-label-color" for="tags">Topic: </label>
+                        <label class="formular-label-color text-dark" for="tags">Topic: </label>
 
                         <textarea name="topic" id="tags" rows="1"></textarea>
 
@@ -113,19 +113,6 @@
 							</button>
 						</div>
 					</form>-->
-                    <div class="jquery-script-clear"></div>
-                </div>
-                <div id="alert_popover">
-                    <div class="wrapper">
-                        <div class="content">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="placeholder">
-
-            </div>
 			<?php
 				/*###########################################################################################################
 					Hier wird ausgelesen, welchen Nutzern und welcher Topic der Nutzer folgt
@@ -306,44 +293,7 @@
             };
         </script>
 
-        <script> <!--notifcation-->
-            $(document).ready(function () {
 
-                setInterval(function () {
-                    load_last_notification();
-                }, 20000);
-
-                function load_last_notification() {
-                    $.ajax({
-                        url: "invisible-pages/fetch.php",
-                        method: "POST",
-                        success: function (data) {
-                            $('.content').html(data);
-                        }
-                    })
-                }
-
-                $x = document.getElementsByTagName('form1');
-
-                $x.on('submit', function (event) {
-                    event.preventDefault();
-                    if ($('#subject').val() != '' && $('#comment').val() != '') {
-                        var form_data = $(this).serialize();
-                        $.ajax({
-                            url: "invisible-pages/post.php",
-                            method: "POST",
-                            data: form_data,
-                            success: function (data) {
-                                $('#comment_form')[0].reset();
-                            }
-                        })
-                    }
-                    else {
-                        alert("Both Fields are Required");
-                    }
-                });
-            });
-        </script>
         <script>
             setInterval(function(){
                 $.get('invisible-pages/notification-request.php', function(data) {

@@ -3,6 +3,12 @@
     - Felder für die Anmeldung erfordern noch keine Eingabe
     - Überprüfung ob der Nutzer schon angemeldet ist
 -->
+<?php
+session_start();
+	if ( isset ( $_SESSION["signed-in"] ) ) {
+    header('Location:feed.php');
+}else {
+    ?>
 <!doctype html>
 <html class="no-js" lang="de">
 <head>
@@ -11,7 +17,7 @@
     <title>Microblog Team-42</title>
     <meta name="description" content="">
     <?php
-    include 'outsourced-php-code/header.php';
+    include "outsourced-php-code/header.php";
     ?>
 </head>
 <body class="loginpage">
@@ -54,7 +60,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action='invisible-pages/register.php' method='post'>
+                    <form action="invisible-pages/register.php" method="post">
                         <div class="modal-body">
                             <label for="uname"><b>Username</b></label>
                             <input type="text" class="form-control" placeholder="Benutzername Eingeben" name="username" required>
@@ -83,4 +89,4 @@
 </footer>
 </body>
 
-</html>
+</html><?php }?>
