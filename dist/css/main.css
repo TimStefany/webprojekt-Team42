@@ -8514,9 +8514,9 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .registerblock {
-  width: 100%;
-  height: 100%;
-  background-image: url("../../assets/images/background-loginpage.jpg") !important;
+  background-position: center center;
+  background-size: cover;
+  background-image: url(../../assets/images/background-loginpage.jpg) !important;
 }
 
 .navbar i {
@@ -8582,24 +8582,24 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .feed-scroll {
+  background-image: url("../../assets/images/background-loginpage.jpg") !important;
   position: absolute;
-  top: 340px;
   height: 100vh;
   width: 100vw;
   overflow: scroll;
   background-color: white;
-  margin-top: 1rem;
   padding: 0 1rem 1rem 0;
 }
 
 .feed-scroll-row {
-  background-color: #ebeceb;
+  background-color: rgba(235, 236, 235, 0.5);
   padding: 5px;
   width: 400px;
   min-height: 103%;
   float: left;
   margin-left: 2rem;
   overflow: hidden;
+  box-shadow: 5px 0 15px -4px silver, -5px 0 8px -4px silver;
 }
 
 .feed-scroll-row a {
@@ -8655,7 +8655,7 @@ a.text-dark:hover, a.text-dark:focus {
 * Import der Page-Layouts
  */
 .profile-header {
-  background-color: #ebeceb;
+  background-color: rgba(235, 236, 235, 0.5);
 }
 
 .profile-header-cols img {
@@ -8665,7 +8665,7 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .profile-container-row {
-  background-color: #ebeceb;
+  background-color: rgba(235, 236, 235, 0.5);
   padding: 10px;
 }
 
