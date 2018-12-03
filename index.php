@@ -15,6 +15,7 @@
     ?>
 </head>
 <body class="loginpage">
+<div class="background-login"></div>
 <nav>
 
 </nav>

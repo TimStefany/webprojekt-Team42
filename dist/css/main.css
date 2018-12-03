@@ -8701,9 +8701,18 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 
-.loginpage {
+.loginpage .background-login {
+  box-sizing: border-box;
   background-image: url("../../assets/images/background-loginpage.jpg") !important;
-  background-size: 100%;
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  z-index: -1;
 }
 
 .loginpage .bg {
