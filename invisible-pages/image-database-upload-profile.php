@@ -1,8 +1,9 @@
 <?php
 session_start();
 include_once '../outsourced-php-code/userdata.php';
+include_once '../outsourced-php-code/necessary-variables.php';
 //TEst
-if (isset($_POST['upload-profile'])) {
+if (isset($_POST['upload-profile-picture'])) {
     $file = $_FILES['files'];
 
     $filename = $_FILES['files']['name'];
@@ -25,12 +26,8 @@ if (isset($_POST['upload-profile'])) {
                 #wenn es unter 2mb ist bekommt es einen unique namen (mit der jeweiligen endung) damit es nicht überschrieben wird
                 $filenamenew = uniqid('', true) . "." . $fileactualext;
 
-
-                // $_SESSION["imgdatabasename"] = $filenamenew;
-
-                $filedestination = '/home/fs119/public_html/uploads/user_img/' . $filenamenew;
+                $filedestination = $picture_path_upload.'profile_img/' . $filenamenew;
                 move_uploaded_file($filetmpname, $filedestination);
-                #nach dem upload kommt man wieder auf die folgende Seite
 
             } else {
                 echo "Du hast die maximale Dateigröße von 2 Mb überschritten";
@@ -57,11 +54,11 @@ try {
     $user = $_SESSION["user-id"];
 
     $query = $db->prepare("INSERT INTO `pictures` (`picture_path`) VALUES (:imgpath);");
-    $query->execute(array(":imgpath" => $filenamenew));
+    $query->execute(array(":imgpath" => 'profile_img/'.$filenamenew));
 
     $stmt = $db->prepare("SELECT `picture_id` FROM `pictures` WHERE `picture_path`=:imgpath");
 
-    if ($stmt->execute(array(":imgpath" => $filenamenew))) {
+    if ($stmt->execute(array(":imgpath" => 'profile_img/'.$filenamenew))) {
         while ($row = $stmt->fetch()) {
             $picture_id = $row ["picture_id"];
             echo "$picture_id" ;
@@ -84,7 +81,7 @@ try{
     $query1 = $db->prepare("UPDATE `registered_users` SET `picture_id`=:imgid WHERE `user_id` =:user");
     $query1->execute(array(":imgid" => $picture_id, ':user' => $user));
     var_dump($picture_id);
-    //header('Location:profile.php');
+    header('Location:../profile.php');
 }
 catch (PDOException $e) {
     echo "Error!: Bitten wenden Sie sich an den Administrator...<br/>";

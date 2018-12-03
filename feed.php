@@ -43,6 +43,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="feed.php">Feed</a>
                     </li>
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-success" data-toggle="modal"
+                                data-target="#postModal">
+                            Posten
+                        </button>
+                    </li>
                 </ul>
             </div>
             <div>
@@ -113,7 +119,55 @@
 							</button>
 						</div>
 					</form>-->
-			<?php
+
+
+            <!--input Box für Posts-->
+            <!--------------------------------------------------------------------------------------------------------------------------------------------->
+            <div class="postform">
+                <div class="modal fade " id="postModal" tabindex="-1" role="dialog"
+                     aria-labelledby="postModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog vh15" role="document">
+                        <div class="modal-content boxshadow bg-white">
+                            <div class="modal-header">
+                                <h1 class="modal-title" id="postModalLabel">Posten</h1>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="postform">
+                                <form action="invisible-pages/post.php" method="post" enctype="multipart/form-data">
+                                    <div class="modal-body">
+                                        <p><label class="formular-label-color">Blogeintrag:<br>
+                                                <textarea class="form-control" name="post" cols="80" rows="3"
+                                                          placeholder="neuer Eintrag!"
+                                                          maxlength="200"></textarea></label></p>
+                                        <p>
+                                        <div class="ui-widget">
+                                            <label class="formular-label-color text-dark " for="tags">Topic: </label>
+
+                                            <textarea class="form-control" name="topic" id="tags" rows="1"></textarea>
+
+
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="file" name="files" accept="image/*" onchange="loadFile(event)">
+                                        <img id="output" class="image-preview"/>
+
+                                        <button type="submit" name="upload-post-feed" class="btn btn-sm btn-primary">
+                                            Posten
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--------------------------------------------------------------------------------------------------------------------------------------------->
+
+                <?php
 				/*###########################################################################################################
 					Hier wird ausgelesen, welchen Nutzern und welcher Topic der Nutzer folgt
 				###########################################################################################################*/
@@ -215,9 +269,8 @@
                                         $author_information = get_profile_information($row["user_id"]);
 
 										echo '<div class="feed-scroll-row-container-cell">';   //der Gesammte Post steckt in diesem DIV
-                                        var_dump($author_information);
                                         echo '<img src="'.$picture_path_server.$author_information[2].'" class="feed-scroll-row-container-cell-profilepicture" >';
-                                        echo '<a href="profile-foreign.php?id=' . $row["user_id"] . '" class="autor"> +' . $row["user_name"] . '</a><br>';
+                                        echo '<a href="profile-foreign.php?id=' . $row["user_id"] . '" class="autor"> +' . $row["user_name"] . '</a>';
 										if ( $row["topic_id"] != null ) {
 											echo ' /';
 										    echo '<a class="topic-link" href="topic-profile.php?id=' . $row["topic_id"] . '"> +' . $row["topic_name"] . '</a>';
@@ -254,9 +307,10 @@
 									echo '<div class="feed-scroll-row-container-cell">';   //der Gesammte Post steckt in diesem DIV
 
                                     echo '<img src="'.$picture_path_server.$author_information[2].'" class="feed-scroll-row-container-cell-profilepicture" >';
-                                    echo '<a href="profile-foreign.php?id=' . $row["user_id"] . '" class="autor">+ Autor: ' . $row["user_name"] . '</a><br>';
+                                    echo '<a href="profile-foreign.php?id=' . $row["user_id"] . '" class="autor"> + Autor: ' . $row["user_name"] . '</a>';
                                     if ( $row["topic_id"] ) {
-										echo '<a href="topic-profile.php?id=' . $row["topic_id"] . '">+ Topic: ' . $row["topic_name"] . '</a>';
+                                        echo ' /';
+                                        echo '<a href="topic-profile.php?id=' . $row["topic_id"] . '"> + Topic: ' . $row["topic_name"] . '</a>';
 									}
 									echo '<hr class="my-1">';
 									echo '<p>' . $row["content"] . '</p>'; //gibt den Content in einem P Tag aus

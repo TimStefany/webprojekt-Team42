@@ -50,12 +50,17 @@ if (isset ($_SESSION["signed-in"])) {
             </ul>
         </div>
         <div>
-            <li class="dropdown" style="list-style-type:none; margin-left:10px; margin-right:10px;">
-                <a href="#" data-toggle="dropdown"><span
-                            class="label label-pill label-danger count" style="border-radius:10px;"></span> <span <i
-                            class="fas fa-bell"></i> </a>
-                <ul class="dropdown-menu"></ul>
-            </li>
+            <div>
+                <!-- Notification Bell -->
+                <li class="dropdown" style="list-style-type:none; margin-left:10px; margin-right:10px;">
+                    <a href="#" data-toggle="dropdown"><span
+                                class="label label-pill label-danger count" style="border-radius:10px;"></span> <span <i
+                                class="fas fa-bell"></i> </a>
+                    <ul id="reloaded" class="dropdown-menu">
+
+                    </ul>
+                </li>
+            </div>
         </div>
         <div class="d-flex nav-bar-profile-picture"><img
                     src="<?php echo $picture_path_server . $user_information[2]; ?>"
@@ -111,7 +116,7 @@ if (isset ($_SESSION["signed-in"])) {
         <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
             Profiltext bearbeiten
         </button>
-        <button type="button" class="btn btn-dark">
+        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#profile_picture">
             Bild ändern
         </button>
         <div class="modal fade vh15" id="exampleModal" tabindex="-1" role="dialog"
@@ -143,6 +148,32 @@ if (isset ($_SESSION["signed-in"])) {
             </div>
         </div>
 
+        <div class="modal fade vh15" id="profile_picture" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog vh15" role="document">
+                <div class="modal-content boxshadow">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Profiltext Bearbeiten:</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action='invisible-pages/image-database-upload-profile.php' method='post'
+                          enctype="multipart/form-data">
+                        <div class="modal-body">
+                            <div class="modal-footer">
+                                <input type="file" name="files" accept="image/*" onchange="loadFile(event)">
+                                <img id="output" class="image-preview"/>
+                            </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zurück</button>
+                            <input type="submit" name="upload-profile-picture" class="btn btn-primary" value="Update">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
         </div>
         </div>
@@ -278,7 +309,7 @@ if (isset ($_SESSION["signed-in"])) {
                 $.get('invisible-pages/notification-request.php', function (data) {
                     $('#reloaded').html(data);
                 });
-            }, 5000);
+            }, 2000);
         </script>
         </body>
 
