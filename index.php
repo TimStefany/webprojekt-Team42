@@ -22,8 +22,8 @@
 <main class="container"><!--ein Responsive Container in dem der Content steckt-->
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-4 col-sm-4 col-xs-12"></div>
-                <div class="col-md-4 col-sm-4 col-xs-12 modal-header">
+                <div class="col-md-4"></div>
+                <div class="col-md-4 modal-header">
                     <form action="invisible-pages/login-check.php" method="post" class="form-container">
                         <h1>Plus HdM Microblog</h1>
                         <b class="fontnorm">Benutzername:</b><br> <input class="form-control" name="username" type="text"
