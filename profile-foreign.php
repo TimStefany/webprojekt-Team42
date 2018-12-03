@@ -111,7 +111,7 @@
 			$zeile = $query->fetch();
 			//Hinzufügen einer Erklärung für den Profiltext falls keiner vorhanden ist
 			if ($zeile["profile_text"] == NULL) {
-                $zeile["profile_text"] = "Klicke auf bearbeiten um deine Beschreibung hinzuzufügen.";
+                $zeile["profile_text"] = "Kein Profiltext vorhanden.";
             }
 			echo "<span class='profile-headline'>Profiltext:</span>";
 			echo "<div><p>" . $zeile["profile_text"] . "</p></div>";
