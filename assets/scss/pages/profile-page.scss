@@ -1,3 +1,11 @@
+.boxshadow {
+  margin-top: 15vh;
+  -webkit-box-shadow: 1px 4px 26px 8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 1px 4px 26px 8px rgba(0, 0, 0, 0.75);
+  box-shadow: 1px 4px 26px 8px rgba(0, 0, 0, 0.75);
+}
+
+
 .profile-header {
   background-color: $background-feed-row;
   //border-radius: 20px;
@@ -9,24 +17,27 @@
     }
   }
 }
-.profile-container-row{
+
+.profile-container-row {
   background-color: $background-feed-row;
   padding: 10px;
-  &-cell{
+  &-cell {
     background-color: $background-feed-cell;
     padding: 5px;
     margin: 1rem 0.5rem 0 0.5rem;
     box-shadow: 0 5px 10px silver;
 
-    img{
-      width:100%;
-      height:auto;
+    img {
+      width: 100%;
+      height: auto;
     }
   }
 }
+
 .image-preview {
-  width: auto;
-  height: 100px;
+  width: 100px;
+  height: auto;
+  object-fit: cover;
 }
 
 .placeholder {
@@ -34,15 +45,27 @@
   background-color: $primary;
 }
 
+.vh15{
+  margin-top: 15vh;
+}
+.formstyle {
+  margin-top: 15vh;
+  -webkit-box-shadow: 1px 4px 26px 8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 1px 4px 26px 8px rgba(0, 0, 0, 0.75);
+  box-shadow: 1px 4px 26px 8px rgba(0, 0, 0, 0.75);
+  background-color: white;
+}
 .container-profile {
   margin-top: 80px;
 }
-.profile-headline{
+
+.profile-headline {
   font-weight: bold;
 }
+
 @media (max-width: 992px) {
-  .profile-header-cols{
-    img{
+  .profile-header-cols {
+    img {
       display: block;
       margin-left: auto;
       margin-right: auto;

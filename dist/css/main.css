@@ -8654,6 +8654,13 @@ a.text-dark:hover, a.text-dark:focus {
 /*
 * Import der Page-Layouts
  */
+.boxshadow {
+  margin-top: 15vh;
+  -webkit-box-shadow: 1px 4px 26px 8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 1px 4px 26px 8px rgba(0, 0, 0, 0.75);
+  box-shadow: 1px 4px 26px 8px rgba(0, 0, 0, 0.75);
+}
+
 .profile-header {
   background-color: rgba(235, 236, 235, 0.5);
 }
@@ -8682,12 +8689,25 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .image-preview {
-  width: auto;
-  height: 100px;
+  width: 100px;
+  height: auto;
+  object-fit: cover;
 }
 
 .placeholder {
   height: 340px;
+  background-color: white;
+}
+
+.vh15 {
+  margin-top: 15vh;
+}
+
+.formstyle {
+  margin-top: 15vh;
+  -webkit-box-shadow: 1px 4px 26px 8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 1px 4px 26px 8px rgba(0, 0, 0, 0.75);
+  box-shadow: 1px 4px 26px 8px rgba(0, 0, 0, 0.75);
   background-color: white;
 }
 
