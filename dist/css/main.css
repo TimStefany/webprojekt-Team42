@@ -8718,6 +8718,7 @@ a.text-dark:hover, a.text-dark:focus {
 .loginpage .bg {
   width: 100%;
   height: 100%;
+  background-image: url("../../assets/images/background-loginpage.jpg") !important;
 }
 
 .loginpage .fontnorm {

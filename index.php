@@ -43,7 +43,7 @@
 
 
         <!-- Modal für die Registrierung -->
-        <div class="modal fade registerblock bg" id="exampleModal" tabindex="-1" role="dialog"
+        <div class="modal fade registerblock" id="exampleModal" tabindex="-1" role="dialog"
              aria-labelledby="exampleModalLabel"
              aria-hidden="true">
             <div class="modal-dialog" role="document">
