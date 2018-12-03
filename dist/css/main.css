@@ -8513,6 +8513,12 @@ a.text-dark:hover, a.text-dark:focus {
   border-radius: 20px;
 }
 
+.registerblock {
+  width: 100%;
+  height: 100%;
+  background-image: url("../../assets/images/background-loginpage.jpg") !important;
+}
+
 .navbar i {
   color: #ffffff;
 }
@@ -8715,12 +8721,6 @@ a.text-dark:hover, a.text-dark:focus {
   z-index: -1;
 }
 
-.loginpage .bg {
-  width: 100%;
-  height: 100%;
-  background-image: url("../../assets/images/background-loginpage.jpg") !important;
-}
-
 .loginpage .fontnorm {
   font-size: 1rem;
   line-height: 1.5;
@@ -8812,4 +8812,8 @@ a:hover {
 
 .profile-topic-headline {
   color: #000;
+}
+
+.modal-content {
+  background-color: transparent;
 }

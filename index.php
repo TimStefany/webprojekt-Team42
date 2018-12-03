@@ -47,7 +47,7 @@
              aria-labelledby="exampleModalLabel"
              aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <div class="modal-content">
+                <div class="modal-content form-container">
                     <div class="modal-header">
                         <h1 class="modal-title" id="exampleModalLabel">Registrieren</h1>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
