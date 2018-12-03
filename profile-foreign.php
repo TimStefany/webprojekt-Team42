@@ -114,7 +114,7 @@
                 $zeile["profile_text"] = "Klicke auf bearbeiten um deine Beschreibung hinzuzufügen.";
             }
 			echo "<span class='profile-headline'>Profiltext:</span>";
-			echo "<div>" . $zeile["profile_text"] . "</div>";
+			echo "<div><p>" . $zeile["profile_text"] . "</p></div>";
 			$db = null;
 		} catch ( PDOException $e ) {
 			echo "Error!: Bitte wenden Sie sich an den Administrator!?..." . $e;

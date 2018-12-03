@@ -105,7 +105,7 @@ if (isset ($_SESSION["signed-in"])) {
             $zeile["profile_text"] = "Klicke auf bearbeiten um deine Beschreibung hinzuzufügen.";
         }
         echo "<span class='profile-headline'>Profiltext:</span>";
-        echo "<div>" . $zeile["profile_text"] . "</div>";
+        echo "<div><p>" . $zeile["profile_text"] . "</p></div>";
         ?>
         <hr>
         <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">

@@ -1,6 +1,12 @@
 @import '../../node_modules/bootstrap/scss/bootstrap';
 
 /*
+* Import der Fonts
+ */
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+
+/*
 * Allgemeine Styles
  */
 $background-feed-cell: rgb(255, 255, 255);
@@ -34,13 +40,25 @@ body {
 }
 h1, .h1, h2, .h2, h3, .h3 {
   color: $secondary;
+  font-family: 'Roboto',sans-serif;
+  font-weight: lighter;
 }
 
 a {
+  font-family: 'Roboto',sans-serif !important;
+  font-size: 1rem;
   &:hover {
     text-decoration: none;
     cursor: pointer;
   }
+}
+span{
+  font-family: 'Roboto',sans-serif;
+  font-size: 1rem;
+}
+p{
+  font-family: 'Roboto',sans-serif;
+  font-size: 1rem;
 }
 
 .btn-file {

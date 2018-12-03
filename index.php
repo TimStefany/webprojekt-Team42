@@ -32,9 +32,9 @@ session_start();
                 <div class="col-md-4 modal-header">
                     <form action="invisible-pages/login-check.php" method="post" class="form-container">
                         <h1>Plus HdM Microblog</h1>
-                        <b class="fontnorm">Benutzername:</b><br> <input class="form-control" name="username" type="text"
-                                                              placeholder="Benutzername eingeben!"><br>
-                        <b class="fontnorm">Passwort</b> <br> <input class="form-control" name="password" type="password" placeholder="Passwort eingeben!"><br>
+                        <span class="fontnorm">Benutzername:</span><br> <input class="form-control" name="username" type="text"
+                                                              placeholder="Benutzername eingeben!" required><br>
+                        <span class="fontnorm">Passwort</span> <br> <input class="form-control" name="password" type="password" placeholder="Passwort eingeben!" required><br>
                         <p><input class= "form-control btn btn-dark btn-block" name="absenden"  type="submit" value="Login">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-success btn-block" data-toggle="modal"
@@ -62,13 +62,13 @@ session_start();
                     </div>
                     <form action="invisible-pages/register.php" method="post">
                         <div class="modal-body">
-                            <label for="uname"><b>Username</b></label>
+                            <label for="uname"><span class="fontnorm">Nutzername</span></label>
                             <input type="text" class="form-control" placeholder="Benutzername Eingeben" name="username" required>
                             <br>
-                            <label for="psw"><b>Password</b></label>
+                            <label for="psw"><span class="fontnorm">Passwort</span></label>
                             <input type="password" class="form-control" placeholder="Passwort Eingeben" name="password" required>
                             <br>
-                            <label for="psw"><b>Repeat Password</b></label>
+                            <label for="psw"><span class="fontnorm">Passwort wiederholen!</span></label>
                             <input type="password" class="form-control" placeholder="Passwort Wiederholen" name="password-repeat" required>
                             <!-- Button nur vorübergehend bis die folgenden zwei funkitonstüchtig sind -->
 

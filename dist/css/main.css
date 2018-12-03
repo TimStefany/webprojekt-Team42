@@ -4,6 +4,7 @@
  * Copyright 2011-2018 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+@import url("https://fonts.googleapis.com/css?family=Roboto");
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -8502,6 +8503,9 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 /*
+* Import der Fonts
+ */
+/*
 * Allgemeine Styles
  */
 /*
@@ -8583,6 +8587,8 @@ a.text-dark:hover, a.text-dark:focus {
 
 .feed-scroll {
   background-image: url("../../assets/images/background-loginpage.jpg") !important;
+  background-position: center center;
+  background-size: cover;
   position: absolute;
   height: 100vh;
   width: 100vw;
@@ -8742,7 +8748,7 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .loginpage .fontnorm {
-  font-size: 1rem;
+  font-weight: bold;
   line-height: 1.5;
   color: #212529;
   text-align: left;
@@ -8771,11 +8777,28 @@ body {
 
 h1, .h1, h2, .h2, h3, .h3 {
   color: darkslategray;
+  font-family: 'Roboto',sans-serif;
+  font-weight: lighter;
+}
+
+a {
+  font-family: 'Roboto',sans-serif !important;
+  font-size: 1rem;
 }
 
 a:hover {
   text-decoration: none;
   cursor: pointer;
+}
+
+span {
+  font-family: 'Roboto',sans-serif;
+  font-size: 1rem;
+}
+
+p {
+  font-family: 'Roboto',sans-serif;
+  font-size: 1rem;
 }
 
 .btn-file {
