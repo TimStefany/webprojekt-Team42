@@ -54,4 +54,3 @@ try {
     echo "Error2!: Bitten wenden Sie sich an den Administrator...";
     die();
 }
-header('Location: ../profile.php');

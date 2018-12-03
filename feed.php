@@ -228,7 +228,7 @@
                                         $author_information = get_profile_information($row["user_id"]);
 
 										echo '<div class="feed-scroll-row-container-cell">';   //der Gesammte Post steckt in diesem DIV
-
+                                        var_dump($author_information);
                                         echo '<img src="'.$picture_path_server.$author_information[2].'" class="feed-scroll-row-container-cell-profilepicture" >';
                                         echo '<a href="profile-foreign.php?id=' . $row["user_id"] . '" class="autor"> +' . $row["user_name"] . '</a><br>';
 										if ( $row["topic_id"] != null ) {

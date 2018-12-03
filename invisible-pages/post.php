@@ -6,6 +6,7 @@ if (isset ($_SESSION["signed-in"])) {
     $topic = htmlspecialchars($_POST["topic"], ENT_QUOTES, "UTF-8");
     $user_id = $_SESSION["user-id"];
     include_once '../outsourced-php-code/userdata.php';
+    include_once '../outsourced-php-code/necessary-variables.php';
 
     /*#############################################################################################################
         Ab hier wird getestet ob der Post ein Bild angehängt hat
@@ -37,11 +38,8 @@ if (isset ($_SESSION["signed-in"])) {
                     #wenn es unter 2mb ist bekommt es einen unique namen (mit der jeweiligen endung) damit es nicht überschrieben wird
                     $filenamenew = uniqid('', true) . "." . $fileactualext;
 
-                    var_dump($file);
-                    // $_SESSION["imgdatabasename"] = $filenamenew;
-
-                    $filedestination = '/home/fs119/public_html/uploads/post_img/' . $filenamenew;
-                    move_uploaded_file($filetmpname, $filedestination);
+                    $filedestination = $picture_path_upload.'post_img/'.$filenamenew;
+                    move_uploaded_file ($filetmpname, $filedestination);
 
                     try {
                         $db = new PDO($dsn, $dbuser, $dbpass, $option);
@@ -49,10 +47,10 @@ if (isset ($_SESSION["signed-in"])) {
                         $user = $_SESSION["user-id"];
 
                         $query = $db->prepare("INSERT INTO `pictures` (`picture_path`) VALUES (:imgpath);");
-                        $query->execute(array(":imgpath" => $filenamenew));
+                        $query->execute(array(":imgpath" => 'post_img/'.$filenamenew));
 
                         $stmt = $db->prepare("SELECT `picture_id` FROM `pictures` WHERE `picture_path`=:imgpath");
-                        if ($stmt->execute(array(":imgpath" => $filenamenew))) {
+                        if ($stmt->execute(array(":imgpath" => 'post_img/'.$filenamenew))) {
                             while ($row = $stmt->fetch()) {
                                 $picture_id = $row ["picture_id"];
                             }
