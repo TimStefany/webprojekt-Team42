@@ -118,7 +118,7 @@ if (isset ($_SESSION["signed-in"])) {
              aria-labelledby="exampleModalLabel"
              aria-hidden="true">
             <div class="modal-dialog vh15" role="document">
-                <div class="modal-content boxshadow ">
+                <div class="modal-content boxshadow">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Profiltext Bearbeiten:</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -156,7 +156,7 @@ if (isset ($_SESSION["signed-in"])) {
                  aria-labelledby="postModalLabel"
                  aria-hidden="true">
                 <div class="modal-dialog vh15" role="document">
-                    <div class="modal-content boxshadow">
+                    <div class="modal-content boxshadow bg-white">
                         <div class="modal-header">
                             <h1 class="modal-title" id="postModalLabel">Posten</h1>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
