@@ -17,24 +17,34 @@ try {
 
 try {
     $db = new PDO($dsn, $dbuser, $dbpass, $option);
-    $stmt = $db->prepare("SELECT `following_user_id_user` FROM `user_follow_user` WHERE `followed_user_id`= :user
-                                    UNION ALL 
-                                    SELECT `following_user_id_topic` FROM `user_follow_topic` WHERE `followed_topic_id`= :topic");
-    if ($stmt->execute(array(":user"=>$_SESSION["user-id"], ":topic"=>$post_information["topic_id"]))){
+    $stmt = $db->prepare("SELECT `following_user_id_user` FROM `user_follow_user` WHERE `followed_user_id`= :user");
+    if ($stmt->execute(array(":user"=>$_SESSION["user-id"]))){
         while ($spalte = $stmt->fetch()){
             if (in_array($spalte[0], $result)){
 
             }
             else {
-                echo 'TEST';
-                $result[] = $spalte[0];
+                if ($spalte[0] !== $_SESSION["user-id"]){
+                    $result[] = $spalte[0];
+                }
             }
-
         }
-        echo 'TEST';
     }
     else {
         echo 'Datenbank Fehler 1234';
+    }
+    $stmt2 = $db->prepare ("SELECT `following_user_id_topic` FROM `user_follow_topic` WHERE `followed_topic_id`= :topic");
+    if ($stmt2->execute(array(":topic"=>$post_information["topic_id"]))){
+        while ($spalte = $stmt->fetch()){
+            if (in_array($spalte[0], $result)){
+
+            }
+            else {
+                if ($spalte[0] !== $_SESSION["user-id"]){
+                    $result[] = $spalte[0];
+                }
+            }
+        }
     }
     $db = 0;
 

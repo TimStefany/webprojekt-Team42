@@ -1,6 +1,5 @@
 <!-- ToDo
     - Stylen
-    - URL bearbeiten?
 -->
 <?php
 session_start();
