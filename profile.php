@@ -200,14 +200,12 @@
                                         <p><label class="formular-label-color">Blogeintrag:<br>
                                                 <textarea class="form-control" name="post" cols="80" rows="3"
                                                           placeholder="neuer Eintrag!"
-                                                          maxlength="200"></textarea></label></p>
+                                                          maxlength="200" required></textarea></label></p>
                                         <p>
                                         <div class="ui-widget">
-                                            <label class="formular-label-color text-dark " for="tags">Topic: </label>
-
-                                            <textarea class="form-control" name="topic" id="tags" rows="1"></textarea>
-
-
+                                            <!--<textarea class="form-control" name="topic" id="tags" rows="1"></textarea>-->
+                                            <label class="formular-label-color" for="tags">Topic: </label>
+                                            <input class ="form-control" name="topic" id="tags">
                                         </div>
 
                                     </div>

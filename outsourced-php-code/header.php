@@ -22,16 +22,15 @@ Einbindung siehe -> index.php-->
 <link rel="stylesheet" type="text/css" href="../dist/css/main.css" />
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script>
-    $(function () {
+    $( function() {
         var availableTags = [
-			<?php
+            <?php
             include_once "autocomplete-adjustment.php"?>
-
         ];
-        $("#tags").autocomplete({
+        $( "#tags" ).autocomplete({
             source: availableTags
         });
-    });
+    } );
 </script>
 
 

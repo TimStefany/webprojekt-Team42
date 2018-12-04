@@ -8713,6 +8713,10 @@ a.text-dark:hover, a.text-dark:focus {
   font-weight: bold;
 }
 
+.profile-transparent-bg .profile-container-row-cell p {
+  font-size: 13px;
+}
+
 .profile-transparent-bg .profile-container-row-cell img {
   width: 100%;
   height: auto;
@@ -8801,12 +8805,12 @@ body {
 
 h1, .h1, h2, .h2, h3, .h3 {
   color: darkslategray;
-  font-family: 'Roboto',sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: lighter;
 }
 
 a {
-  font-family: 'Roboto',sans-serif !important;
+  font-family: 'Roboto', sans-serif !important;
   font-size: 1rem;
 }
 
@@ -8816,12 +8820,12 @@ a:hover {
 }
 
 span {
-  font-family: 'Roboto',sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 1rem;
 }
 
 p {
-  font-family: 'Roboto',sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 1rem;
 }
 
@@ -8846,35 +8850,8 @@ p {
   display: block;
 }
 
-/*
-*       NOTIFICATION
- */
-#alert_popover {
-  display: block;
-  position: absolute;
-  bottom: 50px;
-  left: 50px;
-}
-
-.wrapper {
-  display: table-cell;
-  vertical-align: bottom;
-  height: auto;
-  width: 200px;
-}
-
-.alert_default {
-  color: #333333;
-  background-color: #ffc107;
-  border-color: #cccccc;
-  border-radius: 10px;
-}
-
-/*
-*     WIEDER UNSER NORMALES CSS
- */
 .formular-label-color {
-  color: white;
+  color: black;
 }
 
 .profile-topic-headline {
@@ -8883,4 +8860,16 @@ p {
 
 .modal-content {
   background-color: transparent;
+}
+
+.ui-autocomplete-input {
+  z-index: 1511;
+  position: relative;
+}
+
+.ui-autocomplete {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1510 !important;
 }

@@ -1,20 +1,18 @@
 @import '../../node_modules/bootstrap/scss/bootstrap';
-
 /*
 * Import der Fonts
  */
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
-
 /*
 * Allgemeine Styles
  */
 $background-feed-cell: rgb(255, 255, 255);
-$label-text-formular:rgb(255, 255, 255);
-$background-feed-row: rgba(235, 236, 235,0.5);
+$label-text-formular: rgb(255, 255, 255);
+$background-feed-row: rgba(235, 236, 235, 0.5);
 $primary: rgb(255, 255, 255);
-$secondary: rgb(47,79,79); // Überschriften und Überschriften in den rows.
-$third: rgb(0,0,0); //Überschrift im Profile oder Topic header.
+$secondary: rgb(47, 79, 79); // Überschriften und Überschriften in den rows.
+$third: rgb(0, 0, 0); //Überschrift im Profile oder Topic header.
 
 /*
 * Import der module
@@ -25,7 +23,6 @@ $third: rgb(0,0,0); //Überschrift im Profile oder Topic header.
 @import "../../assets/scss/module/feed-scroll.scss";
 @import "../../assets/scss/module/post-formular.scss";
 
-
 /*
 * Import der Page-Layouts
  */
@@ -34,30 +31,32 @@ $third: rgb(0,0,0); //Überschrift im Profile oder Topic header.
 @import "../../assets/scss/pages/feed-page.scss";
 @import "../../assets/scss/pages/topic-page.scss";
 
-
 body {
   background-color: $primary;
 }
+
 h1, .h1, h2, .h2, h3, .h3 {
   color: $secondary;
-  font-family: 'Roboto',sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: lighter;
 }
 
 a {
-  font-family: 'Roboto',sans-serif !important;
+  font-family: 'Roboto', sans-serif !important;
   font-size: 1rem;
   &:hover {
     text-decoration: none;
     cursor: pointer;
   }
 }
-span{
-  font-family: 'Roboto',sans-serif;
+
+span {
+  font-family: 'Roboto', sans-serif;
   font-size: 1rem;
 }
-p{
-  font-family: 'Roboto',sans-serif;
+
+p {
+  font-family: 'Roboto', sans-serif;
   font-size: 1rem;
 }
 
@@ -81,38 +80,25 @@ p{
   cursor: inherit;
   display: block;
 }
-/*
-*       NOTIFICATION
- */
-#alert_popover {
-  display: block;
-  position: absolute;
-  bottom: 50px;
-  left: 50px;
-}
-.wrapper {
-  display: table-cell;
-  vertical-align: bottom;
-  height: auto;
-  width: 200px;
-}
-
-.alert_default {
-  color: #333333;
-  background-color: $warning;
-  border-color: #cccccc;
-  border-radius: 10px;
-}
-/*
-*     WIEDER UNSER NORMALES CSS
- */
 
 .formular-label-color {
-  color: $label-text-formular;
+  color: black;
 }
-.profile-topic-headline{
+
+.profile-topic-headline {
   color: $black;
 }
-.modal-content{
+
+.modal-content {
   background-color: transparent;
+}
+.ui-autocomplete-input {
+  z-index: 1511;
+  position: relative;
+}
+.ui-autocomplete {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1510 !important;
 }

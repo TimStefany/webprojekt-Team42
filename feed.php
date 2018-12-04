@@ -97,19 +97,17 @@
                                 </button>
                             </div>
                             <div class="postform">
-                                <form action="invisible-pages/post.php" method="post" enctype="multipart/form-data">
+                                <form action="invisible-pages/post-feed.php" method="post" enctype="multipart/form-data">
                                     <div class="modal-body">
                                         <p><label class="formular-label-color">Blogeintrag:<br>
                                                 <textarea class="form-control" name="post" cols="80" rows="3"
                                                           placeholder="neuer Eintrag!"
-                                                          maxlength="200"></textarea></label></p>
+                                                          maxlength="200" required></textarea></label></p>
                                         <p>
                                         <div class="ui-widget">
-                                            <label class="formular-label-color text-dark " for="tags">Topic: </label>
-
-                                            <textarea class="form-control" name="topic" id="tags" rows="1"></textarea>
-
-
+                                            <!--<textarea class="form-control" name="topic" id="tags" rows="1"></textarea>-->
+                                            <label class="formular-label-color" for="tags">Topic: </label>
+                                            <input class ="form-control" name="topic" id="tags">
                                         </div>
 
                                     </div>
@@ -117,7 +115,7 @@
                                         <input type="file" name="files" accept="image/*" onchange="loadFile(event)">
                                         <img id="output" class="image-preview"/>
 
-                                        <button type="submit" name="upload-post-feed" class="btn btn-sm btn-primary">
+                                        <button type="submit" name="upload-post-profile" class="btn btn-sm btn-primary">
                                             Posten
                                         </button>
                                     </div>
