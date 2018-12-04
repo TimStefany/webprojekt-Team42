@@ -268,6 +268,10 @@ if (isset ($_SESSION["signed-in"])) {
                     while ($row = $stmt->fetch()) {
                         echo '<div class="profile-container-row">';
                         echo '<div class="profile-container-row-cell">';
+                        if ($row["topic_name"]!== null ){
+                            echo  '/ <a class="topic-link" href="topic-profile.php?id=' . $row["topic_id"] . '"> +' . $row["topic_name"] . '</a>';
+                            echo '<hr class="my-1">';
+                        }
                         echo '<p>' . $row["content"] . '</p>';
                         if ($row["picture_id"] != null) {
                             echo '<img src="' . $picture_path_server . $row["picture_path"] . '">';

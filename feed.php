@@ -244,8 +244,10 @@
 
 										echo '<img src="'.$picture_path_server.$author_information[2].'" class="feed-scroll-row-container-cell-profilepicture" >';
                                         echo '<a href="profile-foreign.php?id=' . $row["user_id"] . '" class="autor"> +' . $row["user_name"] . '</a>';
-                                        echo ' /';
-                                        echo '<a class="topic-link" href="topic-profile.php?id=' . $row["topic_id"] . '"> +' . $row["topic_name"] . '</a>';
+                                        if ($row["topic_id"] !== null) {
+                                            echo ' /';
+                                            echo '<a class="topic-link" href="topic-profile.php?id=' . $row["topic_id"] . '"> +' . $row["topic_name"] . '</a>';
+                                        }
                                         echo '<hr class="my-1">';
 										echo '<p>' . $row["content"] . '</p>'; //gibt den Content in einem P Tag aus
 										//gibt den Nutzernamen des Autors als Link aus
