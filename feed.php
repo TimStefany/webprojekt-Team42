@@ -81,44 +81,7 @@
         <!--####################################################################################################################
             Hier beginnt der Inhalt der Seite
         ####################################################################################################################-->
-        <main><!--ein Responsive Container in dem der Content steckt-->
-            <!--<div class="container-feed">
-                <h1>Blogname</h1>
-                <!--input Box um Beiträge zu posten-->
-                <!--<form action="invisible-pages/post.php" method="post" enctype="multipart/form-data">
-
-                    <p><label class="formular-label-color text-dark">Blogeintrag:<br>
-                            <textarea name="post" cols="80" rows="3" placeholder="neuer Eintrag!"
-                                      maxlength="200"></textarea></label></p>
-                    <p>
-                    <div class="ui-widget">
-                        <label class="formular-label-color text-dark" for="tags">Topic: </label>
-
-                        <textarea name="topic" id="tags" rows="1"></textarea>
-
-                        <input type="file" name="files" accept="image/*" onchange="loadFile(event)">
-                        <img id="output" class="image-preview"/>
-
-                        <button type="submit" name="upload-post-feed" class="btn btn-sm btn-primary">Posten</button>
-                    </div>
-                </form>
-                <div class="container">
-                    <!-- Standart Form -->
-                    <!--            enctype muss rein weil es wichtig für die übergabe des IMGs ist-->
-                    <!--            specifies how the form data should be encoded-->
-                    <!--<form action="invisible-pages/image-database-upload-profile.php" method="post" enctype="multipart/form-data">
-						<div class="form-inline">
-							<div class="form-group">
-								<input type="file" name="files" accept="image/*" onchange="loadFile(event)">
-								<img id="output"/>
-							</div>
-							<button type="submit" name="upload-profile" class="btn btn-sm btn-primary">Das hier ist zum
-								Profilfoto ändern
-							</button>
-						</div>
-					</form>-->
-
-
+        <main>
             <!--input Box für Posts-->
             <!--------------------------------------------------------------------------------------------------------------------------------------------->
             <div class="postform">
