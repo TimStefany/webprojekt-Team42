@@ -316,7 +316,7 @@
                 $.get('invisible-pages/notification-request.php', function(data) {
                     $('#reloaded').html(data);
                 });
-            }, 5000);
+            }, 2000);
         </script>
         </body>
 
