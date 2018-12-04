@@ -26,6 +26,7 @@
 
         </head>
     <body>
+        <div class="background-login"></div>
         <nav class="navbar  fixed-top navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="#">Plus - Microblog</a>
             <form class="form-inline my-2 my-lg-0">
@@ -226,7 +227,7 @@
             </div>
             </div>
             <hr>
-            <div>
+            <div class="profile-transparent-bg">
                 <h2>Deine Beiträge:</h2>
 				<?php
 					/*#############################################################################################################

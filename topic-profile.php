@@ -43,6 +43,7 @@
 </head>
 
 <body>
+<div class="background-login"></div>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">Plus - Microblog</a>
     <form class="form-inline my-2 my-lg-0">
@@ -124,7 +125,7 @@
 		echo '</div>';
 		echo '</div>';
 		echo '<hr>';
-		echo '<div>';
+		echo '<div class="profile-transparent-bg">';
 		echo '<h2>Beiträge in ' . $topic_name . ':</h2>';
 
 		try {

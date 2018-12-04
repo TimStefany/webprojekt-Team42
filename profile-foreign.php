@@ -41,6 +41,7 @@ $user_name = $profile_information[0];
     ?>
 </head>
 <body>
+<div class="background-login"></div>
 <nav class="navbar  fixed-top navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">Plus - Microblog</a>
     <form class="form-inline my-2 my-lg-0">
@@ -160,7 +161,7 @@ $user_name = $profile_information[0];
     /*#############################################################################################################
         Alle Beiträge des Nutzers anzeigen
     ###############################################################################################################*/
-    echo '<div>';
+    echo '<div class="profile-transparent-bg">';
     echo '<h2>Beiträge von ' . $user_name . ':</h2>';
 
     try {

@@ -5,6 +5,19 @@
   box-shadow: 1px 4px 26px 8px rgba(0, 0, 0, 0.75);
 }
 
+.background-login {
+  box-sizing: border-box;
+  background-image: url("../../assets/images/background-loginpage.jpg") !important;
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  z-index: -1;
+}
 
 .profile-header {
   background-color: $background-feed-row;
@@ -18,21 +31,26 @@
   }
 }
 
-.profile-container-row {
+.profile-transparent-bg {
   background-color: $background-feed-row;
-  padding: 10px;
-  &-cell {
-    background-color: $background-feed-cell;
-    padding: 5px;
-    margin: 1rem 0.5rem 0 0.5rem;
-    box-shadow: 0 5px 10px silver;
-    .topic-link{
-      color: black;
-      font-weight: bold;
-    }
-    img {
-      width: 100%;
-      height: auto;
+  h2 {
+    padding: 18px 18px 0 !important;
+  }
+  .profile-container-row {
+    padding: 10px;
+    &-cell {
+      background-color: $background-feed-cell;
+      padding: 5px;
+      margin: 1rem 0.5rem 0 0.5rem;
+      box-shadow: 0 5px 10px silver;
+      .topic-link {
+        color: black;
+        font-weight: bold;
+      }
+      img {
+        width: 100%;
+        height: auto;
+      }
     }
   }
 }
@@ -48,9 +66,10 @@
   background-color: $primary;
 }
 
-.vh15{
+.vh15 {
   margin-top: 15vh;
 }
+
 .formstyle {
   margin-top: 15vh;
   -webkit-box-shadow: 1px 4px 26px 8px rgba(0, 0, 0, 0.75);
@@ -58,6 +77,7 @@
   box-shadow: 1px 4px 26px 8px rgba(0, 0, 0, 0.75);
   background-color: white;
 }
+
 .container-profile {
   margin-top: 80px;
 }
