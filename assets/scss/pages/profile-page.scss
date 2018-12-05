@@ -47,7 +47,7 @@
         color: black;
         font-weight: bold;
       }
-      p{
+      p {
         font-size: 13px;
       }
       img {
@@ -59,10 +59,11 @@
 }
 
 .image-preview {
-  width: 100px;
+  width: 100px !important;
   height: auto;
   object-fit: cover;
 }
+
 
 .placeholder {
   height: 340px;
@@ -89,6 +90,21 @@
   font-weight: bold;
 }
 
+.modal-footer{
+  box-sizing: unset;
+}
+.profile-header-cols {
+  img{
+    width: 300px;
+    height: auto;}
+}
+
+.profile-picture{
+  border-radius: 100%;
+  width: 300px;
+  height: 300px !important;
+}
+
 @media (max-width: 992px) {
   .profile-header-cols {
     img {
@@ -98,3 +114,12 @@
     }
   }
 }
+
+
+@media (max-width: 575px) {
+  .verschiebung {
+    max-width: 200px;
+  }
+}
+
+

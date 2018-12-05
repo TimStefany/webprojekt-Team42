@@ -8684,7 +8684,6 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .profile-header-cols img {
-  border-radius: 200px;
   width: 300px;
   height: auto;
 }
@@ -8723,7 +8722,7 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .image-preview {
-  width: 100px;
+  width: 100px !important;
   height: auto;
   object-fit: cover;
 }
@@ -8753,11 +8752,32 @@ a.text-dark:hover, a.text-dark:focus {
   font-weight: bold;
 }
 
+.modal-footer {
+  box-sizing: unset;
+}
+
+.profile-header-cols img {
+  width: 300px;
+  height: auto;
+}
+
+.profile-picture {
+  border-radius: 100%;
+  width: 300px;
+  height: 300px !important;
+}
+
 @media (max-width: 992px) {
   .profile-header-cols img {
     display: block;
     margin-left: auto;
     margin-right: auto;
+  }
+}
+
+@media (max-width: 575px) {
+  .verschiebung {
+    max-width: 200px;
   }
 }
 

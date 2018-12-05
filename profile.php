@@ -5,10 +5,10 @@ include_once 'outsourced-php-code/necessary-variables.php';
 include_once 'outsourced-php-code/select-profile-funktion.php';
 
 //ausführen der Funktion, um alle Benutzerinformationen in eine Variable zu schreiben
-$user_information = get_profile_information($_SESSION["user-id"]);
+$user_information = get_profile_information( $_SESSION["user-id"] );
 
 //pushhelp
-if (isset ($_SESSION["signed-in"])) {
+if ( isset ( $_SESSION["signed-in"] ) ) {
 
 
     ?>
@@ -66,7 +66,7 @@ if (isset ($_SESSION["signed-in"])) {
         </div>
         <div class="d-flex nav-bar-profile-picture"><img
                     src="<?php echo $picture_path_server . $user_information[2]; ?>"
-                    class="img-circle profil-image-small">
+                    class="img-circle ">
             <a href="profile.php"
                class="nav-item active nav-link username"><?php echo $_SESSION["user-name"]; ?></a>
             <a class="nav-link dropdown-toggle username" href="#" id="navbarDropdown" role="button"
@@ -87,17 +87,8 @@ if (isset ($_SESSION["signed-in"])) {
     <div class="profile-header">
     <div class="profile-header-cols">
     <div class="row">
-    <div class="col-lg-4 p-3">
-        <?php
-        if ($user_information[2] !== "") {
-            ?>
-            <img src="<?php echo $picture_path_server . $user_information[2]; ?>" alt="Profilbild">
-            <?php
-        } else { //default Profilbild
-            ?>
-            <img src="<?php echo $picture_path_server . $default_avatar_path; ?>" alt="Profilbild">
-            <?php
-        } ?>
+    <div class="col-lg-4 p-3" >
+        <img class="profile-picture" src="<?php echo $picture_path_server . $user_information[2]; ?>" alt="Profilbild">
     </div>
     <div class="col-lg-8 p-5">
     <div>
@@ -109,14 +100,14 @@ if (isset ($_SESSION["signed-in"])) {
     $user = $_SESSION["user-id"];
 
     try {
-        $db = new PDO($dsn, $dbuser, $dbpass, $option);
-        $sql = "SELECT profile_text FROM registered_users WHERE user_id = :user;";
-        $query = $db->prepare($sql);
-        $query->execute(array(":user" => $user));
+        $db    = new PDO( $dsn, $dbuser, $dbpass, $option );
+        $sql   = "SELECT profile_text FROM registered_users WHERE user_id = :user;";
+        $query = $db->prepare( $sql );
+        $query->execute( array( ":user" => $user ) );
 
         $zeile = $query->fetch();
         //Hinzufügen einer Erklärung für den Profiltext falls keiner vorhanden ist
-        if ($zeile["profile_text"] == null) {
+        if ( $zeile["profile_text"] == null ) {
             $zeile["profile_text"] = "Klicke auf bearbeiten um deine Beschreibung hinzuzufügen.";
         }
         echo "<span class='profile-headline'>Profiltext:</span>";
@@ -171,10 +162,8 @@ if (isset ($_SESSION["signed-in"])) {
                     <form action='invisible-pages/image-database-upload-profile.php' method='post'
                           enctype="multipart/form-data">
                         <div class="modal-body">
-                            <div class="modal-footer">
-                                <input type="file" name="files" accept="image/*" onchange="loadFile(event)">
-                                <img id="output" class="image-preview"/>
-                            </div>
+                            <input class="verschiebung" type="file" name="files" accept="image/*" onchange="loadFile(event)">
+                            <img id="output" class="image-preview"/>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Zurück</button>
                                 <input type="submit" name="upload-profile-picture" class="btn btn-primary"
@@ -214,14 +203,13 @@ if (isset ($_SESSION["signed-in"])) {
                                     <div class="ui-widget">
                                         <!--<textarea class="form-control" name="topic" id="tags" rows="1"></textarea>-->
                                         <label class="formular-label-color" for="tags">Topic: </label>
-                                        <input class="form-control" name="topic" id="tags">
+                                        <input class ="form-control" name="topic" id="tags">
                                     </div>
 
                                 </div>
                                 <div class="modal-footer">
-                                    <input type="file" name="files" accept="image/*" onchange="loadFile(event)">
-                                    <img id="output" class="image-preview"/>
-
+                                    <input class="verschiebung"type="file" name="files" accept="image/*" onchange="loadFile(event)">
+                                    <img id="output1" class="image-preview"/>
                                     <button type="submit" name="upload-post-profile" class="btn btn-sm btn-primary">
                                         Posten
                                     </button>
@@ -241,19 +229,19 @@ if (isset ($_SESSION["signed-in"])) {
                 Alle Beiträge des Nutzers anzeigen
             ###############################################################################################################*/
             try {
-                $db = new PDO($dsn, $dbuser, $dbpass, $option);
-                $stmt = $db->prepare("SELECT * FROM posts_registered_users_topics_pictures_view WHERE user_id = :user");
+                $db   = new PDO( $dsn, $dbuser, $dbpass, $option );
+                $stmt = $db->prepare( "SELECT * FROM posts_registered_users_topics_pictures_view WHERE user_id = :user" );
 
-                if ($stmt->execute(array(":user" => $_SESSION["user-id"]))) {
-                    while ($row = $stmt->fetch()) {
+                if ( $stmt->execute( array( ":user" => $_SESSION["user-id"] ) ) ) {
+                    while ( $row = $stmt->fetch() ) {
                         echo '<div class="profile-container-row">';
                         echo '<div class="profile-container-row-cell">';
-                        if ($row["topic_name"] !== null) {
+                        if ( $row["topic_name"] !== null ) {
                             echo '/ <a class="topic-link" href="topic-profile.php?id=' . $row["topic_id"] . '"> +' . $row["topic_name"] . '</a>';
                             echo '<hr class="my-1">';
                         }
                         echo '<p>' . $row["content"] . '</p>';
-                        if ($row["picture_id"] != null) {
+                        if ( $row["picture_id"] != null ) {
                             echo '<img src="' . $picture_path_server . $row["picture_path"] . '">';
                         }
                         echo '</div>';
@@ -264,7 +252,7 @@ if (isset ($_SESSION["signed-in"])) {
                     echo 'bitte wende dich an den Administrator';
                 }
 
-            } catch (PDOException $e) {
+            } catch ( PDOException $e ) {
                 echo "Error!: Bitten wenden Sie sich an den Administrator...<br/>";
                 die();
             }
@@ -286,8 +274,11 @@ if (isset ($_SESSION["signed-in"])) {
             var loadFile = function (event) {
                 var output = document.getElementById('output');
                 output.src = URL.createObjectURL(event.target.files[0]);
+                var output1 = document.getElementById('output1');
+                output1.src = URL.createObjectURL(event.target.files[0]);
             };
         </script>
+
         <script>
             setInterval(function () {
                 $.get('invisible-pages/notification-request.php', function (data) {
@@ -300,7 +291,7 @@ if (isset ($_SESSION["signed-in"])) {
         </html>
         <?php
         $db = null;
-    } catch (PDOException $e) {
+    } catch ( PDOException $e ) {
         echo "Error!: Bitte wenden Sie sich an den Administrator!?..." . $e;
         die();
     }
