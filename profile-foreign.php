@@ -90,8 +90,16 @@ $user_name = $profile_information[0];
         <div class="profile-header-cols">
             <div class="row">
                 <div class="col-lg-4 p-3">
-                    <img src="<?php echo $picture_path_server . $profile_information[2]; ?>"
-                         width="300" height="auto" alt="Profilbild">
+                    <?php
+                    if ($profile_information[2] !== "") {
+                        ?>
+                        <img src="<?php echo $picture_path_server . $profile_information[2]; ?>" alt="Profilbild">
+                        <?php
+                    } else { //default Profilbild
+                        ?>
+                        <img src="<?php echo $picture_path_server . $default_avatar_path; ?>" alt="Profilbild">
+                        <?php
+                    } ?>
                 </div>
 
                 <div class="col-lg-8 p-5">

@@ -89,7 +89,7 @@ if (isset ($_SESSION["signed-in"])) {
     <div class="row">
     <div class="col-lg-4 p-3">
         <?php
-        if ($row["picture_path"] !== null) {
+        if ($user_information[2] !== "") {
             ?>
             <img src="<?php echo $picture_path_server . $user_information[2]; ?>" alt="Profilbild">
             <?php
@@ -98,7 +98,6 @@ if (isset ($_SESSION["signed-in"])) {
             <img src="<?php echo $picture_path_server . $default_avatar_path; ?>" alt="Profilbild">
             <?php
         } ?>
-        <img src="<?php echo $picture_path_server . $user_information[2]; ?>" alt="Profilbild">
     </div>
     <div class="col-lg-8 p-5">
     <div>
