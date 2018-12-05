@@ -28,10 +28,13 @@
         <div style="height:61px;"></div>
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="#">Plus - Microblog</a>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <!---------------Search Teil der Nav Bar------------------------------------------------------------------------->
+            <form class="form-inline my-2 my-lg-0" action="find.php" method="get">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
                 <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Find</button>
             </form>
+            <!-------------------------------------------------------------------------------------------------------------->
+            <!---------------Weis leider nich was das ist------------------------------------------------------------------->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -41,16 +44,19 @@
                     <li class="nav-item">
                         <a class="nav-link" href="feed.php">Feed</a>
                     </li>
+                    <!--------Posten Modal Button--------------------------------------------------------------------------->
                     <li class="nav-item">
                         <button type="button" class="btn btn-success" data-toggle="modal"
                                 data-target="#postModal">
                             Posten
                         </button>
                     </li>
+                    <!----------------------------------------------------------------------------------------------------->
                 </ul>
             </div>
+            <!-------------------------------------------------------------------------------------------------------------->
+            <!---------------------Notification Bell------------------------------------------------------------------------>
             <div>
-                <!-- Notification Bell -->
                 <li class="dropdown" style="list-style-type:none; margin-left:10px; margin-right:10px;">
                     <a href="#" data-toggle="dropdown"><span
                                 class="label label-pill label-danger count" style="border-radius:10px;"></span> <span <i
@@ -60,6 +66,8 @@
                     </ul>
                 </li>
             </div>
+            <!-------------------------------------------------------------------------------------------------------------->
+            <!----------------------Profil Bild und Name und Dropdown------------------------------------------------------->
             <div class="d-flex nav-bar-profile-picture"><img
                         src="<?php echo $picture_path_server . $user_information[2]; ?>"
                         class="img-circle profil-image-small">
@@ -77,13 +85,13 @@
                     <a class="dropdown-item" href="invisible-pages/logout.php">Ausloggen</a>
                 </div>
             </div>
+            <!-------------------------------------------------------------------------------------------------------------->
         </nav>
-        <!--####################################################################################################################
+        <!--################################################################################################################
             Hier beginnt der Inhalt der Seite
-        ####################################################################################################################-->
+        #################################################################################################################-->
         <main>
-            <!--input Box für Posts-->
-            <!--------------------------------------------------------------------------------------------------------------------------------------------->
+            <!-----------input Box für Posts (Modal)------------------------------------------------------------------------------->
             <div class="postform">
                 <div class="modal fade " id="postModal" tabindex="-1" role="dialog"
                      aria-labelledby="postModalLabel"
