@@ -82,6 +82,10 @@
   background-color: white;
 }
 
+.verschiebung{
+  width: 270px;
+}
+
 .container-profile {
   margin-top: 80px;
 }
@@ -95,6 +99,7 @@
 }
 .profile-header-cols {
   img{
+    border-radius: 0% !important;
     width: 300px;
     height: auto;}
 }

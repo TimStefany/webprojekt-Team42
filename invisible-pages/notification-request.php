@@ -11,16 +11,15 @@ try {
         while ($row = $stmt->fetch()){
 
             //Beitrag wird als Listenelemt für das Dropdown in der Navbar zurückgegeben
-            echo '<li>';
+
             echo '<a href="show-post.php?post-id='.$row["post_id"].'&follow-id='.$row["notification_id"].'">';
-            echo '<p>';
             echo 'Neuer Beitrag von '.$row["user_name"];
             if ($row["topic_name"] !== null){
                 echo ' in '.$row["topic_name"];
             }
-            echo '</p>';
             echo '</a>';
-            echo '</li>';
+            echo '<div class="dropdown-divider"></div>';
+
 
             //count wird verwendet um die Anzahl an Notifications neben der Glocke anzuzeigen
             $count++;

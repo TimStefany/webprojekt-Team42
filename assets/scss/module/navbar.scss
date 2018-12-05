@@ -15,10 +15,14 @@
     //height: 30px;
     //width: 30px;
   }
-
-  .notification-btn {
-
+  .notification-menu {
+    a {
+      color: white !important;
+      padding-left: 5px;
+      padding-right: 5px
+    }
   }
+
   .dropdown-user-menu {
     right: 17px !important;
     left: auto;
@@ -26,7 +30,7 @@
   .dropdown-item {
     color: rgba(255, 255, 255, 0.5);
     &:hover {
-      background-color: $primary;
+      background-color: #343a40;
       color: rgba(255, 255, 255, 0.75);
     }
   }
@@ -41,7 +45,6 @@
       padding-left: 12px;
     }
   }
-
 }
 
 @media (max-width: 992px) {
@@ -51,18 +54,26 @@
   .navbar-toggler {
     margin-left: 12px;
   }
-  .btn-light{
+  .btn-light {
     position: absolute;
     left: auto;
     right: 200px;
     top: 16px;
   }
   .d-flex {
+    top: 3px;
     position: absolute;
     left: auto;
     right: 12px;
   }
+  .d-flex-notification {
+    top:5px;
+    position: absolute;
+    left: auto;
+    right: 160px;
+  }
 }
+
 .nav-bar-profile-picture {
   img {
     max-width: 45px;

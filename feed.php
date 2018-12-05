@@ -28,47 +28,50 @@
         <div style="height:61px;"></div>
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="#">Plus - Microblog</a>
-            <!---------------Search Teil der Nav Bar------------------------------------------------------------------------->
-            <form class="form-inline my-2 my-lg-0" action="find.php" method="get">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
-                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Find</button>
-            </form>
+
             <!-------------------------------------------------------------------------------------------------------------->
-            <!---------------Weis leider nich was das ist------------------------------------------------------------------->
+            <!---------------Hamburger Button / Toggle Button--------------------------------------------------------------->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="feed.php">Feed</a>
-                    </li>
+                    <form class="form-inline my-2 my-lg-0" action="find.php" method="get">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+                               name="search">
+                        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Find</button>
+                    </form>
                     <!--------Posten Modal Button--------------------------------------------------------------------------->
                     <li class="nav-item">
-                        <button type="button" class="btn btn-success" data-toggle="modal"
+                        <button type="button" class="btn btn-secondary mx-1 my-1" data-toggle="modal"
                                 data-target="#postModal">
                             Posten
                         </button>
                     </li>
                     <!----------------------------------------------------------------------------------------------------->
+                    <li class="nav-item">
+                        <a class="btn btn-dark mx-1 my-1" href="feed.php" role="button">Feed</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-dark mx-1 my-1" href="invisible-pages/logout.php" role="button">Ausloggen</a>
+                    </li>
                 </ul>
             </div>
             <!-------------------------------------------------------------------------------------------------------------->
-            <!---------------------Notification Bell------------------------------------------------------------------------>
-            <div>
+            <!----------------------Profil Bild und Name-------------------------------------------------------------------->
+            <div class="d-flex nav-bar-profile-picture">
+                <!---------------------Notification Bell------------------------------------------------------------------------>
+
                 <li class="dropdown" style="list-style-type:none; margin-left:10px; margin-right:10px;">
                     <a href="#" data-toggle="dropdown"><span
                                 class="label label-pill label-danger count" style="border-radius:10px;"></span> <span <i
                                 class="fas fa-bell"></i> </a>
-                    <ul id="reloaded" class="dropdown-menu">
-
-                    </ul>
+                    <div id="reloaded" class="dropdown-menu notification-menu bg-dark">
+                    </div>
                 </li>
-            </div>
-            <!-------------------------------------------------------------------------------------------------------------->
-            <!----------------------Profil Bild und Name und Dropdown------------------------------------------------------->
-            <div class="d-flex nav-bar-profile-picture"><img
+                <!-------------------------------------------------------------------------------------------------------------->
+                <img
                         src="<?php
                         if ($user_information[2] !== ""){
                             echo $picture_path_server . $user_information[2];
@@ -78,17 +81,6 @@
                         class="img-circle profil-image-small">
                 <a href="profile.php"
                    class="nav-item active nav-link username"><?php echo $_SESSION["user-name"]; ?></a>
-                <a class="nav-link dropdown-toggle username" href="#" id="navbarDropdown" role="button"
-                   data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                </a>
-                <div class="dropdown-menu dropdown-user-menu bg-dark" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Farbe ändern</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Edit Profile</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="invisible-pages/logout.php">Ausloggen</a>
-                </div>
             </div>
             <!-------------------------------------------------------------------------------------------------------------->
         </nav>

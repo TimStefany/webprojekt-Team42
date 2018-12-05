@@ -24,41 +24,41 @@ if ( isset ( $_SESSION["signed-in"] ) ) {
         include 'outsourced-php-code/header.php';
         ?>
 
-    </head>
-<body>
-    <div class="background-login"></div>
-    <nav class="navbar  fixed-top navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Plus - Microblog</a>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Find</button>
-        </form>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="feed.php">Feed</a>
-                </li>
-                <li class="nav-item">
-                    <button type="button" class="btn btn-success" data-toggle="modal"
-                            data-target="#postModal">
-                        Posten
-                    </button>
-                </li>
-            </ul>
-        </div>
-        <div>
+        </head>
+    <body>
+        <div class="background-login"></div>
+        <nav class="navbar  fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Plus - Microblog</a>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Find</button>
+            </form>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="feed.php">Feed</a>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-success" data-toggle="modal"
+                                data-target="#postModal">
+                            Posten
+                        </button>
+                    </li>
+                </ul>
+            </div>
             <div>
-                <!-- Notification Bell -->
-                <li class="dropdown" style="list-style-type:none; margin-left:10px; margin-right:10px;">
-                    <a href="#" data-toggle="dropdown"><span
-                                class="label label-pill label-danger count" style="border-radius:10px;"></span>
-                        <span <i
-                                class="fas fa-bell"></i> </a>
-                    <ul id="reloaded" class="dropdown-menu">
+                <div>
+                    <!-- Notification Bell -->
+                    <li class="dropdown" style="list-style-type:none; margin-left:10px; margin-right:10px;">
+                        <a href="#" data-toggle="dropdown"><span
+                                    class="label label-pill label-danger count" style="border-radius:10px;"></span>
+                            <span <i
+                                    class="fas fa-bell"></i> </a>
+                        <ul id="reloaded" class="dropdown-menu">
 
                     </ul>
                 </li>
@@ -267,7 +267,6 @@ if ( isset ( $_SESSION["signed-in"] ) ) {
 
         <!--Hier stehen die J Query codes welche dann ausgeführt werden wenn das Dokument geladen ist-->
         <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script type="text/javascript" src="dist/js/dropzone.js"></script>
         <script type="text/javascript" src="dist/js/main.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script>
