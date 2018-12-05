@@ -25,17 +25,23 @@ if (isset ($_SESSION["signed-in"])) {
         echo "1";
 
         $fileext = explode('.', $filename);
+
         //Dateiendung wird immer klein geschrieben
+
         $fileactualext = strtolower(end($fileext));
 
+
         //hier lege ich fest welche filetypes hochgeladen werden können
+
         $allowed = array('jpg', 'jpeg', 'png');
 
         if (in_array($fileactualext, $allowed)) {
             //error Test
             if ($fileerror === 0) {
-                if ($filesize < 2000000) {
-                    #wenn es unter 2mb ist bekommt es einen unique namen (mit der jeweiligen endung) damit es nicht überschrieben wird
+                if ($filesize < 20000000) {
+
+                    // wenn es unter 20mb ist bekommt es einen unique namen (mit der jeweiligen endung) damit es nicht überschrieben wird
+
                     $filenamenew = uniqid('', true) . "." . $fileactualext;
 
                     $filedestination = $picture_path_upload.'post_img/'.$filenamenew;
@@ -63,7 +69,6 @@ if (isset ($_SESSION["signed-in"])) {
                         echo "Error!: Bitten wenden Sie sich an den Administrator...<br/>";
                         die();
                     }
-                    //hier fängt benny code an der jetzt die picture id in das post feld schickt nachdem die rausgezogen wurde
 
                 } else {
                     echo "Du hast die maximale Dateigröße von 2 Mb überschritten";
