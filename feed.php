@@ -69,7 +69,12 @@
             <!-------------------------------------------------------------------------------------------------------------->
             <!----------------------Profil Bild und Name und Dropdown------------------------------------------------------->
             <div class="d-flex nav-bar-profile-picture"><img
-                        src="<?php echo $picture_path_server . $user_information[2]; ?>"
+                        src="<?php
+                        if ($user_information[2] !== ""){
+                            echo $picture_path_server . $user_information[2];
+                        } else { //default Profilbild
+                            echo $picture_path_server . $default_avatar_path;
+                        } ?>"
                         class="img-circle profil-image-small">
                 <a href="profile.php"
                    class="nav-item active nav-link username"><?php echo $_SESSION["user-name"]; ?></a>
@@ -209,7 +214,13 @@
 
 									    echo '<div class="feed-scroll-row-container-cell">';   //der Gesammte Post steckt in diesem DIV
 
-										echo '<img src="'.$picture_path_server.$author_information[2].'" class="feed-scroll-row-container-cell-profilepicture" >';
+                                        //Ausgabe des Profilbildes
+                                        if ($author_information[2] !== ""){
+                                            echo '<img src="'.$picture_path_server.$author_information[2].'" class="feed-scroll-row-container-cell-profilepicture" >';
+                                        } else { //default Profilbild
+                                            echo '<img src="'.$picture_path_server.$default_avatar_path.'" class="feed-scroll-row-container-cell-profilepicture" >';
+                                        }
+
                                         echo '<a href="profile-foreign.php?id=' . $row["user_id"] . '" class="autor"> +' . $row["user_name"] . '</a>';
                                         if ($row["topic_id"] !== null) {
                                             echo ' /';
@@ -238,7 +249,14 @@
                                         $author_information = get_profile_information($row["user_id"]);
 
 										echo '<div class="feed-scroll-row-container-cell">';   //der Gesammte Post steckt in diesem DIV
-                                        echo '<img src="'.$picture_path_server.$author_information[2].'" class="feed-scroll-row-container-cell-profilepicture" >';
+
+                                        //Ausgabe des Profilbildes
+                                        if ($author_information[2] !== ""){
+                                            echo '<img src="'.$picture_path_server.$author_information[2].'" class="feed-scroll-row-container-cell-profilepicture" >';
+                                        } else { //default Profilbild
+                                            echo '<img src="'.$picture_path_server.$default_avatar_path.'" class="feed-scroll-row-container-cell-profilepicture" >';
+                                        }
+
                                         echo '<a href="profile-foreign.php?id=' . $row["user_id"] . '" class="autor"> +' . $row["user_name"] . '</a>';
 										if ( $row["topic_id"] != null ) {
 											echo ' /';
@@ -275,7 +293,13 @@
 								while ( $row = $stmt->fetch() ) {
 									echo '<div class="feed-scroll-row-container-cell">';   //der Gesammte Post steckt in diesem DIV
 
-                                    echo '<img src="'.$picture_path_server.$author_information[2].'" class="feed-scroll-row-container-cell-profilepicture" >';
+                                    //Ausgabe des Profilbildes
+                                    if ($author_information[2] !== ""){
+                                        echo '<img src="'.$picture_path_server.$author_information[2].'" class="feed-scroll-row-container-cell-profilepicture" >';
+                                    } else { //default Profilbild
+                                        echo '<img src="'.$picture_path_server.$default_avatar_path.'" class="feed-scroll-row-container-cell-profilepicture" >';
+                                    }
+
                                     echo '<a href="profile-foreign.php?id=' . $row["user_id"] . '" class="autor"> + Autor: ' . $row["user_name"] . '</a>';
                                     if ( $row["topic_id"] ) {
                                         echo ' /';

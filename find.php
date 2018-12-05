@@ -77,7 +77,12 @@ if (isset ($_SESSION["signed-in"])) {
     <!-------------------------------------------------------------------------------------------------------------->
     <!----------------------Profil Bild und Name und Dropdown------------------------------------------------------->
     <div class="d-flex nav-bar-profile-picture"><img
-                src="<?php echo $picture_path_server . $user_information[2]; ?>"
+                src="<?php
+                if ($user_information[2] !== "") {
+                    echo $picture_path_server . $user_information[2];
+                } else { //default Profilbild
+                    echo $picture_path_server . $default_avatar_path;
+                } ?>"
                 class="img-circle profil-image-small">
         <a href="profile.php"
            class="nav-item active nav-link username"><?php echo $_SESSION["user-name"]; ?></a>
@@ -96,85 +101,95 @@ if (isset ($_SESSION["signed-in"])) {
     <!-------------------------------------------------------------------------------------------------------------->
 </nav>
 <main>
-    <?php
-    //##################################################################################################################
-    //          Datenbankabfrage um alle Nutzer zu finden
-    //##################################################################################################################
-    echo '<h2>Nutzer</h2>';
-    try {
-        $stmt = $db->prepare("SELECT user_id, user_name, picture_path, profile_text FROM registered_users_pictures_view 
+    <div class="container">
+        <?php
+        //##################################################################################################################
+        //          Datenbankabfrage um alle Nutzer zu finden
+        //##################################################################################################################
+        echo '<h2>Nutzer</h2>';
+        try {
+            $stmt = $db->prepare("SELECT user_id, user_name, picture_path, profile_text FROM registered_users_pictures_view 
                                         WHERE user_name LIKE :search");
-        $stmt->execute(array(":search" => $search));
-        while ($row = $stmt->fetch()) {
-            ?>
-            <a href="profile-foreign.php?id=<?php echo $row["user_id"] ?>">
-            <div class="profile-header">
-                <div class="profile-header-cols">
-                    <div class="row">
-                        <div class="col-lg-4 p-3">
-                            <img src="<?php echo $picture_path_server . $row["picture_path"]; ?>"
-                                 width="300" height="auto" alt="Profilbild">
-                        </div>
+            $stmt->execute(array(":search" => $search));
+            while ($row = $stmt->fetch()) {
+                ?>
+                <a href="profile-foreign.php?id=<?php echo $row["user_id"] ?>">
+                    <div class="profile-header">
+                        <div class="profile-header-cols">
+                            <div class="row">
+                                <div class="col-lg-4 p-3">
+                                    <?php
+                                    if ($row["picture_path"] !== null) {
+                                        ?>
+                                        <img src="<?php echo $picture_path_server . $row["picture_path"]; ?>"
+                                             width="300" height="auto" alt="Profilbild">
+                                        <?php
+                                    } else { //default Profilbild
+                                        ?>
+                                        <img src="<?php echo $picture_path_server . $default_avatar_path; ?>"
+                                             width="300" height="auto" alt="Profilbild">
+                                        <?php
+                                    } ?>
+                                </div>
 
-                        <div class="col-lg-8 p-5">
-                            <div>
-                                <h1 class="profile-topic-headline"><?php echo $row["user_name"]; ?></h1>
+                                <div class="col-lg-8 p-5">
+                                    <div>
+                                        <h1 class="profile-topic-headline"><?php echo $row["user_name"]; ?></h1>
+                                    </div>
+                                    <hr>
+                                    <?php
+                                    $user = $_SESSION["user-id"];
+
+                                    //Hinzufügen eines Profiltextes falls keiner vorhanden ist
+                                    if ($row["profile_text"] == NULL) {
+                                        $row["profile_text"] = "Kein Profiltext vorhanden.";
+                                    }
+                                    echo "<span class='profile-headline'>Profiltext:</span>";
+                                    echo "<div><p>" . $row["profile_text"] . "</p></div>";
+
+                                    ?>
+                                    <hr>
+                                </div>
                             </div>
-                            <hr>
-                            <?php
-                            $user = $_SESSION["user-id"];
-
-                            $zeile = $query->fetch();
-                            //Hinzufügen einer Erklärung für den Profiltext falls keiner vorhanden ist
-                            if ($row["profile_text"] == NULL) {
-                                $row["profile_text"] = "Kein Profiltext vorhanden.";
-                            }
-                            echo "<span class='profile-headline'>Profiltext:</span>";
-                            echo "<div><p>" . $row["profile_text"] . "</p></div>";
-
-                            ?>
-                            <hr>
                         </div>
                     </div>
-                </div>
-            </div>
-            </a>
-            <hr>
-            <?php
+                </a>
+                <hr>
+                <?php
+            }
+        } catch (PDOException $e) {
+            echo "Error!: Bitten wenden Sie sich an den Administrator...<br/>";
+            die();
         }
-    } catch (PDOException $e) {
-        echo "Error!: Bitten wenden Sie sich an den Administrator...<br/>";
-        die();
-    }
 
-    //##################################################################################################################
-    //          Datenbankabfrage um alle Topics zu finden
-    //##################################################################################################################
-    echo '<h2>Topics</h2>';
-    try {
-        $stmt = $db->prepare("SELECT * FROM topics
+        //##################################################################################################################
+        //          Datenbankabfrage um alle Topics zu finden
+        //##################################################################################################################
+        echo '<h2>Topics</h2>';
+        try {
+            $stmt = $db->prepare("SELECT * FROM topics
                                         WHERE topic_name LIKE :search");
-        $stmt->execute(array(":search" => $search));
-        while ($row = $stmt->fetch()) {
-            ?>
-            <a href="topic-profile.php?id=<?php echo $row["topic_id"] ?>">
-            <div class="profile-header p-4">
-                <div>
-                    <?php
-                        echo '<h1 class="profile-topic-headline">'.$row["topic_name"].'</h1>';
-                    ?>
-                </div>
-            </div>
-            </a>
-            <hr>
-            <?php
+            $stmt->execute(array(":search" => $search));
+            while ($row = $stmt->fetch()) {
+                ?>
+                <a href="topic-profile.php?id=<?php echo $row["topic_id"] ?>">
+                    <div class="profile-header p-4">
+                        <div>
+                            <?php
+                            echo '<h1 class="profile-topic-headline">' . $row["topic_name"] . '</h1>';
+                            ?>
+                        </div>
+                    </div>
+                </a>
+                <hr>
+                <?php
+            }
+        } catch (PDOException $e) {
+            echo "Error!: Bitten wenden Sie sich an den Administrator...<br/>";
+            die();
         }
-    } catch (PDOException $e) {
-        echo "Error!: Bitten wenden Sie sich an den Administrator...<br/>";
-        die();
-    }
-    ?>
-
+        ?>
+    </div>
 
 </main>
 <script>
@@ -187,4 +202,4 @@ if (isset ($_SESSION["signed-in"])) {
 </body>
 
     <?php
-}//
+}
