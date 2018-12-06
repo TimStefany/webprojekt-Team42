@@ -1,7 +1,8 @@
 <?php
 session_start();
 include_once '../outsourced-php-code/userdata.php';
-$count = 0;
+global $count;
+$count= 0;
 
 try {
     $db = new PDO($dsn, $dbuser, $dbpass, $option);
@@ -23,6 +24,7 @@ try {
 
             //count wird verwendet um die Anzahl an Notifications neben der Glocke anzuzeigen
             $count++;
+
         }
     } else {
         echo 'Datenbank Fehler';
@@ -32,3 +34,4 @@ try {
     echo "Error!: Bitten wenden Sie sich an den Administrator...<br/>";
     die();
 }
+$_SESSION["notification-count"] = $count;

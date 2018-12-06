@@ -28,8 +28,6 @@
         <div style="height:61px;"></div>
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="#">Plus - Microblog</a>
-
-            <!-------------------------------------------------------------------------------------------------------------->
             <!---------------Hamburger Button / Toggle Button--------------------------------------------------------------->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,18 +57,26 @@
                 </ul>
             </div>
             <!-------------------------------------------------------------------------------------------------------------->
-            <!----------------------Profil Bild und Name-------------------------------------------------------------------->
+            <!----------------------Profil Bild und Name und Notification--------------------------------------------------->
             <div class="d-flex nav-bar-profile-picture">
-                <!---------------------Notification Bell------------------------------------------------------------------------>
-
-                <li class="dropdown" style="list-style-type:none; margin-left:10px; margin-right:10px;">
+                <!---------------------Notification Bell-------------------------------------------------------------------->
+                <div class="dropdown" style="list-style-type:none; margin-left:10px; margin-right:10px;">
                     <a href="#" data-toggle="dropdown"><span
                                 class="label label-pill label-danger count" style="border-radius:10px;"></span> <span <i
                                 class="fas fa-bell"></i> </a>
                     <div id="reloaded" class="dropdown-menu notification-menu bg-dark">
                     </div>
-                </li>
-                <!-------------------------------------------------------------------------------------------------------------->
+                </div>
+                <!---------------------------------------------------------------------------------------------------------->
+                <!----------------------Benachrichtigungs Counter----------------------------------------------------------->
+                <div>
+                    <?php
+                    if ($_SESSION["notification-count"] !== 0){
+                        echo $_SESSION["notification-count"];
+                    } ?>
+                </div>
+                <!---------------------------------------------------------------------------------------------------------->
+                <!----------------------Profil Bild und Name---------------------------------------------------------------->
                 <img
                         src="<?php
                         if ($user_information[2] !== ""){
