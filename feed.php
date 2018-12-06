@@ -65,16 +65,18 @@ if (isset ($_SESSION["signed-in"])) {
                             class="label label-pill label-danger count" style="border-radius:10px;"></span> <span <i
                             class="fas fa-bell"></i> </a>
                 <div id="reloaded" class="dropdown-menu notification-menu bg-dark">
+                    <?php include_once 'invisible-pages/notification-request.php' ?>
                 </div>
             </div>
             <!---------------------------------------------------------------------------------------------------------->
             <!----------------------Benachrichtigungs Counter----------------------------------------------------------->
-            <div>
-                <?php
-                if ($_SESSION["notification-count"] !== 0) {
-                    echo $_SESSION["notification-count"];
-                } ?>
-            </div>
+            <?php
+            if ($_SESSION["notification-count"] !== 0) {
+                echo '<div class="notification-number">';
+                echo $_SESSION["notification-count"];
+                echo '</div>';
+            }
+            ?>
             <!---------------------------------------------------------------------------------------------------------->
             <!----------------------Profil Bild und Name---------------------------------------------------------------->
             <img
@@ -108,7 +110,8 @@ if (isset ($_SESSION["signed-in"])) {
                             </button>
                         </div>
                         <div class="postform">
-                            <form action="invisible-pages/post-feed.php" method="post" enctype="multipart/form-data">
+                            <form action="invisible-pages/post.php" method="post"
+                                  enctype="multipart/form-data">
                                 <div class="modal-body">
                                     <p><label class="formular-label-color">Blogeintrag:<br>
                                             <textarea class="form-control" name="post" cols="80" rows="3"
@@ -178,8 +181,8 @@ if (isset ($_SESSION["signed-in"])) {
 
             <div class="feed-scroll" style="min-width:<?php echo ($counter * 432) + 42 ?>px;">
                 <!--####################################################################################################################
-					Dieser Teil gibt die Spalten mit den Beiträgen aus
-					####################################################################################################################-->
+                    Dieser Teil gibt die Spalten mit den Beiträgen aus
+                    ####################################################################################################################-->
                 <?php
 
                 for ($i = 0; $i < count($followed_name); $i++) {
