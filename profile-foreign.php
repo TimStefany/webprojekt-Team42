@@ -93,11 +93,11 @@ $user_name = $profile_information[0];
                     <?php
                     if ($profile_information[2] !== "") {
                         ?>
-                        <img src="<?php echo $picture_path_server . $profile_information[2]; ?>" alt="Profilbild">
+                        <img class="profile-picture" src="<?php echo $picture_path_server . $profile_information[2]; ?>" alt="Profilbild">
                         <?php
                     } else { //default Profilbild
                         ?>
-                        <img src="<?php echo $picture_path_server . $default_avatar_path; ?>" alt="Profilbild">
+                        <img class="profile-picture" src="<?php echo $picture_path_server . $default_avatar_path; ?>" alt="Profilbild">
                         <?php
                     } ?>
                 </div>
@@ -180,8 +180,8 @@ $user_name = $profile_information[0];
             while ($row = $stmt->fetch()) {
                 echo '<div class="profile-container-row">';
                 echo '<div class="profile-container-row-cell">';
-                if ($row["topic_name"]!== null ){
-                    echo  '/ <a class="topic-link" href="topic-profile.php?id=' . $row["topic_id"] . '"> +' . $row["topic_name"] . '</a>';
+                if ($row["topic_name"] !== null) {
+                    echo '/ <a class="topic-link" href="topic-profile.php?id=' . $row["topic_id"] . '"> +' . $row["topic_name"] . '</a>';
                     echo '<hr class="my-1">';
                 }
                 echo '<p>' . $row["content"] . '</p>';

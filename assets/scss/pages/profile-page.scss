@@ -7,7 +7,7 @@
 
 .background-login {
   box-sizing: border-box;
-  background-image: url("../../assets/images/background-loginpage.jpg") !important;
+  background-image: url("../../images/background-loginpage.jpg") !important;
   background-size: cover;
   position: fixed;
   top: 0;
@@ -99,15 +99,16 @@
 }
 .profile-header-cols {
   img{
-    border-radius: 0% !important;
+    border-radius: 0;
     width: 300px;
     height: auto;}
 }
 
 .profile-picture{
-  border-radius: 100%;
-  width: 300px;
+  border-radius: 100% !important;
+  width: 300px !important;
   height: 300px !important;
+  object-fit: cover !important;
 }
 
 @media (max-width: 992px) {
@@ -116,7 +117,6 @@
       display: block;
       margin-left: auto;
       margin-right: auto;
-    }
   }
 }
 
@@ -125,6 +125,7 @@
   .verschiebung {
     max-width: 200px;
   }
+}
 }
 
 

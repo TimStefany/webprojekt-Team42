@@ -142,10 +142,10 @@ try {
                         echo '<div class="profile-container-row-cell">';
 
                         //Ausgabe des Profilbildes
-                        if ($author_information[2] !== ""){
-                            echo '<img src="'.$picture_path_server.$author_information[2].'" class="feed-scroll-row-container-cell-profilepicture" >';
+                        if ($author_information[2] !== "") {
+                            echo '<img src="' . $picture_path_server . $author_information[2] . '" class="feed-scroll-row-container-cell-profilepicture" >';
                         } else { //default Profilbild
-                            echo '<img src="'.$picture_path_server.$default_avatar_path.'" class="feed-scroll-row-container-cell-profilepicture" >';
+                            echo '<img src="' . $picture_path_server . $default_avatar_path . '" class="feed-scroll-row-container-cell-profilepicture" >';
                         }
 
                         //Name des Autors als Link ausgeben

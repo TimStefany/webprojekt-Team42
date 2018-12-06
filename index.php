@@ -5,37 +5,43 @@
 -->
 <?php
 session_start();
-	if ( isset ( $_SESSION["signed-in"] ) ) {
+if (isset ($_SESSION["signed-in"])) {
     header('Location:feed.php');
-}else {
+} else {
     ?>
-<!doctype html>
-<html class="no-js" lang="de">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Microblog Team-42</title>
-    <meta name="description" content="">
-    <?php
-    include "outsourced-php-code/header.php";
-    ?>
-</head>
-<body class="loginpage">
-<div class="background-login"></div>
-<nav>
+    <!doctype html>
+    <html class="no-js" lang="de">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Microblog Team-42</title>
+        <meta name="description" content="">
+        <?php
+        include "outsourced-php-code/header.php";
+        ?>
+    </head>
+    <body class="loginpage">
+    <div class="background-login"></div>
+    <nav>
 
-</nav>
-<main class="container"><!--ein Responsive Container in dem der Content steckt-->
+    </nav>
+    <main class="container"><!--ein Responsive Container in dem der Content steckt-->
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4 modal-header">
                     <form action="invisible-pages/login-check.php" method="post" class="form-container">
                         <h1>Plus HdM Microblog</h1>
-                        <span class="fontnorm">Benutzername:</span><br> <input class="form-control" name="username" type="text"
-                                                              placeholder="Benutzername eingeben!" required><br>
-                        <span class="fontnorm">Passwort</span> <br> <input class="form-control" name="password" type="password" placeholder="Passwort eingeben!" required><br>
-                        <p><input class= "form-control btn btn-dark btn-block" name="absenden"  type="submit" value="Login">
+                        <span class="fontnorm">Benutzername:</span><br> <input class="form-control" name="username"
+                                                                               type="text"
+                                                                               placeholder="Benutzername eingeben!"
+                                                                               required><br>
+                        <span class="fontnorm">Passwort</span> <br> <input class="form-control" name="password"
+                                                                           type="password"
+                                                                           placeholder="Passwort eingeben!"
+                                                                           required><br>
+                        <p><input class="form-control btn btn-dark btn-block" name="absenden" type="submit"
+                                  value="Login">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-success btn-block" data-toggle="modal"
                                     data-target="#exampleModal">
@@ -63,17 +69,18 @@ session_start();
                     <form action="invisible-pages/register.php" method="post">
                         <div class="modal-body">
                             <label for="uname"><span class="fontnorm">Nutzername</span></label>
-                            <input type="text" class="form-control" placeholder="Benutzername Eingeben" name="username" required>
+                            <input type="text" class="form-control" placeholder="Benutzername Eingeben" name="username"
+                                   required>
                             <br>
                             <label for="psw"><span class="fontnorm">Passwort</span></label>
-                            <input type="password" class="form-control" placeholder="Passwort Eingeben" name="password" required>
+                            <input type="password" class="form-control" placeholder="Passwort Eingeben" name="password"
+                                   required>
                             <br>
                             <label for="psw"><span class="fontnorm">Passwort wiederholen!</span></label>
-                            <input type="password" class="form-control" placeholder="Passwort Wiederholen" name="password-repeat" required>
-                            <!-- Button nur vorübergehend bis die folgenden zwei funkitonstüchtig sind -->
-
+                            <input type="password" class="form-control" placeholder="Passwort Wiederholen"
+                                   name="password-repeat" required>
                         </div>
-                        <!-- Aktuell schließen beide Buttons das Modal und keiner führt die Registrierung aus -->
+                        <!-- Registrieren abbrechen und ausführen Buttons -->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Zurück</button>
                             <input type="submit" name="absenden" class="btn btn-success" value="Registrieren">
@@ -83,10 +90,11 @@ session_start();
             </div>
         </div>
 
-</main>
-<footer>
+    </main>
+    <footer>
 
-</footer>
-</body>
+    </footer>
+    </body>
 
-</html><?php }?>
+    </html>
+<?php } ?>

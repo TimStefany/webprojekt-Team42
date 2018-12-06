@@ -69,6 +69,7 @@ $user_information = get_profile_information($_SESSION["user-id"]);
     </div>
 </nav>
 <main>
+    <div class="container">
     <?php
     echo '<div>';
     try {
@@ -121,6 +122,7 @@ $user_information = get_profile_information($_SESSION["user-id"]);
         die();
     }
     ?>
+    </div>
 </main>
 <script>
     setInterval(function () {
