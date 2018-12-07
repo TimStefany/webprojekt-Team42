@@ -59,21 +59,28 @@ if (isset ($_SESSION["signed-in"])) {
             </ul>
         </div>
         <!-------------------------------------------------------------------------------------------------------------->
-        <!----------------------Profil Bild und Name-------------------------------------------------------------------->
+        <!----------------------Profil Bild und Name und Notification--------------------------------------------------->
         <div class="d-flex nav-bar-profile-picture">
-            <!---------------------Notification Bell------------------------------------------------------------------------>
+            <!---------------------Notification Bell-------------------------------------------------------------------->
+            <div class="dropdown" style="list-style-type:none; margin-left:10px; margin-right:10px;">
 
-            <li class="dropdown" style="list-style-type:none; margin-left:10px; margin-right:10px;">
                 <a href="#" data-toggle="dropdown"><span
                             class="label label-pill label-danger count" style="border-radius:10px;"></span> <span <i
                             class="fas fa-bell"></i> </a>
                 <div id="reloaded" class="dropdown-menu notification-menu bg-dark">
+                    <!--Wird über Java Script alle 2 Sekunden aus der Datei 'notification-request.php' geladen-->
                 </div>
-            </li>
-            <!-------------------------------------------------------------------------------------------------------------->
+            </div>
+            <!---------------------------------------------------------------------------------------------------------->
+            <!----------------------Benachrichtigungs Counter----------------------------------------------------------->
+            <div class="count-container" id="reloaded-count">
+                <!--Wird über Java Script alle 2 Sekunden aus der Datei 'notification-count.php' geladen-->
+            </div>
+            <!---------------------------------------------------------------------------------------------------------->
+            <!----------------------Profil Bild und Name---------------------------------------------------------------->
             <img
                     src="<?php
-                    if ($user_information[2] !== ""){
+                    if ($user_information[2] !== "") {
                         echo $picture_path_server . $user_information[2];
                     } else { //default Profilbild
                         echo $picture_path_server . $default_avatar_path;
@@ -333,7 +340,7 @@ if (isset ($_SESSION["signed-in"])) {
         };
     </script>
 
-
+    <!------Notification Text reload----------------------------------------------------------------------------------->
     <script>
         setInterval(function () {
             $.get('invisible-pages/notification-request.php', function (data) {
@@ -341,6 +348,16 @@ if (isset ($_SESSION["signed-in"])) {
             });
         }, 2000);
     </script>
+    <!----------------------------------------------------------------------------------------------------------------->
+    <!------Notification Count reload---------------------------------------------------------------------------------->
+    <script>
+        setInterval(function () {
+            $.get('invisible-pages/notification-count.php', function (data) {
+                $('#reloaded-count').html(data);
+            });
+        }, 2000);
+    </script>
+    <!----------------------------------------------------------------------------------------------------------------->
     </body>
 
     </html>
