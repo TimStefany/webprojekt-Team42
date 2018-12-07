@@ -13,11 +13,13 @@ try {
 
             //Beitrag wird als Listenelemt für das Dropdown in der Navbar zurückgegeben
 
-            echo '<a href="show-post.php?post-id='.$row["post_id"].'&follow-id='.$row["notification_id"].'">';
+            echo '<a class="text-white" href="show-post.php?post-id='.$row["post_id"].'&follow-id='.$row["notification_id"].'">';
+			echo '<li>';
             echo 'Neuer Beitrag von '.$row["user_name"];
             if ($row["topic_name"] !== null){
                 echo ' in '.$row["topic_name"];
             }
+            echo '</li>';
             echo '</a>';
             echo '<div class="dropdown-divider"></div>';
 

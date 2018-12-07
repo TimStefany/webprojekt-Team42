@@ -8852,6 +8852,7 @@ a.text-dark:hover, a.text-dark:focus {
 
 .fa-bell {
   font-size: 22px;
+  color: white;
 }
 
 .container-topic {
@@ -8991,6 +8992,5 @@ p {
   top: 85%;
   left: -16px;
   padding: 0;
-  height: 195px;
   overflow: scroll;
 }
