@@ -28,6 +28,8 @@ if (isset ($_SESSION["signed-in"])) {
     <div style="height:61px;"></div>
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Plus - Microblog</a>
+
+        <!-------------------------------------------------------------------------------------------------------------->
         <!---------------Hamburger Button / Toggle Button--------------------------------------------------------------->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,53 +37,43 @@ if (isset ($_SESSION["signed-in"])) {
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <form class="form-inline my-2 my-lg-0" action="find.php" method="get">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+                <form class="form-inline my-lg-0 " action="find.php" method="get">
+                    <input class="form-control mr-lg-2 " type="search" placeholder="Search" aria-label="Search"
                            name="search">
-                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Find</button>
+                    <button class="btn btn-outline-light my-2 my-lg-0" type="submit">Find</button>
                 </form>
                 <!--------Posten Modal Button--------------------------------------------------------------------------->
                 <li class="nav-item">
-                    <button type="button" class="btn btn-secondary mx-1 my-1" data-toggle="modal"
+                    <button type="button" class="btn btn-secondary mx-0 my-1 form-inline" data-toggle="modal"
                             data-target="#postModal">
                         Posten
                     </button>
                 </li>
                 <!----------------------------------------------------------------------------------------------------->
                 <li class="nav-item">
-                    <a class="btn btn-dark mx-1 my-1" href="feed.php" role="button">Feed</a>
+                    <a class="btn btn-dark mx-0 my-1 form-inline" href="feed.php" role="button">Feed</a>
                 </li>
                 <li class="nav-item">
-                    <a class="btn btn-dark mx-1 my-1" href="invisible-pages/logout.php" role="button">Ausloggen</a>
+                    <a class="btn btn-dark mx-0 my-1 form-inline" href="invisible-pages/logout.php" role="button">Ausloggen</a>
                 </li>
             </ul>
         </div>
         <!-------------------------------------------------------------------------------------------------------------->
-        <!----------------------Profil Bild und Name und Notification--------------------------------------------------->
+        <!----------------------Profil Bild und Name-------------------------------------------------------------------->
         <div class="d-flex nav-bar-profile-picture">
-            <!---------------------Notification Bell-------------------------------------------------------------------->
-            <div class="dropdown" style="list-style-type:none; margin-left:10px; margin-right:10px;">
+            <!---------------------Notification Bell------------------------------------------------------------------------>
+
+            <li class="dropdown" style="list-style-type:none; margin-left:10px; margin-right:10px;">
                 <a href="#" data-toggle="dropdown"><span
                             class="label label-pill label-danger count" style="border-radius:10px;"></span> <span <i
                             class="fas fa-bell"></i> </a>
                 <div id="reloaded" class="dropdown-menu notification-menu bg-dark">
-                    <?php include_once 'invisible-pages/notification-request.php' ?>
                 </div>
-            </div>
-            <!---------------------------------------------------------------------------------------------------------->
-            <!----------------------Benachrichtigungs Counter----------------------------------------------------------->
-            <?php
-            if ($_SESSION["notification-count"] !== 0) {
-                echo '<div class="notification-number">';
-                echo $_SESSION["notification-count"];
-                echo '</div>';
-            }
-            ?>
-            <!---------------------------------------------------------------------------------------------------------->
-            <!----------------------Profil Bild und Name---------------------------------------------------------------->
+            </li>
+            <!-------------------------------------------------------------------------------------------------------------->
             <img
                     src="<?php
-                    if ($user_information[2] !== "") {
+                    if ($user_information[2] !== ""){
                         echo $picture_path_server . $user_information[2];
                     } else { //default Profilbild
                         echo $picture_path_server . $default_avatar_path;

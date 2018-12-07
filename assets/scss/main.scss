@@ -101,3 +101,46 @@ p {
   left: 0;
   z-index: 1510 !important;
 }
+
+.form-inline {
+  flex-flow: nowrap;
+}
+
+@media (max-width: 992px) {
+  .btn-dark {
+    width: 100%;
+  }
+  .mt-1 {
+    margin-top: 0 !important;
+  }
+  .btn-secondary {
+    width: 100%;
+  }
+  .btn-outline-light {
+    width: 100%;
+    margin-bottom: 0.25rem !important;
+  }
+  .ml-sm-mq {
+    margin-left: 0.25rem !important;
+  }
+  .mr-sm-mq {
+    margin-right: 0.25rem !important;
+  }
+  mb-sm-mq {
+    margin-bottom: 0.25rem !important;
+  }
+  .form-inline {
+    flex-flow: row wrap;
+  }
+}
+
+@media (min-width: 972px) {
+  .btn {
+    margin-right: 0.25rem !important;
+  }
+}
+@media (min-width: 576px) {
+  .form-inline .form-control {
+    width: 100%;
+  }
+}
