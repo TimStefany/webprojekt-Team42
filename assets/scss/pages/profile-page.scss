@@ -87,7 +87,7 @@
 }
 
 .container-profile {
-  margin-top: 80px;
+  margin-top: 19px;
 }
 
 .profile-headline {
@@ -117,15 +117,13 @@
       display: block;
       margin-left: auto;
       margin-right: auto;
+    }
+  }
+
+
+  @media (max-width: 575px) {
+    .verschiebung {
+      max-width: 200px;
+    }
   }
 }
-
-
-@media (max-width: 575px) {
-  .verschiebung {
-    max-width: 200px;
-  }
-}
-}
-
-

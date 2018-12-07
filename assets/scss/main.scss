@@ -131,6 +131,10 @@ p {
   .form-inline {
     flex-flow: row wrap;
   }
+  .profile-picture {
+    margin-left: auto !important;
+    margin-right: auto!important;
+  }
 }
 
 @media (min-width: 972px) {
@@ -152,5 +156,9 @@ p {
   top: 85%;
   left: -16px;
   padding:0;
+  height: 195px;
   overflow: scroll;
+}
+.margin-top-19{
+  margin-top: 19px;
 }

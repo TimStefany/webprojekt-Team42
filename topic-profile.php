@@ -46,44 +46,69 @@ try {
 <div class="background-login"></div>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">+Plus</a>
-    <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Find</button>
-    </form>
+
+    <!-------------------------------------------------------------------------------------------------------------->
+    <!---------------Hamburger Button / Toggle Button--------------------------------------------------------------->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse mt-2" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
+            <form class="form-inline my-lg-0 " action="find.php" method="get">
+                <input class="form-control mr-lg-2 " type="search" placeholder="Search" aria-label="Search"
+                       name="search">
+                <button class="btn btn-outline-light my-2 my-lg-0" type="submit">Find</button>
+            </form>
+            <!--------Posten Modal Button--------------------------------------------------------------------------->
             <li class="nav-item">
-                <a class="nav-link" href="feed.php">Feed</a>
+                <button type="button" class="btn btn-secondary mx-0 my-1 form-inline" data-toggle="modal"
+                        data-target="#postModal">
+                    Posten
+                </button>
+            </li>
+            <!----------------------------------------------------------------------------------------------------->
+            <li class="nav-item">
+                <a class="btn btn-dark mx-0 my-1 form-inline" href="feed.php" role="button">Feed</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-dark mx-0 my-1 form-inline" href="invisible-pages/logout.php" role="button">Ausloggen</a>
             </li>
         </ul>
     </div>
-    <a href="#">
-        <button type="button" class="btn btn-light">
-            News <span class="badge badge-light">8</span>
-        </button>
-    </a>
-    <div class="d-flex nav-bar-profile-picture"><img
-                src="<?php echo $picture_path_server . $user_information[2]; ?>"
-                class="img-circle profil-image-small">
-        <a href="profile.php" class="nav-item active nav-link username"><?php echo $_SESSION["user-name"]; ?></a>
-        <a class="nav-link dropdown-toggle username" href="#" id="navbarDropdown" role="button"
-           data-toggle="dropdown"
-           aria-haspopup="true" aria-expanded="false">
-        </a>
-        <div class="dropdown-menu dropdown-user-menu bg-dark" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Farbe ändern</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Edit Profile</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="invisible-pages/logout.php">Ausloggen</a>
+    <!-------------------------------------------------------------------------------------------------------------->
+    <!----------------------Profil Bild und Name und Notification--------------------------------------------------->
+    <div class="d-flex nav-bar-profile-picture">
+        <!---------------------Notification Bell-------------------------------------------------------------------->
+        <div class="dropdown" style="list-style-type:none; margin-left:10px; margin-right:10px;top:12px;">
+            <a href="#" data-toggle="dropdown"><span
+                        class="label label-pill label-danger count" style="border-radius:10px;"></span> <span <i
+                        class="fas fa-bell"></i> </a>
+            <div id="reloaded" class="dropdown-menu notification-menu bg-dark">
+                <!--Wird über Java Script alle 2 Sekunden aus der Datei 'notification-request.php' geladen-->
+            </div>
         </div>
+        <!---------------------------------------------------------------------------------------------------------->
+        <!----------------------Benachrichtigungs Counter----------------------------------------------------------->
+        <div class="count-container" id="reloaded-count">
+            <!--Wird über Java Script alle 2 Sekunden aus der Datei 'notification-count.php' geladen-->
+        </div>
+        <!---------------------------------------------------------------------------------------------------------->
+        <!----------------------Profil Bild und Name---------------------------------------------------------------->
+        <img
+                src="<?php
+                if ($user_information[2] !== "") {
+                    echo $picture_path_server . $user_information[2];
+                } else { //default Profilbild
+                    echo $picture_path_server . $default_avatar_path;
+                } ?>"
+                class="img-circle profil-image-small">
+        <a href="profile.php"
+           class="nav-item active nav-link username"><?php echo $_SESSION["user-name"]; ?></a>
     </div>
+    <!-------------------------------------------------------------------------------------------------------------->
 </nav>
-<main class="container container-topic">
+<main class="container margin-top-19">
     <div class="profile-header p-4">
         <div>
             <?php
@@ -172,12 +197,10 @@ try {
             } ?>
 
             <?php
-            echo '</div>';
             } else {
-                echo '<h1>Sie sind nicht angemeldet</h1>';
-                echo '<p>gehen sie hier zu unserer Startseite und melden sie sich an</p><br>';
-                echo '<a href="index.php">Startseite</a>';
+                header("location:index.php");
             }
+
             ?>
 </main>
 <footer>
