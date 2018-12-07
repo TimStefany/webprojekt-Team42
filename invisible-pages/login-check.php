@@ -1,6 +1,5 @@
 <?php
-	/*Todo
-	*/
+
 	session_start();
 	include_once '../outsourced-php-code/userdata.php';
 

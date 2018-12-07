@@ -20,9 +20,6 @@ if (isset ($_SESSION["signed-in"])) {
         $fileerror = $_FILES['files']['error'];
         $filetype = $_FILES['files']['type'];
 
-        var_dump($filename);
-        echo "1";
-
         $fileext = explode('.', $filename);
         //Dateiendung wird immer klein geschrieben
         $fileactualext = strtolower(end($fileext));
@@ -33,12 +30,9 @@ if (isset ($_SESSION["signed-in"])) {
         if (in_array($fileactualext, $allowed)) {
             //error Test
             if ($fileerror === 0) {
-                if ($filesize < 2000000) {
-                    #wenn es unter 2mb ist bekommt es einen unique namen (mit der jeweiligen endung) damit es nicht überschrieben wird
+                if ($filesize < 20000000) {
+                    //wenn es unter 20mb ist bekommt es einen unique namen (mit der jeweiligen endung) damit es nicht überschrieben wird
                     $filenamenew = uniqid('', true) . "." . $fileactualext;
-
-                    var_dump($file);
-                    // $_SESSION["imgdatabasename"] = $filenamenew;
 
                     $filedestination = '/home/fs119/public_html/uploads/post_img/' . $filenamenew;
                     move_uploaded_file($filetmpname, $filedestination);
@@ -68,7 +62,7 @@ if (isset ($_SESSION["signed-in"])) {
                     //hier fängt benny code an der jetzt die picture id in das post feld schickt nachdem die rausgezogen wurde
 
                 } else {
-                    echo "Du hast die maximale Dateigröße von 2 Mb überschritten";
+                    echo "Du hast die maximale Dateigröße von 20 Mb überschritten";
                 }
             } else {
                 echo "Fehler beim uploaden der Datei";

@@ -103,7 +103,6 @@ try {
 
     $query1 = $db->prepare("UPDATE `registered_users` SET `picture_id`=:imgid WHERE `user_id` =:user");
     $query1->execute(array(":imgid" => $picture_id, ':user' => $user));
-    var_dump($picture_id);
     header('Location:../profile.php');
 } catch (PDOException $e) {
     echo "Error!: Bitten wenden Sie sich an den Administrator...<br/>";

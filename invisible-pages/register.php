@@ -1,13 +1,4 @@
-<?php //kompletter part ursprünglich mal von Tim geschrieben.
-/*Todo
-    Funktioniert so weit. Wollten wir später vielleicht in die feed.php Seite Integrieren.
-    - Passwörter Hashen und Salten
-    - effektivität der if Schleife steigern: Abbruch sobald der Name gefunden wurde/ Nur nach diesem Namen in
-        der Datenbank suchen
-    - Überürüfung für den Startbutton funktioniert so nicht. Alternative finden.
-    - Zeile 53 nochmal anschauen wegen der if Schleife
-*/
-
+<?php
 session_start();
 include '../outsourced-php-code/userdata.php';
 include_once '../outsourced-php-code/necessary-variables.php';

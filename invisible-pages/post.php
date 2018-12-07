@@ -21,9 +21,6 @@ if (isset ($_SESSION["signed-in"])) {
         $fileerror = $_FILES['files']['error'];
         $filetype = $_FILES['files']['type'];
 
-        var_dump($filename);
-        echo "1";
-
         $fileext = explode('.', $filename);
 
         //Dateiendung wird immer klein geschrieben

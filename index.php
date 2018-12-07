@@ -1,8 +1,3 @@
-<!-- ToDo
-    - Buttons im Modal für die Registrierung funktionieren noch nicht
-    - Felder für die Anmeldung erfordern noch keine Eingabe
-    - Überprüfung ob der Nutzer schon angemeldet ist
--->
 <?php
 session_start();
 if (isset ($_SESSION["signed-in"])) {

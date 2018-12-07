@@ -1,5 +1,5 @@
 <!-- Der header ist ausgelagert, das man ihn in der erstellung einer neuen Seite nicht jedes mal Berücksichtigen muss.
-Einbindung siehe -> index.php-->
+Einbindung siehe -> feed.php-->
 
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=yes">
 <link rel="apple-touch-icon" href="#">

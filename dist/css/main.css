@@ -8562,7 +8562,7 @@ a.text-dark:hover, a.text-dark:focus {
 
 .navbar .username:hover {
   font-weight: bold;
-  padding-left: 12px;
+  padding-left: 16px;
 }
 
 @media (max-width: 992px) {
@@ -8872,7 +8872,7 @@ body {
 }
 
 h1, .h1, h2, .h2, h3, .h3 {
-  color: darkslategray;
+  color: #3c3c3c;
   font-family: 'Roboto', sans-serif;
   font-weight: lighter;
 }

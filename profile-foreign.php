@@ -1,6 +1,4 @@
-<!-- ToDo
-   - Stylen
--->
+
 <?php
 	session_start();
 	include_once 'outsourced-php-code/userdata.php';
