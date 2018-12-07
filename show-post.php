@@ -23,6 +23,7 @@ $user_information = get_profile_information($_SESSION["user-id"]);
 </head>
 
 <body>
+<div class="background-login"></div>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">Plus - Microblog</a>
     <form class="form-inline my-2 my-lg-0">
@@ -71,7 +72,7 @@ $user_information = get_profile_information($_SESSION["user-id"]);
 <main>
     <div class="container">
     <?php
-    echo '<div>';
+    echo '<div class="profile-transparent-bg">';
     try {
         $db = new PDO($dsn, $dbuser, $dbpass, $option);
         $stmt = $db->prepare("SELECT * FROM posts_registered_users_topics_pictures_view WHERE post_id = :post");
@@ -82,7 +83,11 @@ $user_information = get_profile_information($_SESSION["user-id"]);
                 //ab hier wird das Bild, der Name und eventuell die Topic ausgegeben
                 echo '<div class="profile-container-row">';
                 echo '<div class="profile-container-row-cell">';
-                echo '<img src="'.$picture_path_server.$author_information[2].'" class="feed-scroll-row-container-cell-profilepicture" >';
+	            if ($author_information[2] !== ""){
+		            echo '<img src="'.$picture_path_server.$author_information[2].'" class="feed-scroll-row-container-cell-profilepicture" >';
+	            } else { //default Profilbild
+		            echo '<img src="'.$picture_path_server.$default_avatar_path.'" class="feed-scroll-row-container-cell-profilepicture" >';
+	            }
                 echo '<a href="profile-foreign.php?id=' . $row["user_id"] . '" class="autor"> +' . $row["user_name"] . '</a>';
                 if ($row["topic_id"] !== null) {
                     echo ' /';

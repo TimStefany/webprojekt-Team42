@@ -45,7 +45,7 @@ try {
 <body>
 <div class="background-login"></div>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Plus - Microblog</a>
+    <a class="navbar-brand" href="#">+Plus</a>
     <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Find</button>
@@ -149,7 +149,7 @@ try {
                         }
 
                         //Name des Autors als Link ausgeben
-                        echo '<a href="profile-foreign.php?id=' . $row["user_id"] . '" class="autor"> +' . $row["user_name"] . '</a>';
+                        echo '<a class="topic-link" href="profile-foreign.php?id=' . $row["user_id"] . '" class="autor"> +' . $row["user_name"] . '</a>';
                         echo '<hr class="my-1">';
 
                         //Inhalt des Posts wird ausgegeben

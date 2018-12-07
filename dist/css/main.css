@@ -8609,6 +8609,10 @@ a.text-dark:hover, a.text-dark:focus {
   min-width: 20px;
 }
 
+.count-container {
+  position: absolute;
+}
+
 .feed-scroll {
   background-image: url("../../assets/images/background-loginpage.jpg") !important;
   background-position: center center;
@@ -8846,8 +8850,20 @@ a.text-dark:hover, a.text-dark:focus {
   padding: 20px;
 }
 
+.fa-bell {
+  font-size: 22px;
+}
+
 .container-topic {
   margin-top: 20px;
+}
+
+.find-container span {
+  color: black;
+}
+
+.find-container p {
+  color: black;
 }
 
 body {
@@ -8967,4 +8983,9 @@ p {
   .form-inline .form-control {
     width: 100%;
   }
+}
+
+.autor {
+  color: black;
+  font-weight: bold;
 }

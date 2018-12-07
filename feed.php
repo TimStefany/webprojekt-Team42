@@ -27,7 +27,7 @@ if (isset ($_SESSION["signed-in"])) {
     ####################################################################################################################-->
     <div style="height:61px;"></div>
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Plus - Microblog</a>
+        <a class="navbar-brand" href="#">+Plus</a>
 
         <!-------------------------------------------------------------------------------------------------------------->
         <!---------------Hamburger Button / Toggle Button--------------------------------------------------------------->
@@ -62,8 +62,7 @@ if (isset ($_SESSION["signed-in"])) {
         <!----------------------Profil Bild und Name und Notification--------------------------------------------------->
         <div class="d-flex nav-bar-profile-picture">
             <!---------------------Notification Bell-------------------------------------------------------------------->
-            <div class="dropdown" style="list-style-type:none; margin-left:10px; margin-right:10px;">
-
+            <div class="dropdown" style="list-style-type:none; margin-left:10px; margin-right:10px;top:12px;">
                 <a href="#" data-toggle="dropdown"><span
                             class="label label-pill label-danger count" style="border-radius:10px;"></span> <span <i
                             class="fas fa-bell"></i> </a>

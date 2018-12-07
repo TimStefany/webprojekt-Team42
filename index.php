@@ -31,7 +31,7 @@ if (isset ($_SESSION["signed-in"])) {
                 <div class="col-md-4"></div>
                 <div class="col-md-4 modal-header">
                     <form action="invisible-pages/login-check.php" method="post" class="form-container">
-                        <h1>Plus HdM Microblog</h1>
+                        <h1>+Plus HdM</h1>
                         <span class="fontnorm">Benutzername:</span><br> <input class="form-control" name="username"
                                                                                type="text"
                                                                                placeholder="Benutzername eingeben!"

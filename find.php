@@ -107,14 +107,14 @@ if (isset ($_SESSION["signed-in"])) {
         //##################################################################################################################
         //          Datenbankabfrage um alle Nutzer zu finden
         //##################################################################################################################
-        echo '<h2>Nutzer</h2>';
+        echo '<h2 style="background-color: rgba(235, 236, 235, 0.5);">Nutzer</h2>';
         try {
             $stmt = $db->prepare("SELECT user_id, user_name, picture_path, profile_text FROM registered_users_pictures_view 
                                         WHERE user_name LIKE :search");
             $stmt->execute(array(":search" => $search));
             while ($row = $stmt->fetch()) {
                 ?>
-                <a href="profile-foreign.php?id=<?php echo $row["user_id"] ?>">
+                <a class ="find-container" href="profile-foreign.php?id=<?php echo $row["user_id"] ?>">
                     <div class="profile-header">
                         <div class="profile-header-cols">
                             <div class="row">
@@ -166,7 +166,7 @@ if (isset ($_SESSION["signed-in"])) {
         //##################################################################################################################
         //          Datenbankabfrage um alle Topics zu finden
         //##################################################################################################################
-        echo '<h2>Topics</h2>';
+        echo '<h2 style="background-color: rgba(235, 236, 235, 0.5);">Topics</h2>';
         try {
             $stmt = $db->prepare("SELECT * FROM topics
                                         WHERE topic_name LIKE :search");

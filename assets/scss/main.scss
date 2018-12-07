@@ -30,6 +30,8 @@ $third: rgb(0, 0, 0); //Überschrift im Profile oder Topic header.
 @import "../../assets/scss/pages/login-page.scss";
 @import "../../assets/scss/pages/feed-page.scss";
 @import "../../assets/scss/pages/topic-page.scss";
+@import "../../assets/scss/pages/find.scss";
+
 
 body {
   background-color: $primary;
@@ -143,4 +145,9 @@ p {
   .form-inline .form-control {
     width: 100%;
   }
+}
+
+.autor {
+  color: black;
+  font-weight: bold;
 }
