@@ -111,6 +111,7 @@ p {
 @media (max-width: 992px) {
   .btn-dark {
     width: 100%;
+    margin-top: 2px;
   }
   .mt-1 {
     margin-top: 0 !important;
@@ -135,6 +136,9 @@ p {
     margin-left: auto !important;
     margin-right: auto!important;
   }
+  .abstand_mobil{
+    margin-top: 0.25rem;
+  }
 }
 
 @media (min-width: 972px) {
@@ -156,7 +160,6 @@ p {
   top: 85%;
   left: -16px;
   padding:0;
-  height: 195px;
   overflow: scroll;
 }
 .margin-top-19{

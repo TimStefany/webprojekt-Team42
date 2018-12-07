@@ -6,6 +6,7 @@ include_once 'outsourced-php-code/select-profile-funktion.php';
 
 //ausführen der Funktion, um alle Benutzerinformationen in eine Variable zu schreiben
 $user_information = get_profile_information($_SESSION["user-id"]);
+$notification_dropdown = $_SESSION["notification-count"];
 
 if (isset ($_SESSION["signed-in"])) {
 
@@ -27,7 +28,7 @@ if (isset ($_SESSION["signed-in"])) {
     ####################################################################################################################-->
     <div style="height:61px;"></div>
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">+Plus</a>
+        <a class="navbar-brand" href="feed.php">+Plus</a>
 
         <!-------------------------------------------------------------------------------------------------------------->
         <!---------------Hamburger Button / Toggle Button--------------------------------------------------------------->
@@ -35,7 +36,7 @@ if (isset ($_SESSION["signed-in"])) {
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse mt-2" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse abstand_mobil" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <form class="form-inline my-lg-0 " action="find.php" method="get">
                     <input class="form-control mr-lg-2 " type="search" placeholder="Search" aria-label="Search"
@@ -66,9 +67,11 @@ if (isset ($_SESSION["signed-in"])) {
                 <a href="#" data-toggle="dropdown"><span
                             class="label label-pill label-danger count" style="border-radius:10px;"></span> <span <i
                             class="fas fa-bell"></i> </a>
-                <div id="reloaded" class="dropdown-menu notification-menu bg-dark">
-                    <!--Wird über Java Script alle 2 Sekunden aus der Datei 'notification-request.php' geladen-->
-                </div>
+                <ul id="reloaded" class="dropdown-menu bg-dark">
+                    <div style="max-height:<?php echo ($notification_dropdown * 59)  ?>px;">
+
+                    </div>
+                </ul>
             </div>
             <!---------------------------------------------------------------------------------------------------------->
             <!----------------------Benachrichtigungs Counter----------------------------------------------------------->
@@ -108,8 +111,7 @@ if (isset ($_SESSION["signed-in"])) {
                             </button>
                         </div>
                         <div class="postform">
-                            <form action="invisible-pages/post.php" method="post"
-                                  enctype="multipart/form-data">
+                            <form action="invisible-pages/post.php" method="post" enctype="multipart/form-data">
                                 <div class="modal-body">
                                     <p><label class="formular-label-color">Blogeintrag:<br>
                                             <textarea class="form-control" name="post" cols="80" rows="3"
@@ -119,15 +121,15 @@ if (isset ($_SESSION["signed-in"])) {
                                     <div class="ui-widget">
                                         <!--<textarea class="form-control" name="topic" id="tags" rows="1"></textarea>-->
                                         <label class="formular-label-color" for="tags">Topic: </label>
-                                        <input class="form-control" name="topic" id="tags">
+                                        <input class ="form-control" name="topic" id="tags">
                                     </div>
 
                                 </div>
                                 <div class="modal-footer">
-                                    <input type="file" name="files" accept="image/*" onchange="loadFile(event)">
+                                    <input class="verschiebung" type="file" name="files" accept="image/*"
+                                           onchange="loadFile(event)">
                                     <img id="output" class="image-preview"/>
-
-                                    <button type="submit" name="upload-post-profile" class="btn btn-sm btn-primary">
+                                    <button type="submit" name="upload-post-feed" class="btn btn-sm btn-primary">
                                         Posten
                                     </button>
                                 </div>
@@ -136,6 +138,7 @@ if (isset ($_SESSION["signed-in"])) {
                     </div>
                 </div>
             </div>
+        </div>
             <!--------------------------------------------------------------------------------------------------------->
 
             <?php

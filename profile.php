@@ -28,7 +28,7 @@ if ( isset ( $_SESSION["signed-in"] ) ) {
 <body>
     <div class="background-login"></div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">+Plus</a>
+        <a class="navbar-brand" href="feed.php">+Plus</a>
 
         <!-------------------------------------------------------------------------------------------------------------->
         <!---------------Hamburger Button / Toggle Button--------------------------------------------------------------->
@@ -36,7 +36,7 @@ if ( isset ( $_SESSION["signed-in"] ) ) {
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse mt-2" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse abstand_mobil" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <form class="form-inline my-lg-0 " action="find.php" method="get">
                     <input class="form-control mr-lg-2 " type="search" placeholder="Search" aria-label="Search"
@@ -67,9 +67,11 @@ if ( isset ( $_SESSION["signed-in"] ) ) {
                 <a href="#" data-toggle="dropdown"><span
                             class="label label-pill label-danger count" style="border-radius:10px;"></span> <span <i
                             class="fas fa-bell"></i> </a>
-                <div id="reloaded" class="dropdown-menu notification-menu bg-dark">
-                    <!--Wird über Java Script alle 2 Sekunden aus der Datei 'notification-request.php' geladen-->
-                </div>
+                <ul id="reloaded" class="dropdown-menu bg-dark">
+                    <div style="max-height:<?php echo ($notification_dropdown * 59)  ?>px;">
+
+                    </div>
+                </ul>
             </div>
             <!---------------------------------------------------------------------------------------------------------->
             <!----------------------Benachrichtigungs Counter----------------------------------------------------------->
@@ -80,11 +82,11 @@ if ( isset ( $_SESSION["signed-in"] ) ) {
             <!----------------------Profil Bild und Name---------------------------------------------------------------->
             <img
                     src="<?php
-                    if ($user_information[2] !== "") {
-                        echo $picture_path_server . $user_information[2];
-                    } else { //default Profilbild
-                        echo $picture_path_server . $default_avatar_path;
-                    } ?>"
+						if ($user_information[2] !== "") {
+							echo $picture_path_server . $user_information[2];
+						} else { //default Profilbild
+							echo $picture_path_server . $default_avatar_path;
+						} ?>"
                     class="img-circle profil-image-small">
             <a href="profile.php"
                class="nav-item active nav-link username"><?php echo $_SESSION["user-name"]; ?></a>
@@ -142,6 +144,9 @@ if ( isset ( $_SESSION["signed-in"] ) ) {
         <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#profile_picture">
             Bild ändern
         </button>
+        <form style="display: inline;" action="invisible-pages/profile-picture-delete.php">
+            <button class="btn btn-dark" type="submit" value="Submit">Profilbild löschen</button>
+        </form>
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
              aria-labelledby="exampleModalLabel"
              aria-hidden="true">

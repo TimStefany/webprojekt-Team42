@@ -1,34 +1,40 @@
 <?php
-session_start();
-include_once 'outsourced-php-code/userdata.php';
-include_once 'outsourced-php-code/necessary-variables.php';
-include_once 'outsourced-php-code/select-profile-funktion.php';
+	session_start();
+	include_once 'outsourced-php-code/userdata.php';
+	include_once 'outsourced-php-code/necessary-variables.php';
+	include_once 'outsourced-php-code/select-profile-funktion.php';
 
 //ausführen der Funktion, um alle Benutzerinformationen in eine Variable zu schreiben
-$user_information = get_profile_information( $_SESSION["user-id"] );
+	$user_information = get_profile_information($_SESSION["user-id"]);
 
-//pushhelp
-if ( isset ( $_SESSION["signed-in"] ) ) {
+	if (isset ($_SESSION["signed-in"])) {
 
+		//Suchbegriff aus der URL in die Variable schreiben
+		$search = '%' . $_GET["search"] . '%';
 
-    ?>
-    <!doctype html>
+		//Datenbankverbindung aufbauen
+		$db = new PDO($dsn, $dbuser, $dbpass, $option);
 
-    <html class="no-js" lang="de">
+		?>
+        <!doctype html>
+
+        <html class="no-js" lang="de">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>Microblog Team-42</title>
         <meta name="description" content="">
-        <?php
-        include 'outsourced-php-code/header.php';
-        ?>
-
+		<?php
+			include 'outsourced-php-code/header.php';
+		?>
     </head>
-<body>
-    <div class="background-login"></div>
+
+    <body>
+    <!--####################################################################################################################
+		Hier steht der NAV Bar
+	####################################################################################################################-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">+Plus</a>
+        <a class="navbar-brand" href="feed.php">+Plus</a>
 
         <!-------------------------------------------------------------------------------------------------------------->
         <!---------------Hamburger Button / Toggle Button--------------------------------------------------------------->
@@ -36,7 +42,7 @@ if ( isset ( $_SESSION["signed-in"] ) ) {
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse mt-2" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse abstand_mobil" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <form class="form-inline my-lg-0 " action="find.php" method="get">
                     <input class="form-control mr-lg-2 " type="search" placeholder="Search" aria-label="Search"
@@ -67,9 +73,11 @@ if ( isset ( $_SESSION["signed-in"] ) ) {
                 <a href="#" data-toggle="dropdown"><span
                             class="label label-pill label-danger count" style="border-radius:10px;"></span> <span <i
                             class="fas fa-bell"></i> </a>
-                <div id="reloaded" class="dropdown-menu notification-menu bg-dark">
-                    <!--Wird über Java Script alle 2 Sekunden aus der Datei 'notification-request.php' geladen-->
-                </div>
+                <ul id="reloaded" class="dropdown-menu bg-dark">
+                    <div style="max-height:<?php echo ($notification_dropdown * 59)  ?>px;">
+
+                    </div>
+                </ul>
             </div>
             <!---------------------------------------------------------------------------------------------------------->
             <!----------------------Benachrichtigungs Counter----------------------------------------------------------->
@@ -80,11 +88,11 @@ if ( isset ( $_SESSION["signed-in"] ) ) {
             <!----------------------Profil Bild und Name---------------------------------------------------------------->
             <img
                     src="<?php
-                    if ($user_information[2] !== "") {
-                        echo $picture_path_server . $user_information[2];
-                    } else { //default Profilbild
-                        echo $picture_path_server . $default_avatar_path;
-                    } ?>"
+					    if ($user_information[2] !== "") {
+						    echo $picture_path_server . $user_information[2];
+					    } else { //default Profilbild
+						    echo $picture_path_server . $default_avatar_path;
+					    } ?>"
                     class="img-circle profil-image-small">
             <a href="profile.php"
                class="nav-item active nav-link username"><?php echo $_SESSION["user-name"]; ?></a>
@@ -92,118 +100,7 @@ if ( isset ( $_SESSION["signed-in"] ) ) {
         <!-------------------------------------------------------------------------------------------------------------->
     </nav>
 
-<main class="container container-profile"><!--ein Responsive Container in dem der Content steckt-->
-    <div class="profile-header">
-    <div class="profile-header-cols">
-    <div class="row">
-    <div class="col-lg-4 p-3">
-        <?php
-        //##### Ausgabe des Profilbildes - Standard Bildes #############################################################
-        if ($user_information[2] !== "") {
-            ?>
-            <div class="profile-picture">
-                <img class="profile-picture" src="<?php echo $picture_path_server . $user_information[2]; ?>" alt="Profilbild">
-            </div>
-            <?php
-        } else { //default Profilbild
-            ?>
-            <img class="profile-picture" src="<?php echo $picture_path_server . $default_avatar_path; ?>" alt="Profilbild">
-            <?php
-        }
-        //##############################################################################################################
-        ?>
-    </div>
-    <div class="col-lg-8 p-5">
-    <div>
-        <?php
-        echo '<h1 class="profile-topic-headline">' . $_SESSION["user-name"] . '</h1>';
-        ?>
-    </div>
-    <?php
-    $user = $_SESSION["user-id"];
-
-    try {
-        $db    = new PDO( $dsn, $dbuser, $dbpass, $option );
-        $sql   = "SELECT profile_text FROM registered_users WHERE user_id = :user;";
-        $query = $db->prepare( $sql );
-        $query->execute( array( ":user" => $user ) );
-
-        $zeile = $query->fetch();
-        //Hinzufügen einer Erklärung für den Profiltext falls keiner vorhanden ist
-        if ( $zeile["profile_text"] == null ) {
-            $zeile["profile_text"] = "Klicke auf bearbeiten um deine Beschreibung hinzuzufügen.";
-        }
-        echo "<span class='profile-headline'>Profiltext:</span>";
-        echo "<div><p>" . $zeile["profile_text"] . "</p></div>";
-        ?>
-        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
-            Profiltext bearbeiten
-        </button>
-        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#profile_picture">
-            Bild ändern
-        </button>
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-             aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog vh15" role="document">
-                <div class="modal-content boxshadow bg-white">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Profiltext Bearbeiten:</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <form action='invisible-pages/update-profile-text.php' method='post'>
-                        <div class="modal-body">
-                            <p><label class="formular-label-color">Blogeintrag:<br>
-                                    <textarea class="form-control" name="post" cols="80" rows="3"
-                                              maxlength="200"> <?php echo $zeile["profile_text"] ?></textarea></label>
-                            </p>
-                            <p>
-                        </div>
-                        <!-- Aktuell schließen beide Buttons das Modal und keiner führt die Registrierung aus -->
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zurück</button>
-                            <input type="submit" name="absenden" class="btn btn-primary" value="Update">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade vh15" id="profile_picture" tabindex="-1" role="dialog"
-             aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog vh15" role="document">
-                <div class="modal-content boxshadow bg-white">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Profiltext Bearbeiten:</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <form action='invisible-pages/image-database-upload-profile.php' method='post'
-                          enctype="multipart/form-data">
-                        <div class="modal-body">
-                            <input class="verschiebung" type="file" name="files" accept="image/*"
-                                   onchange="loadFile(event)">
-                            <img id="output" class="image-preview"/>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zurück</button>
-                                <input type="submit" name="upload-profile-picture" class="btn btn-primary"
-                                       value="Update">
-                            </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        </div>
-        </div>
-        </div>
-        </div>
-        <!--input Box für Posts-->
-        <!--------------------------------------------------------------------------------------------------------------------------------------------->
+    <main class="margin-top-19">
         <div class="postform">
             <div class="modal fade " id="postModal" tabindex="-1" role="dialog"
                  aria-labelledby="postModalLabel"
@@ -234,8 +131,8 @@ if ( isset ( $_SESSION["signed-in"] ) ) {
                                 <div class="modal-footer">
                                     <input class="verschiebung" type="file" name="files" accept="image/*"
                                            onchange="loadFile(event)">
-                                    <img id="output1" class="image-preview"/>
-                                    <button type="submit" name="upload-post-profile" class="btn btn-sm btn-primary">
+                                    <img id="output" class="image-preview"/>
+                                    <button type="submit" name="upload-post-feed" class="btn btn-sm btn-primary">
                                         Posten
                                     </button>
                                 </div>
@@ -245,92 +142,133 @@ if ( isset ( $_SESSION["signed-in"] ) ) {
                 </div>
             </div>
         </div>
+        <div class="background-login"></div>
+        <div class="container">
+			<?php
+				//##################################################################################################################
+				//          Datenbankabfrage um alle Nutzer zu finden
+				//##################################################################################################################
+				echo '<h2 style="background-color: rgba(235, 236, 235, 0.5);">Nutzer</h2>';
+				try {
+					$stmt = $db->prepare("SELECT user_id, user_name, picture_path, profile_text FROM registered_users_pictures_view 
+                                        WHERE user_name LIKE :search");
+					$stmt->execute(array(":search" => $search));
+					while ($row = $stmt->fetch()) {
+						?>
+                        <a class="find-container" href="profile-foreign.php?id=<?php echo $row["user_id"] ?>">
+                            <div class="profile-header">
+                                <div class="profile-header-cols">
+                                    <div class="row">
+                                        <div class="col-lg-4 p-3">
+											<?php
+												if ($row["picture_path"] !== null) {
+													?>
+                                                    <img class="profile-picture"
+                                                         src="<?php echo $picture_path_server . $row["picture_path"]; ?>"
+                                                         width="300" height="auto" alt="Profilbild">
+													<?php
+												} else { //default Profilbild
+													?>
+                                                    <img src="<?php echo $picture_path_server . $default_avatar_path; ?>"
+                                                         width="300" height="auto" alt="Profilbild">
+													<?php
+												} ?>
+                                        </div>
+
+                                        <div class="col-lg-8 p-5">
+                                            <div>
+                                                <h1 class="profile-topic-headline"><?php echo $row["user_name"]; ?></h1>
+                                            </div>
+                                            <hr>
+											<?php
+												$user = $_SESSION["user-id"];
+
+												//Hinzufügen eines Profiltextes falls keiner vorhanden ist
+												if ($row["profile_text"] == NULL) {
+													$row["profile_text"] = "Kein Profiltext vorhanden.";
+												}
+												echo "<span class='profile-headline'>Profiltext:</span>";
+												echo "<div><p>" . $row["profile_text"] . "</p></div>";
+
+											?>
+                                            <hr>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <hr>
+						<?php
+					}
+				} catch (PDOException $e) {
+					echo "Error!: Bitten wenden Sie sich an den Administrator...<br/>";
+					die();
+				}
+
+				//##################################################################################################################
+				//          Datenbankabfrage um alle Topics zu finden
+				//##################################################################################################################
+				echo '<h2 style="background-color: rgba(235, 236, 235, 0.5);">Topics</h2>';
+				try {
+					$stmt = $db->prepare("SELECT * FROM topics
+                                        WHERE topic_name LIKE :search");
+					$stmt->execute(array(":search" => $search));
+					while ($row = $stmt->fetch()) {
+						?>
+                        <a href="topic-profile.php?id=<?php echo $row["topic_id"] ?>">
+                            <div class="profile-header p-4">
+                                <div>
+									<?php
+										echo '<h1 class="profile-topic-headline">' . $row["topic_name"] . '</h1>';
+									?>
+                                </div>
+                            </div>
+                        </a>
+                        <hr>
+						<?php
+					}
+				} catch (PDOException $e) {
+					echo "Error!: Bitten wenden Sie sich an den Administrator...<br/>";
+					die();
+				}
+			?>
         </div>
-        <hr>
-        <div class="profile-transparent-bg">
-            <h2>Deine Beiträge:</h2>
-            <?php
-            /*#############################################################################################################
-                Alle Beiträge des Nutzers anzeigen
-            ###############################################################################################################*/
-            try {
-                $db   = new PDO( $dsn, $dbuser, $dbpass, $option );
-                $stmt = $db->prepare( "SELECT * FROM posts_registered_users_topics_pictures_view WHERE user_id = :user" );
 
-                if ( $stmt->execute( array( ":user" => $_SESSION["user-id"] ) ) ) {
-                    while ( $row = $stmt->fetch() ) {
-                        echo '<div class="profile-container-row">';
-                        echo '<div class="profile-container-row-cell">';
-                        if ( $row["topic_name"] !== null ) {
-                            echo '/ <a class="topic-link" href="topic-profile.php?id=' . $row["topic_id"] . '"> +' . $row["topic_name"] . '</a>';
-                            echo '<hr class="my-1">';
-                        }
-                        echo '<p>' . $row["content"] . '</p>';
-                        if ( $row["picture_id"] != null ) {
-                            echo '<img src="' . $picture_path_server . $row["picture_path"] . '">';
-                        }
-                        echo '</div>';
-                        echo '</div>';
-                    }
-                } else {
-                    echo 'Datenbank Fehler';
-                    echo 'bitte wende dich an den Administrator';
-                }
+    </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="dist/js/main.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script> <!--Pic Upload-->
+        var loadFile = function (event) {
+            var output = document.getElementById('output');
+            output.src = URL.createObjectURL(event.target.files[0]);
+        };
+    </script>
 
-            } catch ( PDOException $e ) {
-                echo "Error!: Bitten wenden Sie sich an den Administrator...<br/>";
-                die();
-            }
+    <!------Notification Text reload----------------------------------------------------------------------------------->
+    <script>
+        setInterval(function () {
+            $.get('invisible-pages/notification-request.php', function (data) {
+                $('#reloaded').html(data);
+            });
+        }, 2000);
+    </script>
+    <!----------------------------------------------------------------------------------------------------------------->
+    <!------Notification Count reload---------------------------------------------------------------------------------->
+    <script>
+        setInterval(function () {
+            $.get('invisible-pages/notification-count.php', function (data) {
+                $('#reloaded-count').html(data);
+            });
+        }, 2000);
+    </script>
+    <!----------------------------------------------------------------------------------------------------------------->
+    </body>
 
-            ?>
-
-
-        </main>
-        <footer>
-
-        </footer>
-
-        <!--Hier stehen die J Query codes welche dann ausgeführt werden wenn das Dokument geladen ist-->
-        <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script type="text/javascript" src="dist/js/main.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script>
-            var loadFile = function (event) {
-                var output = document.getElementById('output');
-                output.src = URL.createObjectURL(event.target.files[0]);
-                var output1 = document.getElementById('output1');
-                output1.src = URL.createObjectURL(event.target.files[0]);
-            };
-        </script>
-        <script>
-            setInterval(function () {
-                $.get('invisible-pages/notification-request.php', function (data) {
-                    $('#reloaded').html(data);
-                });
-            }, 2000);
-        </script>
-        <!----------------------------------------------------------------------------------------------------------------->
-        <!------Notification Count reload---------------------------------------------------------------------------------->
-        <script>
-            setInterval(function () {
-                $.get('invisible-pages/notification-count.php', function (data) {
-                    $('#reloaded-count').html(data);
-                });
-            }, 2000);
-        </script>
-        </body>
-
-        </html>
-        <?php
-        $db = null;
-    } catch ( PDOException $e ) {
-        echo "Error!: Bitte wenden Sie sich an den Administrator!?..." . $e;
-        die();
-    }
-    ?>
-    <?php
-} else {
-    header("location:index.php");
-}
+		<?php
+	} else {
+		header("location:index.php");
+	}
 
 ?>

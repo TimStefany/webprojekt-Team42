@@ -45,7 +45,7 @@ try {
 <body>
 <div class="background-login"></div>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">+Plus</a>
+    <a class="navbar-brand" href="feed.php">+Plus</a>
 
     <!-------------------------------------------------------------------------------------------------------------->
     <!---------------Hamburger Button / Toggle Button--------------------------------------------------------------->
@@ -53,7 +53,7 @@ try {
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse mt-2" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse abstand_mobil" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <form class="form-inline my-lg-0 " action="find.php" method="get">
                 <input class="form-control mr-lg-2 " type="search" placeholder="Search" aria-label="Search"
@@ -84,9 +84,11 @@ try {
             <a href="#" data-toggle="dropdown"><span
                         class="label label-pill label-danger count" style="border-radius:10px;"></span> <span <i
                         class="fas fa-bell"></i> </a>
-            <div id="reloaded" class="dropdown-menu notification-menu bg-dark">
-                <!--Wird über Java Script alle 2 Sekunden aus der Datei 'notification-request.php' geladen-->
-            </div>
+            <ul id="reloaded" class="dropdown-menu bg-dark">
+                <div style="max-height:<?php echo ($notification_dropdown * 59)  ?>px;">
+
+                </div>
+            </ul>
         </div>
         <!---------------------------------------------------------------------------------------------------------->
         <!----------------------Benachrichtigungs Counter----------------------------------------------------------->
@@ -97,11 +99,11 @@ try {
         <!----------------------Profil Bild und Name---------------------------------------------------------------->
         <img
                 src="<?php
-                if ($user_information[2] !== "") {
-                    echo $picture_path_server . $user_information[2];
-                } else { //default Profilbild
-                    echo $picture_path_server . $default_avatar_path;
-                } ?>"
+					if ($user_information[2] !== "") {
+						echo $picture_path_server . $user_information[2];
+					} else { //default Profilbild
+						echo $picture_path_server . $default_avatar_path;
+					} ?>"
                 class="img-circle profil-image-small">
         <a href="profile.php"
            class="nav-item active nav-link username"><?php echo $_SESSION["user-name"]; ?></a>
@@ -109,6 +111,47 @@ try {
     <!-------------------------------------------------------------------------------------------------------------->
 </nav>
 <main class="container margin-top-19">
+    <div class="postform">
+        <div class="modal fade " id="postModal" tabindex="-1" role="dialog"
+             aria-labelledby="postModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog vh15" role="document">
+                <div class="modal-content boxshadow bg-white">
+                    <div class="modal-header">
+                        <h1 class="modal-title" id="postModalLabel">Posten</h1>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="postform">
+                        <form action="invisible-pages/post.php" method="post" enctype="multipart/form-data">
+                            <div class="modal-body">
+                                <p><label class="formular-label-color">Blogeintrag:<br>
+                                        <textarea class="form-control" name="post" cols="80" rows="3"
+                                                  placeholder="neuer Eintrag!"
+                                                  maxlength="200" required></textarea></label></p>
+                                <p>
+                                <div class="ui-widget">
+                                    <!--<textarea class="form-control" name="topic" id="tags" rows="1"></textarea>-->
+                                    <label class="formular-label-color" for="tags">Topic: </label>
+                                    <input class ="form-control" name="topic" id="tags">
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <input class="verschiebung" type="file" name="files" accept="image/*"
+                                       onchange="loadFile(event)">
+                                <img id="output" class="image-preview"/>
+                                <button type="submit" name="upload-post-feed" class="btn btn-sm btn-primary">
+                                    Posten
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="profile-header p-4">
         <div>
             <?php
@@ -205,5 +248,34 @@ try {
 </main>
 <footer>
 </footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="dist/js/main.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script> <!--Pic Upload-->
+    var loadFile = function (event) {
+        var output = document.getElementById('output');
+        output.src = URL.createObjectURL(event.target.files[0]);
+    };
+</script>
+
+<!------Notification Text reload----------------------------------------------------------------------------------->
+<script>
+    setInterval(function () {
+        $.get('invisible-pages/notification-request.php', function (data) {
+            $('#reloaded').html(data);
+        });
+    }, 2000);
+</script>
+<!----------------------------------------------------------------------------------------------------------------->
+<!------Notification Count reload---------------------------------------------------------------------------------->
+<script>
+    setInterval(function () {
+        $.get('invisible-pages/notification-count.php', function (data) {
+            $('#reloaded-count').html(data);
+        });
+    }, 2000);
+</script>
+<!----------------------------------------------------------------------------------------------------------------->
 </body>
 </html>
