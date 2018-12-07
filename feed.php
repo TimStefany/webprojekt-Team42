@@ -35,7 +35,7 @@ if (isset ($_SESSION["signed-in"])) {
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse mt-2" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <form class="form-inline my-lg-0 " action="find.php" method="get">
                     <input class="form-control mr-lg-2 " type="search" placeholder="Search" aria-label="Search"
