@@ -8965,9 +8965,6 @@ p {
   .mr-sm-mq {
     margin-right: 0.25rem !important;
   }
-  mb-sm-mq {
-    margin-bottom: 0.25rem !important;
-  }
   .form-inline {
     flex-flow: row wrap;
   }

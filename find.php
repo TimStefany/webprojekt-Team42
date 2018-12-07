@@ -122,7 +122,7 @@ if (isset ($_SESSION["signed-in"])) {
                                     <?php
                                     if ($row["picture_path"] !== null) {
                                         ?>
-                                        <img src="<?php echo $picture_path_server . $row["picture_path"]; ?>"
+                                        <img class="profile-picture" src="<?php echo $picture_path_server . $row["picture_path"]; ?>"
                                              width="300" height="auto" alt="Profilbild">
                                         <?php
                                     } else { //default Profilbild
