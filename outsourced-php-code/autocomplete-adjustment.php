@@ -1,4 +1,10 @@
 <?php
+	/*###########################################################################################################
+                Hier werden alle Topics aus der Datenbank geholt und in folgende Form gebracht:
+	  'ActionScript',
+      'AppleScript',
+      'Asp',
+            ###########################################################################################################*/
 	include_once 'userdata.php';
 	$db    = new PDO( $dsn, $dbuser, $dbpass, $option );
 	$query = $db->prepare(
@@ -6,8 +12,6 @@
 	$query->execute();
 	$arrData = array();
 	while ( $row = $query->fetch() )
-		//$arrData[] = $row['topic_name'];
-		//print_r($arrData);
 	{
 		echo "'" . $row['topic_name'] . "'" . "," . "\n";
 	}

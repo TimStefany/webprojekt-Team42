@@ -3,7 +3,7 @@
 	session_start();
 	include_once '../outsourced-php-code/userdata.php';
 
-//übernehmen der Variablen aus dem Vormular der Startseite
+//übernehmen der Variablen aus dem Formular der Startseite
 	if ( isset( $_POST["username"] ) AND isset( $_POST["password"] ) ) {
 		$name        = htmlspecialchars( $_POST["username"], ENT_QUOTES, "UTF-8" );
 		$passwordraw = htmlspecialchars( $_POST["password"], ENT_QUOTES, "UTF-8" );
@@ -16,7 +16,7 @@
 		die();
 	}
 
-//sql Statement überprüft Nutzernamen und Passwort auf einmal. Hat nur ein ergebnis wenn beide Daten stimmen.
+//sql Statement überprüft Nutzernamen und Passwort auf einmal. Hat nur ein Ergebnis wenn beide Daten stimmen.
 	$db   = new PDO( $dsn, $dbuser, $dbpass, $option );
 	$stmt = $db->prepare( "SELECT `user_id`, `user_pass`, `user_name`  FROM `registered_users` WHERE `user_name`=:name" );
 

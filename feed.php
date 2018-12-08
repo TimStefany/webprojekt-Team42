@@ -68,7 +68,7 @@ if (isset ($_SESSION["signed-in"])) {
                             class="label label-pill label-danger count" style="border-radius:10px;"></span> <span <i
                             class="fas fa-bell"></i> </a>
                 <ul id="reloaded" class="dropdown-menu bg-dark">
-                    <div style="max-height:<?php echo ($notification_dropdown * 59)  ?>px;">
+                    <div style="max-height:<?php echo ($notification_dropdown * 59)  ?>px;"> <!--Hier wird die Größe des Dropdowns an die Anzahl der neuen Beiträge angepasst.-->
 
                     </div>
                 </ul>
@@ -119,7 +119,6 @@ if (isset ($_SESSION["signed-in"])) {
                                                       maxlength="200" required></textarea></label></p>
                                     <p>
                                     <div class="ui-widget">
-                                        <!--<textarea class="form-control" name="topic" id="tags" rows="1"></textarea>-->
                                         <label class="formular-label-color" for="tags">Topic: </label>
                                         <input class ="form-control" name="topic" id="tags">
                                     </div>
@@ -166,7 +165,7 @@ if (isset ($_SESSION["signed-in"])) {
                         $followed_type[] = $row["type"];
                         //fügt die id von dem Nutzer oder der Topic der gefolgt wird, die topics oder Nutzernamen dem
                         // gefolgt wird und den type jeder Zeile hinten an das Array an.
-                        $counter++;
+                        $counter++; //counter wird verwendet um später die Spaltenbreite des nach rechts scrollbaren Divs anzupassen.
                     }
                 } else {
                     echo 'Datenbank Fehler';
@@ -180,7 +179,7 @@ if (isset ($_SESSION["signed-in"])) {
             }
             ?>
 
-            <div class="feed-scroll" style="min-width:<?php echo ($counter * 432) + 42 ?>px;">
+            <div class="feed-scroll" style="min-width:<?php echo ($counter * 432) + 42 ?>px;"> <!--Hier wird die Größe des Scrollbaren Inhaltes auf der Feed Seite Berechnet, Folgt man nur einer oder keiner Topic bleibt er bei 100vw, ansonsten passt er sich der Anzahl der Spaten an.-->
                 <!--####################################################################################################################
                     Dieser Teil gibt die Spalten mit den Beiträgen aus
                     ####################################################################################################################-->
@@ -335,7 +334,8 @@ if (isset ($_SESSION["signed-in"])) {
     <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="dist/js/main.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script> <!--Pic Upload-->
+    <!-------------------------------Pic Upload------------------------------------------------------------------------>
+    <script>
         var loadFile = function (event) {
             var output = document.getElementById('output');
             output.src = URL.createObjectURL(event.target.files[0]);

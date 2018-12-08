@@ -128,7 +128,6 @@ try {
                                                   maxlength="200" required></textarea></label></p>
                                 <p>
                                 <div class="ui-widget">
-                                    <!--<textarea class="form-control" name="topic" id="tags" rows="1"></textarea>-->
                                     <label class="formular-label-color" for="tags">Topic: </label>
                                     <input class ="form-control" name="topic" id="tags">
                                 </div>
@@ -248,7 +247,8 @@ try {
 <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="dist/js/main.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script> <!--Pic Upload-->
+<!-------------------------------Pic Upload------------------------------------------------------------------------>
+<script>
     var loadFile = function (event) {
         var output = document.getElementById('output');
         output.src = URL.createObjectURL(event.target.files[0]);

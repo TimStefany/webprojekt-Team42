@@ -21,13 +21,14 @@ Einbindung siehe -> feed.php-->
 <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="../dist/css/main.css" />
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<!----------------------Erstellen des Dropdown für die Topicauswahl--------------------------------------------------->
 <script>
     $( function() {
         var availableTags = [
             <?php
             include_once "autocomplete-adjustment.php"?>
         ];
-        $( "#tags" ).autocomplete({
+        $( "#tags" ).autocomplete({ //über das Tag ID wird später das Inputfeld angesprochen
             source: availableTags
         });
     } );
