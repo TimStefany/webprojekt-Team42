@@ -133,10 +133,10 @@ if ( isset ( $_SESSION["signed-in"] ) ) {
         $zeile = $query->fetch();
         //Hinzufügen einer Erklärung für den Profiltext falls keiner vorhanden ist
         if ( $zeile["profile_text"] == null ) {
-            $zeile["profile_text"] = "Klicke auf bearbeiten um deine Beschreibung hinzuzufügen.";
+            $zeile["profile_text"] = "Klicke auf Profiltext bearbeiten um deine Beschreibung hinzuzufügen.";
         }
         echo "<span class='profile-headline'>Profiltext:</span>";
-        echo "<div><p>" . $zeile["profile_text"] . "</p></div>";
+        echo "<div><p>".$zeile["profile_text"]."</p></div>";
         ?>
         <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
             Profiltext bearbeiten
@@ -162,7 +162,7 @@ if ( isset ( $_SESSION["signed-in"] ) ) {
                         <div class="modal-body">
                             <p><label class="formular-label-color">Blogeintrag:<br>
                                     <textarea class="form-control" name="post" cols="80" rows="3"
-                                              maxlength="200"> <?php echo $zeile["profile_text"] ?></textarea></label>
+                                              maxlength="200"><?php echo $zeile["profile_text"]; ?></textarea></label>
                             </p>
                             <p>
                         </div>

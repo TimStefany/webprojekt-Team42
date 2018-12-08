@@ -301,10 +301,10 @@ if (isset ($_SESSION["signed-in"])) {
                                     echo '<img src="' . $picture_path_server . $default_avatar_path . '" class="feed-scroll-row-container-cell-profilepicture" >';
                                 }
 
-                                echo '<a href="profile-foreign.php?id=' . $row["user_id"] . '" class="autor"> + Autor: ' . $row["user_name"] . '</a>';
+                                echo '<a href="profile-foreign.php?id=' . $row["user_id"] . '" class="autor"> +' . $row["user_name"] . '</a>';
                                 if ($row["topic_id"]) {
                                     echo ' /';
-                                    echo '<a href="topic-profile.php?id=' . $row["topic_id"] . '"> + Topic: ' . $row["topic_name"] . '</a>';
+                                    echo '<a href="topic-profile.php?id=' . $row["topic_id"] . '"> +' . $row["topic_name"] . '</a>';
                                 }
                                 echo '<hr class="my-1">';
                                 echo '<p>' . $row["content"] . '</p>'; //gibt den Content in einem P Tag aus

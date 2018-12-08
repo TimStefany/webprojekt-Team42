@@ -9,7 +9,7 @@
 		$db    = new PDO( $dsn, $dbuser, $dbpass, $option );
 		$query = $db->prepare(
 			"UPDATE registered_users SET picture_id = :p_id WHERE user_id= :id" );
-		$query->execute( array("p_id" => $default_avatar_id, "id" => $id) );
+		$query->execute( array("p_id" => null , "id" => $id) );
 		$db = null;
 		header( 'Location: ../profile.php' );
 	} catch ( PDOException $e ) {

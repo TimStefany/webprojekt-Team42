@@ -8999,8 +8999,9 @@ p {
 .dropdown-menu {
   top: 85%;
   left: -16px;
-  padding: 0;
-  overflow: scroll;
+  padding: 10px;
+  max-height: 80vh;
+  overflow: auto;
 }
 
 .margin-top-19 {
