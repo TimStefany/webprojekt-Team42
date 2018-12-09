@@ -1,7 +1,7 @@
 .navbar {
 
-  &-toggler-icon {
-
+  &-toggler{
+    height: 46px;
   }
 
   i {
@@ -61,7 +61,7 @@
     top: 16px;
   }
   .d-flex {
-    top: 3px;
+    top: 7px;
     position: absolute;
     left: auto;
     right: 12px;

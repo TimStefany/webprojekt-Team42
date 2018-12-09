@@ -7,7 +7,6 @@
 	if ( isset( $_POST["username"] ) AND isset( $_POST["password"] ) ) {
 		$name        = htmlspecialchars( $_POST["username"], ENT_QUOTES, "UTF-8" );
 		$passwordraw = htmlspecialchars( $_POST["password"], ENT_QUOTES, "UTF-8" );
-		//$password = password_hash($passwordraw, PASSWORD_DEFAULT);
 	} //Abfangen falls keine Daten übergeben wurden
 	else {
 		echo '<h1>Keine Daten übergeben</h1>';

@@ -8523,6 +8523,10 @@ a.text-dark:hover, a.text-dark:focus {
   background-image: url(../../assets/images/background-loginpage.jpg) !important;
 }
 
+.navbar-toggler {
+  height: 46px;
+}
+
 .navbar i {
   color: #ffffff;
 }
@@ -8579,7 +8583,7 @@ a.text-dark:hover, a.text-dark:focus {
     top: 16px;
   }
   .d-flex {
-    top: 3px;
+    top: 7px;
     position: absolute;
     left: auto;
     right: 12px;
@@ -8620,7 +8624,7 @@ a.text-dark:hover, a.text-dark:focus {
   position: absolute;
   height: 100vh;
   width: 100vw;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .feed-scroll-row {
